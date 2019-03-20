@@ -1,0 +1,469 @@
+body, html {
+    height: 100%;
+    margin: 0px;
+    background-color: /*white;*/#f0efea;
+}
+
+#page-wrapper {
+    display: flex;
+    flex-flow: column;
+    min-height: 100%;
+    height: auto;
+}
+
+#advertisement {
+    height: 150px;
+    background-color: #333;
+    display: flex;
+}
+
+#advertisement h1 {
+    margin-right: auto;
+    margin-left: auto;
+    color: #f0efea;
+    font-size: 3em;
+}
+
+footer {
+    height: 100px;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.copyright, .contact, .authors {
+    color: #f0efea;
+}
+
+.copyright {
+    font-size: 1.2em;
+    margin-left: auto;
+}
+
+.authors {
+    font-size: 0.9em;
+    margin-left: 20px;
+    margin-right: auto;
+}
+
+.authors p {
+    padding: 0;
+    margin: 0;
+}
+
+.contact {
+    font-size: 1em;
+    margin-right: auto;
+    margin-left: auto;
+    width: 500px;
+}
+
+.contact p {
+    padding: 0;
+    margin: 0;
+}
+
+.m-0 {
+    margin: 0 0 0 0;
+}
+
+.m-auto {
+    margin: auto auto auto auto;
+}
+
+.mx-auto {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.my-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.ml-right {
+    margin-right: auto;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-center: {
+    justify-content: center;
+}
+
+.six-col {
+   -moz-column-count: 6;
+   -moz-column-gap: 0px;
+   -webkit-column-count: 6;
+   -webkit-column-gap: 0px;
+}
+
+.four-col {
+    -moz-column-count: 4;
+    -moz-column-gap: 0px;
+    -webkit-column-count: 4;
+    -webkit-column-gap: 0px;
+}
+
+.two-col {
+    -moz-column-count: 2;
+    -moz-column-gap: 0px;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 0px;
+}
+
+.one-col {
+    -moz-column-count: 1;
+    -moz-column-gap: 0px;
+    -webkit-column-count: 1;
+    -webkit-column-gap: 0px;
+}
+
+.special {
+    padding-left: 20px;
+    font-weight: 900;
+    font-stretch: expanded;
+    -moz-transform:scale(2,2);
+    width: 40px;
+    height: 20px;
+}
+
+.dropdown-menu {
+    min-width: 300px;
+}
+.dropdown-menu.columns-2 {
+    min-width: 400px;
+}
+.dropdown-menu.columns-3 {
+    min-width: 600px;
+}
+.dropdown-menu li a {
+    padding: 0px 20px;
+    font-weight: 400;
+}
+.multi-column-dropdown {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+.multi-column-dropdown li a {
+    display: block;
+    clear: both;
+    line-height: 1.428571429;
+    color: black;
+    width: 100%;
+    /*white-space: normal;*/
+}
+.multi-column-dropdown li a:hover {
+    text-decoration: none;
+    color: lemonchiffon;
+    background-color: black;
+}
+
+@media (max-width: 767px) {
+    .dropdown-menu.multi-column {
+        min-width: 240px !important;
+        overflow-x: hidden;
+    }
+}
+
+.box1 {
+    display: inline-block;
+    width: 70%;
+}
+
+.box2 {
+    display: inline-block;
+    width: 25%;
+}
+
+.right {
+    display: block;
+    margin-left: 25%;
+    width: 75%;
+    background-color: none;
+}
+
+.left {
+    display: block;
+    width: 25%;
+    background-color: none;
+    float: left;
+}
+
+.vote {
+    margin: 0;
+    padding: 0;
+    font-size: 1.25em;
+}
+
+.vote_up .vote_down {
+    display: inline;
+}
+
+.down-vote {
+    color: red;
+}
+
+.up-vote {
+    color: green;
+}
+
+.vote-button {
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.vote-button:hover {
+    opacity: 0.5;
+}
+
+.mute-vote, .selected-vote:hover {
+    opacity: 0.25 !important;
+}
+
+.mute-vote:hover, .selected-vote {
+    opacity: 1.00 !important;
+}
+
+.add_comment_form {
+    margin-bottom: 40px;
+}
+
+.date {
+    color: grey;
+    font-family: courier;
+    text-transform: uppercase;
+    margin: 0 0 0 0;
+}
+
+.comment-content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.wikispaces-info {
+    color: grey;
+    font-family: courier;
+    text-transform: uppercase;
+}
+
+ul.leftnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;/* 240px; */
+    background-color: none;
+}
+
+ul.leftnav li a{
+    color: black;
+    text-decoration: none;
+}
+
+ul.leftnav li{
+    display: block;
+    color: black;
+    padding: 0px 16px;
+
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+ul.leftnav li:hover {
+    background-color: whitesmoke;
+}
+
+ul.leftnav li a:hover {
+    color: darkgray;
+}
+
+.well {
+    background: white !important;
+}
+
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: /*#344d90;/*/#5b7065;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+ul.topnav .title {
+    font-size:100%;
+    float:left;
+}
+ul.topnav li {float: right;}
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration-line: none;
+    text-transform: uppercase;
+    font-family:courier;
+}
+.center {
+    margin-top: -4%;
+    margin-bottom: -4%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+ul.topnav li a:hover {
+    background-color: #304040;
+    color: whitesmoke;
+}
+@media screen and (max-width: 600px){
+    ul.topnav li {text-align: left; width:100%; float: left}
+}
+
+.scrollable-menu {
+    height: auto;
+    max-width: 1600px;
+    max-height: 530px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.font-italic {
+    font-style: italic;
+}
+
+/* All Sizes */
+.container {
+  display: block;
+  max-width: 100% !important;
+}
+
+
+.cont2 {
+        /* margin-top: -15px !important; */
+}
+/* Mobile */
+@media only screen and (max-width: 450px) {
+    .center {
+        margin-top: -4%;
+        margin-bottom: -4%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+  .container {
+    width: auto !important;
+    margin-left: 1em !important;
+    margin-right: 1em !important;
+  }
+}
+
+/* Tablet */
+@media only screen and (min-width: 450px) and (max-width: 991px) {
+    .center {
+        margin-top: -4%;
+        margin-bottom: -4%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+    }
+  .container {
+    width: 723px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Small Monitor */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    width: 933px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Large Monitor */
+@media only screen and (min-width: 1200px) {
+  .container {
+    width: 1127px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+
+/*.dropdown-content {*/
+    /*left: 0;*/
+/*}*/
+
+.dropbtn {
+    background-color: #5b7065 !important;
+    color: black;
+    /*padding: 16px;*/
+    /*font-size: 16px;*/
+    /*border: none;*/
+    /*cursor: pointer;*/
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.affix {
+      top: 0;
+      width: 85%;
+      z-index: 9999 !important;
+  }
+
+  .affix + .container-fluid {
+      padding-top: 70px;
+  }
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f0efea;
+    min-width: 260px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: white}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: dimgray;
+}
+
+

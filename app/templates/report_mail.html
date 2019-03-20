@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Zgłoszenie</title>
+        <style>
+.button {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0.5em;
+}
+.button:hover {
+    opacity: 0.5;
+}
+.button-accept {
+    background-color: #4CAF50;
+}
+.button-reject {
+    background-color: #f44336;
+}
+        </style>
+    </head>
+    <body>
+        <h3>Komentarz <a href="http://ssop-mim.pl/admin/app/teachercomment/{{ report.comment.id }}">{{ report.comment.id }}</a> został zgłoszony</h3>
+        <ul>
+            <li><strong>Data zgłoszenia:</strong> {{ report.add_date_pretty }}</li>
+            <li><strong>Powód zgłoszenia:</strong> {{ report.content }}</li>
+            <li><strong>Prowadzący:</strong> {{ report.comment.teacher }}</li>
+            <li><strong>Przedmiot:</strong> {{ report.comment.subject_exact }}</li>
+            <li><strong>Treść komentarza:</strong> {{ report.comment.content }}</li>
+            <li><strong>Data komentarza:</strong> {{ report.comment.add_date_pretty }}</li>
+        </ul>
+        <a href="http://ssop-mim.pl{% url 'report_handle' report.uuid %}?accept" class="button button-accept">Akceptuj</a>
+        <a href="http://ssop-mim.pl{% url 'report_handle' report.uuid %}?reject" class="button button-reject">Odrzuć</a>
+        <br><br>
+        <span style="font-size: 0.9em">Ten mail został wygenerowany automatycznie. Nie odpowiadaj na niego!</span>
+    </body>
+</html>

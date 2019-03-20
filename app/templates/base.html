@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% load static %}
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script src="{% static 'js/script.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        {% block stylesheet %}{% endblock %}
+    </head>
+
+    <body>
+        <div id="page-wrapper">
+            <!-- <div id="advertisement"> -->
+            <!--     <h1 class="m-auto">Reklama</h1> -->
+            <!-- </div> -->
+        {% include 'notifications.html' %}
+        {% block body %}
+            <div class="container" style="flex-grow:1">
+                <div class="container-fluid" style="min-height:305px">
+                    <img class="center" src="{% static 'images/logo_mimuw.svg' %}">
+                </div>
+                <nav class="navbar navbar-default" data-offset-top="305">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="{% url 'ssop_home' %}">SSOP <span class="glyphicon glyphicon-home"></span></a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">Lista prowadzących <b class="caret"></b></a>
+                                <ul class="dropdown-menu multi-column scrollable-menu columns-3" role="menu">
+                                    <div class="row">
+                                        <ul class="multi-column-dropdown six-col">
+                                            {% for letter, list in all_teachers %}
+                                                <li class="divider"></li>
+                                                <li class="special">{{ letter }}</li>
+                                                <li class="divider"></li>
+                                                {% for teacher in list %}
+                                                    <li>
+                                                        <a href="{% url 'teacher_page' usos_id=teacher.usos_id %}">{{ teacher.fullname }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lista zajęć <b class="caret"></b></a>
+                                <ul class="dropdown-menu multi-column scrollable-menu columns-3">
+                                    <div class="row">
+                                        <ul class="multi-column-dropdown four-col">
+                                            {% for letter, list in all_subjects %}
+                                                <li class="divider"></li>
+                                                <li class="special">{{ letter }}</li>
+                                                <li class="divider"></li>
+                                                {% for subject in list %}
+                                                    <li>
+                                                        <a href="#">{{ subject.name }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inne <b class="caret"></b></a>
+                                <div class="dropdown-content">
+                                    <a href="">Biblioteka</a>
+                                    <a href="">Sekcja studencka</a>
+                                    <a href="">...</a>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dodaj <b class="caret"></b></a>
+                                <div class="dropdown-content">
+                                    <a href="{% url 'new_teacher' %}">Nowy prowadzący</a>
+                                    <a href="{% url 'new_subject' %}">Nowy przedmiot</a>
+                                </div>
+                            </li>
+                        </ul>
+                        {% block special_menu %}{% endblock %}
+                    </div>
+                </nav>
+
+                <div class="container-fluid" style="min-height:500px">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        {% endblock body %}
+        {% include 'footer.html' %}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'teacher_page.html' %}
+
+{% block title %}{{ teacher.fullname }} {{ subject }}{% endblock %}
+
+{% block subject_name %}{{ subject }}{% endblock %}
+
+{% block info %}
+        <h3>{{ subject }}</h3>
+{% endblock %}
+
+{% block subject_name_in_comment %}
+    {% if subject == 'Wszystkie komentarze' %}
+        <p class="date">{{ comment.subject_exact }}</p>
+    {% endif %}
+{% endblock %}
+
