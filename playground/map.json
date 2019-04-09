@@ -870,7 +870,7 @@
         "to": "1000-113bAG1a"
     },
     {
-        "from": 180,-
+        "from": 180,
         "name": "Algebra dla MSEM I i II",
         "to": "1000-111ADM1"
     },
@@ -895,7 +895,7 @@
         "to": "1000-711ALI"
     },
     {
-        "from": 185,-
+        "from": 185,
         "name": "Metody Obliczeniowe w Finansach",
         "to": "1000-135MOF"
     },
@@ -910,7 +910,7 @@
         "to": "1000-213bASD"
     },
     {
-        "from": 188,-
+        "from": 188,
         "name": "Algorytmika",
         "to": "1000-2N00ALG"
     },
@@ -920,7 +920,7 @@
         "to": "1000-212bMD"
     },
     {
-        "from": 190,-
+        "from": 190,
         "name": "Algorytmika - \u0107wiczenia",
         "to": "???"
     },
@@ -950,7 +950,7 @@
         "to": "???"
     },
     {
-        "from": 196,-
+        "from": 196,
         "name": "Optymalizacja II",
         "to": "1000-134OP1"
     },
@@ -970,7 +970,7 @@
         "to": "1000-114bMOBa"
     },
     {
-        "from": 200,-
+        "from": 200,
         "name": "Obliczenia Naukowe oraz Proseminarium Numeryczne",
         "to": "1000-135ONA"
     },
@@ -1000,22 +1000,22 @@
         "to": "1000-224bJNP2"
     },
     {
-        "from": 207,-
+        "from": 207,
         "name": "Statystyka I",
         "to": "1000-115ST1a"
     },
     {
-        "from": 208,-
+        "from": 208,
         "name": "Metody Programowania (podej\u015bcie imperatywne)",
         "to": "1000-211bWPI"
     },
     {
-        "from": 209,-
+        "from": 209,
         "name": "Deskryptywna teoria mnogo\u015bci",
         "to": "???"
     },
     {
-        "from": 210,-
+        "from": 210,
         "name": "Seminarium: Protoko\u0142y Komunikacyjne",
         "to": "???"
     },
@@ -1050,17 +1050,17 @@
         "to": "1000-211bWPF"
     },
     {
-        "from": 217,-
+        "from": 217,
         "name": "Programowanie funkcyjne (fakultet)",
         "to": "1000-2M10PF"
     },
     {
-        "from": 218,-
+        "from": 218,
         "name": "Sztuczna inteligencja w grach (monograf)",
         "to": "???"
     },
     {
-        "from": 219,-
+        "from": 219,
         "name": "Sztuczna inteligencja (fakultet)",
         "to": "???"
     },
@@ -1070,12 +1070,12 @@
         "to": "1000-2N09SUS"
     },
     {
-        "from": 221,-
+        "from": 221,
         "name": "Optymalizacja program\u00f3w opensource",
         "to": "???"
     },
     {
-        "from": 222,-
+        "from": 222,
         "name": "Analiza Funkcjonalna I",
         "to": "1000-135AF1"
     },
@@ -1150,7 +1150,7 @@
         "to": "1000-211bAM1"
     },
     {
-        "from": 237,-
+        "from": 237,
         "name": "Analiza funkcjonalna 1 \u0107wiczenia",
         "to": "???"
     },
@@ -1180,27 +1180,27 @@
         "to": "1000-114bRRZa"
     },
     {
-        "from": 243,-
+        "from": 243,
         "name": "Pytania",
         "to": "???"
     },
     {
-        "from": 244,-
+        "from": 244,
         "name": "Algebra 1",
         "to": "1000-134AG2"
     },
     {
-        "from": 245,-
+        "from": 245,
         "name": "Algebra 2",
         "to": "1000-134AG2"
     },
     {
-        "from": 247,-
+        "from": 247,
         "name": "AM I",
         "to": "1000-111bAM1a"
     },
     {
-        "from": 248,-
+        "from": 248,
         "name": "Handel Elektroniczny",
         "to": "1000-2M09OTA"
     },
@@ -1210,7 +1210,7 @@
         "to": "1000-111bAM1a"
     },
     {
-        "from": 250,-
+        "from": 250,
         "name": "Wprowadzenie do Teorii Mnogo\u015bci (monograf) - \u0107wiczenia",
         "to": "???"
     },
@@ -1230,17 +1230,17 @@
         "to": "1000-113bTP1a"
     },
     {
-        "from": 254,-
+        "from": 254,
         "name": "Programowanie w logice",
         "to": "1000-2N00PLO"
     },
     {
-        "from": 255,-
+        "from": 255,
         "name": "JPP",
         "to": "1000-216bJPP"
     },
     {
-        "from": 256,-
+        "from": 256,
         "name": "WPF \u0107wiczenia",
         "to": "1000-211bWPF"
     },
@@ -1320,7 +1320,7 @@
         "to": "???"
     },
     {
-        "from": 272,-
+        "from": 272,
         "name": "Teoria z\u0142o\u017cono\u015bci",
         "to": "1000-218bZO"
     },
@@ -1335,12 +1335,12 @@
         "to": "1000-2N09SUS"
     },
     {
-        "from": 277,-
+        "from": 277,
         "name": "Data Mining",
         "to": "1000-2M03DM"
     },
     {
-        "from": 278,-
+        "from": 278,
         "name": "Systemy Decyzyjne",
         "to": "1000-135SYD"
     },
@@ -1350,7 +1350,7 @@
         "to": "1000-213bASD"
     },
     {
-        "from": 280,-
+        "from": 280,
         "name": "GAL I:",
         "to": "1000-111bGA1a"
     },
@@ -1375,7 +1375,7 @@
         "to": "1000-114bRP1a"
     },
     {
-        "from": 285,-
+        "from": 285,
         "name": "In\u017cynieria finansowa - \u0107wiczenia",
         "to": "???"
     },
@@ -1430,7 +1430,7 @@
         "to": "1000-223bJNP1"
     },
     {
-        "from": 296,-
+        "from": 296,
         "name": "Programowanie mikrokontroler\u00f3w",
         "to": "1000-2M08PMK"
     },
