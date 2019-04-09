@@ -332,7 +332,7 @@
     {
         "from": 70,
         "name": "Logika",
-        "to": null
+        "to": "1000-217bLOG"
     },
     {
         "from": 71,
@@ -567,7 +567,7 @@
     {
         "from": 118,
         "name": "Zaawansowane metody biologii obliczeniowej",
-        "to": null
+        "to": "???"
     },
     {
         "from": 119,
@@ -642,7 +642,7 @@
     {
         "from": 134,
         "name": "Prawo dla informatyk\u00f3w",
-        "to": null
+        "to": "???"
     },
     {
         "from": 135,
@@ -687,17 +687,17 @@
     {
         "from": 143,
         "name": "Przetwarzanie j\u0119zyka naturalnego:",
-        "to": null
+        "to": "1000-2M15PJN"
     },
     {
         "from": 144,
         "name": "Sztuczna inteligencja - \u0107wiczenia:",
-        "to": null
+        "to": "1000-2N00SID"
     },
     {
         "from": 145,
         "name": "Sztuczna inteligencja - lab:",
-        "to": null
+        "to": "1000-2N00SID"
     },
     {
         "from": 146,
@@ -707,22 +707,22 @@
     {
         "from": 147,
         "name": "Systemy ucz\u0105ce si\u0119:",
-        "to": null
+        "to": "1000-2N09SUS"
     },
     {
         "from": 148,
         "name": "Wst\u0119p do modelowania matematycznego w finansach",
-        "to": null
+        "to": "???"
     },
     {
         "from": 149,
         "name": "AM 1 - \u0107wiczenia",
-        "to": null
+        "to": "1000-113bAM3a"
     },
     {
         "from": 150,
         "name": "Logika - \u0107wiczenia",
-        "to": null
+        "to": "???"
     },
     {
         "from": 151,
@@ -732,12 +732,12 @@
     {
         "from": 152,
         "name": "Sztuczna Inteligencja i Systemy Doradcze",
-        "to": null
+        "to": "1000-2N00SID"
     },
     {
         "from": 153,
         "name": "Programowanie w asemblerze",
-        "to": null
+        "to": "1000-2M11PWA"
     },
     {
         "from": 154,
@@ -757,7 +757,7 @@
     {
         "from": 157,
         "name": "Rachunek r\u00f3\u017cniczkowy i ca\u0142kowy - wyk\u0142ad",
-        "to": null
+        "to": "1000-711RRC"
     },
     {
         "from": 158,
@@ -777,12 +777,12 @@
     {
         "from": 161,
         "name": "GAL",
-        "to": null
+        "to": "1000-211bGAL"
     },
     {
         "from": 162,
         "name": "WDI",
-        "to": null
+        "to": "1000-111bWI1b"
     },
     {
         "from": 163,
@@ -792,7 +792,7 @@
     {
         "from": 164,
         "name": "Grafika komputerowa",
-        "to": null
+        "to": "1000-135GK"
     },
     {
         "from": 165,
@@ -817,12 +817,12 @@
     {
         "from": 169,
         "name": "AM I.1 (\u0107wiczenia)",
-        "to": null
+        "to": "1000-111bAM1a"
     },
     {
         "from": 170,
         "name": "Analiza I.2 (\u0107wiczenia)",
-        "to": null
+        "to": "1000-112bAM2a"
     },
     {
         "from": 171,
@@ -832,12 +832,12 @@
     {
         "from": 172,
         "name": "Analiza I",
-        "to": null
+        "to": "???"
     },
     {
         "from": 173,
         "name": "Algebra",
-        "to": null
+        "to": "1000-111bGA1a"
     },
     {
         "from": 174,
@@ -857,7 +857,7 @@
     {
         "from": 177,
         "name": "Algorytmiczne aspekty teorii gier",
-        "to": null
+        "to": "1000-2M02AA"
     },
     {
         "from": 178,
@@ -867,22 +867,22 @@
     {
         "from": 179,
         "name": "GAL II",
-        "to": null
+        "to": "1000-113bAG1a"
     },
     {
-        "from": 180,
+        "from": 180,-
         "name": "Algebra dla MSEM I i II",
-        "to": null
+        "to": "1000-111ADM1"
     },
     {
         "from": 181,
         "name": "Historia Matematyki",
-        "to": null
+        "to": "1000-00HM1-OG"
     },
     {
         "from": 182,
         "name": "Popularyzacja matematyki:",
-        "to": null
+        "to": "???"
     },
     {
         "from": 183,
@@ -895,9 +895,9 @@
         "to": "1000-711ALI"
     },
     {
-        "from": 185,
+        "from": 185,-
         "name": "Metody Obliczeniowe w Finansach",
-        "to": null
+        "to": "1000-135MOF"
     },
     {
         "from": 186,
@@ -910,9 +910,9 @@
         "to": "1000-213bASD"
     },
     {
-        "from": 188,
+        "from": 188,-
         "name": "Algorytmika",
-        "to": null
+        "to": "1000-2N00ALG"
     },
     {
         "from": 189,
@@ -920,9 +920,9 @@
         "to": "1000-212bMD"
     },
     {
-        "from": 190,
+        "from": 190,-
         "name": "Algorytmika - \u0107wiczenia",
-        "to": null
+        "to": "???"
     },
     {
         "from": 191,
@@ -950,9 +950,9 @@
         "to": "???"
     },
     {
-        "from": 196,
+        "from": 196,-
         "name": "Optymalizacja II",
-        "to": null
+        "to": "1000-134OP1"
     },
     {
         "from": 197,
@@ -970,9 +970,9 @@
         "to": "1000-114bMOBa"
     },
     {
-        "from": 200,
+        "from": 200,-
         "name": "Obliczenia Naukowe oraz Proseminarium Numeryczne",
-        "to": null
+        "to": "1000-135ONA"
     },
     {
         "from": 201,
@@ -1000,29 +1000,29 @@
         "to": "1000-224bJNP2"
     },
     {
-        "from": 207,
+        "from": 207,-
         "name": "Statystyka I",
-        "to": null
+        "to": "1000-115ST1a"
     },
     {
-        "from": 208,
+        "from": 208,-
         "name": "Metody Programowania (podej\u015bcie imperatywne)",
-        "to": null
+        "to": "1000-211bWPI"
     },
     {
-        "from": 209,
+        "from": 209,-
         "name": "Deskryptywna teoria mnogo\u015bci",
-        "to": null
+        "to": "???"
     },
     {
-        "from": 210,
+        "from": 210,-
         "name": "Seminarium: Protoko\u0142y Komunikacyjne",
-        "to": null
+        "to": "???"
     },
     {
         "from": 211,
         "name": "Analiza funkcjonalna I",
-        "to": null
+        "to": "1000-135AF1"
     },
     {
         "from": 212,
@@ -1047,52 +1047,52 @@
     {
         "from": 216,
         "name": "Wst\u0119p do Programowania (funkcyjny)",
-        "to": null
+        "to": "1000-211bWPF"
     },
     {
-        "from": 217,
+        "from": 217,-
         "name": "Programowanie funkcyjne (fakultet)",
         "to": "1000-2M10PF"
     },
     {
-        "from": 218,
+        "from": 218,-
         "name": "Sztuczna inteligencja w grach (monograf)",
-        "to": null
+        "to": "???"
     },
     {
-        "from": 219,
+        "from": 219,-
         "name": "Sztuczna inteligencja (fakultet)",
-        "to": null
+        "to": "???"
     },
     {
         "from": 220,
         "name": "Systemy ucz\u0105ce si\u0119",
-        "to": null
+        "to": "1000-2N09SUS"
     },
     {
-        "from": 221,
+        "from": 221,-
         "name": "Optymalizacja program\u00f3w opensource",
-        "to": null
+        "to": "???"
     },
     {
-        "from": 222,
+        "from": 222,-
         "name": "Analiza Funkcjonalna I",
-        "to": null
+        "to": "1000-135AF1"
     },
     {
         "from": 223,
         "name": "Seminarium magisterskie",
-        "to": null
+        "to": "???"
     },
     {
         "from": 224,
         "name": "Seminarium",
-        "to": null
+        "to": "???"
     },
     {
         "from": 225,
         "name": "Wst\u0119p do Programowania Imperatywnego",
-        "to": null
+        "to": "1000-211bWPI"
     },
     {
         "from": 226,
@@ -1102,7 +1102,7 @@
     {
         "from": 227,
         "name": "Sztuczna inteligencja i systemy doradcze",
-        "to": null
+        "to": "1000-2N00SID"
     },
     {
         "from": 228,
@@ -1142,7 +1142,7 @@
     {
         "from": 235,
         "name": "Podstawowe zagadnienia prawne przydatne w \u017cyciu informatyka",
-        "to": null
+        "to": "1000-2M05ZP"
     },
     {
         "from": 236,
@@ -1150,9 +1150,9 @@
         "to": "1000-211bAM1"
     },
     {
-        "from": 237,
+        "from": 237,-
         "name": "Analiza funkcjonalna 1 \u0107wiczenia",
-        "to": null
+        "to": "???"
     },
     {
         "from": 238,
@@ -1180,29 +1180,29 @@
         "to": "1000-114bRRZa"
     },
     {
-        "from": 243,
+        "from": 243,-
         "name": "Pytania",
-        "to": null
+        "to": "???"
     },
     {
-        "from": 244,
+        "from": 244,-
         "name": "Algebra 1",
-        "to": null
+        "to": "1000-134AG2"
     },
     {
-        "from": 245,
+        "from": 245,-
         "name": "Algebra 2",
-        "to": null
+        "to": "1000-134AG2"
     },
     {
-        "from": 247,
+        "from": 247,-
         "name": "AM I",
-        "to": null
+        "to": "1000-111bAM1a"
     },
     {
-        "from": 248,
+        "from": 248,-
         "name": "Handel Elektroniczny",
-        "to": null
+        "to": "1000-2M09OTA"
     },
     {
         "from": 249,
@@ -1210,9 +1210,9 @@
         "to": "1000-111bAM1a"
     },
     {
-        "from": 250,
+        "from": 250,-
         "name": "Wprowadzenie do Teorii Mnogo\u015bci (monograf) - \u0107wiczenia",
-        "to": null
+        "to": "???"
     },
     {
         "from": 251,
@@ -1230,24 +1230,24 @@
         "to": "1000-113bTP1a"
     },
     {
-        "from": 254,
+        "from": 254,-
         "name": "Programowanie w logice",
-        "to": null
+        "to": "1000-2N00PLO"
     },
     {
-        "from": 255,
+        "from": 255,-
         "name": "JPP",
-        "to": null
+        "to": "1000-216bJPP"
     },
     {
-        "from": 256,
+        "from": 256,-
         "name": "WPF \u0107wiczenia",
-        "to": null
+        "to": "1000-211bWPF"
     },
     {
         "from": 257,
         "name": "Seminarium: Systemy rozproszone",
-        "to": null
+        "to": "???"
     },
     {
         "from": 258,
@@ -1257,7 +1257,7 @@
     {
         "from": 259,
         "name": "Analiza portfelowa i rynki kapita\u0142owe:",
-        "to": null
+        "to": "???"
     },
     {
         "from": 260,
@@ -1277,7 +1277,7 @@
     {
         "from": 263,
         "name": "Egzamin magisterski (przewodnicz\u0105cy komisji)",
-        "to": null
+        "to": "???"
     },
     {
         "from": 264,
@@ -1287,12 +1287,12 @@
     {
         "from": 265,
         "name": "Przedmioty algorytmiczne",
-        "to": null
+        "to": "???"
     },
     {
         "from": 266,
         "name": "Wst\u0119p do Programowania",
-        "to": null
+        "to": "???"
     },
     {
         "from": 267,
@@ -1312,17 +1312,17 @@
     {
         "from": 270,
         "name": "Prolog",
-        "to": null
+        "to": "???"
     },
     {
         "from": 271,
         "name": "XML, czyli drzewa z danymi",
-        "to": null
+        "to": "???"
     },
     {
-        "from": 272,
+        "from": 272,-
         "name": "Teoria z\u0142o\u017cono\u015bci",
-        "to": null
+        "to": "1000-218bZO"
     },
     {
         "from": 274,
@@ -1332,17 +1332,17 @@
     {
         "from": 275,
         "name": "Systemy ucz\u0105ce si\u0119 (lab)",
-        "to": null
+        "to": "1000-2N09SUS"
     },
     {
-        "from": 277,
+        "from": 277,-
         "name": "Data Mining",
-        "to": null
+        "to": "1000-2M03DM"
     },
     {
-        "from": 278,
+        "from": 278,-
         "name": "Systemy Decyzyjne",
-        "to": null
+        "to": "1000-135SYD"
     },
     {
         "from": 279,
@@ -1350,9 +1350,9 @@
         "to": "1000-213bASD"
     },
     {
-        "from": 280,
+        "from": 280,-
         "name": "GAL I:",
-        "to": null
+        "to": "1000-111bGA1a"
     },
     {
         "from": 281,
@@ -1375,9 +1375,9 @@
         "to": "1000-114bRP1a"
     },
     {
-        "from": 285,
+        "from": 285,-
         "name": "In\u017cynieria finansowa - \u0107wiczenia",
-        "to": null
+        "to": "???"
     },
     {
         "from": 286,
@@ -1402,17 +1402,17 @@
     {
         "from": 290,
         "name": "Algorytmika Praktyczna",
-        "to": null
+        "to": "???"
     },
     {
         "from": 291,
         "name": "Metody Programowania (imperatywne)",
-        "to": null
+        "to": "1000-211bWPI"
     },
     {
         "from": 292,
         "name": "Architektura Komputer\u00f3w i Sieci",
-        "to": null
+        "to": "1000-212bAKS"
     },
     {
         "from": 293,
@@ -1430,24 +1430,24 @@
         "to": "1000-223bJNP1"
     },
     {
-        "from": 296,
+        "from": 296,-
         "name": "Programowanie mikrokontroler\u00f3w",
-        "to": null
+        "to": "1000-2M08PMK"
     },
     {
         "from": 297,
         "name": "Programowanie mikrokontroler\u00f3w 2.0",
-        "to": null
+        "to": "1000-2M08PMK"
     },
     {
         "from": 298,
         "name": "Matematyczne Modele Mechaniki Klasycznej (czy jakos tak)",
-        "to": null
+        "to": "???"
     },
     {
         "from": 299,
         "name": "Jako\u015bciowa Teoria R\u00f3wna\u0144 R\u00f3\u017cniczkowych Zwyczajnych",
-        "to": null
+        "to": "1000-135RRJ"
     },
     {
         "from": 300,
@@ -1457,12 +1457,12 @@
     {
         "from": 301,
         "name": "Proseminarium - matematyka w dzia\u0142aniu",
-        "to": null
+        "to": "???"
     },
     {
         "from": 302,
         "name": "WAS",
-        "to": null
+        "to": "1000-135WAS"
     },
     {
         "from": 303,
@@ -1507,27 +1507,27 @@
     {
         "from": 312,
         "name": "Teoria decyzji statystycznych",
-        "to": null
+        "to": "1000-135TDS"
     },
     {
         "from": 313,
         "name": "Statystyka",
-        "to": null
+        "to": "1000-115ST1a"
     },
     {
         "from": 314,
         "name": "Statystyka 2",
-        "to": null
+        "to": "1000-135ST2"
     },
     {
         "from": 315,
         "name": "In\u017cynieria Lingwistyczna",
-        "to": null
+        "to": "???"
     },
     {
         "from": 316,
         "name": "Logika Kategoryjna [2008/2009, semestr letni]",
-        "to": null
+        "to": "???"
     },
     {
         "from": 317,
@@ -1537,17 +1537,17 @@
     {
         "from": 318,
         "name": "Jako\u015bciowa teoria r\u00f3wna\u0144 r\u00f3\u017cniczkowych zwyczajnych",
-        "to": null
+        "to": "1000-135RRJ"
     },
     {
         "from": 319,
         "name": "Konserwatorium wydzia\u0142owe - uk\u0142ady dynamiczne",
-        "to": null
+        "to": "???"
     },
     {
         "from": 320,
         "name": "Bazy Danych oraz MNI I i II (Metodyka Nauczania Informatyki)",
-        "to": null
+        "to": "1000-135MI1"
     },
     {
         "from": 321,
@@ -1557,22 +1557,22 @@
     {
         "from": 323,
         "name": "R\u00f3wnania R\u00f3\u017cniczkowe Cz\u0105stkowe I",
-        "to": null
+        "to": "???"
     },
     {
         "from": 324,
         "name": "Szeregi czasowe I",
-        "to": null
+        "to": "???"
     },
     {
         "from": 325,
         "name": "Szeregi czasowe II",
-        "to": null
+        "to": "???"
     },
     {
         "from": 326,
         "name": "Matematyka i statystyka (WGISR)",
-        "to": null
+        "to": "???"
     },
     {
         "from": 327,
@@ -1582,12 +1582,12 @@
     {
         "from": 328,
         "name": "Z\u0142o\u017cono\u015b\u0107 algorytm\u00f3w tekstowych",
-        "to": null
+        "to": "1000-2N09ALT"
     },
     {
         "from": 329,
         "name": "R\u00f3wnania r\u00f3\u017cniczkowe zwyczajne(\u0107wiczenia)",
-        "to": null
+        "to": "???"
     },
     {
         "from": 330,
@@ -1597,37 +1597,37 @@
     {
         "from": 331,
         "name": "R\u00f3wnania r\u00f3\u017cniczkowe czastkowe(wyk\u0142ad)",
-        "to": null
+        "to": "1000-135RC1a"
     },
     {
         "from": 332,
         "name": "Wst\u0119p do modelowania matematycznego w finanasach i ubezpieczeniach",
-        "to": null
+        "to": "???"
     },
     {
         "from": 333,
         "name": "Optymalizacja I",
-        "to": null
+        "to": "???"
     },
     {
         "from": 334,
         "name": "Rachunek r\u00f3\u017cniczkowy i ca\u0142kowy - \u0107wiczenia",
-        "to": null
+        "to": "1000-711RRC"
     },
     {
         "from": 335,
         "name": "Wstep do modelowania matematycznego w finansach",
-        "to": null
+        "to": "???"
     },
     {
         "from": 336,
         "name": "Matematyka w ubezpieczeniach \u017cyciowych:",
-        "to": null
+        "to": "1000-135MUZ"
     },
     {
         "from": 337,
         "name": "Wst\u0119p do teorii liczb",
-        "to": null
+        "to": "???"
     },
     {
         "from": 338,
@@ -1637,17 +1637,17 @@
     {
         "from": 340,
         "name": "Przetwarzanie du\u017cych danych",
-        "to": null
+        "to": "1000-2M13PDD"
     },
     {
         "from": 341,
         "name": "J2EE",
-        "to": null
+        "to": "1000-225bJNP3"
     },
     {
         "from": 342,
         "name": "JAVA SE (seminarium)",
-        "to": null
+        "to": "1000-225bJNP3"
     },
     {
         "from": 343,
@@ -1667,7 +1667,7 @@
     {
         "from": 346,
         "name": "Metodyka Nauczania Rachunku Prawdopodobienstwa",
-        "to": null
+        "to": "1000-135MRP"
     },
     {
         "from": 347,
@@ -1677,7 +1677,7 @@
     {
         "from": 348,
         "name": "Systemy zarz\u0105dzania bazami danych",
-        "to": null
+        "to": "1000-213bBAD"
     },
     {
         "from": 349,
@@ -1687,12 +1687,12 @@
     {
         "from": 350,
         "name": "Analiza dla Informatyk\u00f3w",
-        "to": null
+        "to": "???"
     },
     {
         "from": 351,
         "name": "Optymalizacja 1",
-        "to": null
+        "to": "1000-134OP1"
     },
     {
         "from": 352,
@@ -1702,12 +1702,12 @@
     {
         "from": 353,
         "name": "R\u00f3wnania r\u00f3\u017cniczkowe cz\u0105stkowe I:",
-        "to": null
+        "to": "1000-135RC2"
     },
     {
         "from": 354,
         "name": "Wprowadzenie do lingwistyki komputerowej",
-        "to": null
+        "to": "???"
     },
     {
         "from": 355,
@@ -1737,17 +1737,17 @@
     {
         "from": 360,
         "name": "Analiza 1.2 * 2008/2009",
-        "to": null
+        "to": "1000-112bAM2*"
     },
     {
         "from": 361,
         "name": "Modele Oblicze\u0144",
-        "to": null
+        "to": "1000-135MOL"
     },
     {
         "from": 362,
         "name": "Datamining",
-        "to": null
+        "to": "???"
     },
     {
         "from": 363,
@@ -1757,7 +1757,7 @@
     {
         "from": 364,
         "name": "MRJP - \u0107wiczenia",
-        "to": null
+        "to": "1000-217bMRJ"
     },
     {
         "from": 365,
@@ -1772,12 +1772,12 @@
     {
         "from": 367,
         "name": "GAL (inf.) - \u0107wiczenia",
-        "to": null
+        "to": "???"
     },
     {
         "from": 368,
         "name": "R\u00f3wnania r\u00f3\u017cniczkowe zwyczajne - \u0107wiczenia",
-        "to": null
+        "to": "???"
     },
     {
         "from": 369,
@@ -1792,7 +1792,7 @@
     {
         "from": 371,
         "name": "R\u00f3wnania r\u00f3\u017cniczkowe zwyczajne (\u0107wiczenia)",
-        "to": null
+        "to": "???"
     },
     {
         "from": 372,
@@ -1812,7 +1812,7 @@
     {
         "from": 375,
         "name": "RP2",
-        "to": null
+        "to": "1000-135RP2"
     },
     {
         "from": 376,
@@ -1832,7 +1832,7 @@
     {
         "from": 379,
         "name": "Analiza dla Informatyk\u00f3w II",
-        "to": null
+        "to": "1000-212bAM2"
     },
     {
         "from": 380,
@@ -1842,12 +1842,12 @@
     {
         "from": 381,
         "name": "Topologia I konwersatorium",
-        "to": null
+        "to": "1000-113bTP1a"
     },
     {
         "from": 382,
         "name": "WdM \u0107wiczenia",
-        "to": null
+        "to": "1000-111bWMAa"
     },
     {
         "from": 383,
@@ -1862,17 +1862,17 @@
     {
         "from": 385,
         "name": "Rachunek lambda",
-        "to": null
+        "to": "1000-2M02RL"
     },
     {
         "from": 386,
         "name": "Teoria oblicze\u0144",
-        "to": null
+        "to": "1000-2M00TO"
     },
     {
         "from": 387,
         "name": "In\u017cynieria Finansowa",
-        "to": null
+        "to": "1000-135IFI"
     },
     {
         "from": 388,
@@ -1892,7 +1892,7 @@
     {
         "from": 391,
         "name": "AM I.1, I.2, II.1, II.2, Analiza funkcjonalna",
-        "to": null
+        "to": "???"
     },
     {
         "from": 392,
@@ -1912,17 +1912,17 @@
     {
         "from": 395,
         "name": "Prolog - laboratorium",
-        "to": null
+        "to": "???"
     },
     {
         "from": 396,
         "name": "Zespo\u0142owy Projekt Programistyczny",
-        "to": null
+        "to": "???"
     },
     {
         "from": 397,
         "name": "Sztuczna Inteligencja i Systemy Doradcze - LAB",
-        "to": null
+        "to": "1000-2N00SID"
     },
     {
         "from": 398,
@@ -1937,12 +1937,12 @@
     {
         "from": 400,
         "name": "Analiza funkcjonalna II",
-        "to": null
+        "to": "???"
     },
     {
         "from": 401,
         "name": "Analiza funkcjonalna I*",
-        "to": null
+        "to": "???"
     },
     {
         "from": 402,
@@ -1962,7 +1962,7 @@
     {
         "from": 405,
         "name": "Metody programowanie (potok imperatywny) lab+\u0107wiczenia",
-        "to": null
+        "to": "???"
     },
     {
         "from": 406,
@@ -1972,7 +1972,7 @@
     {
         "from": 407,
         "name": "RP (proseminarium licencjackie)",
-        "to": null
+        "to": "1000-135MRP"
     },
     {
         "from": 408,
@@ -1982,17 +1982,17 @@
     {
         "from": 409,
         "name": "Proseminarium licencjackie",
-        "to": null
+        "to": "???"
     },
     {
         "from": 410,
         "name": "WDM",
-        "to": null
+        "to": "1000-111bWMAa"
     },
     {
         "from": 411,
         "name": "Programowanie w Logice",
-        "to": null
+        "to": "???"
     },
     {
         "from": 412,
@@ -2002,7 +2002,7 @@
     {
         "from": 413,
         "name": "Wst\u0119p do programowania - podej\u015bcie imperatywne",
-        "to": null
+        "to": "1000-211bWPI"
     },
     {
         "from": 414,
@@ -2012,7 +2012,7 @@
     {
         "from": 415,
         "name": "Uk\u0142ady dynamiczne - seminarium:",
-        "to": null
+        "to": "1000-135UD"
     },
     {
         "from": 416,
@@ -2022,6 +2022,6 @@
     {
         "from": 417,
         "name": "R\u00f3wnania r\u00f3\u017cniczkowe zwyczajne I",
-        "to": null
+        "to": "1000-114bRRZa"
     }
 ]
