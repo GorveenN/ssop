@@ -11,9 +11,13 @@ class Command(BaseCommand):
 
         parser.add_argument(
             'method',
-            choices=['wikispaces'],
+            choices=['wikispaces', 'usos'],
             help='method of population'
         )
+
+        parser.add_argument('--file', type=str)
+
+
 
     def handle(self, *args, **options):
         if options['method'] == 'wikispaces':
