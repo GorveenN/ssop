@@ -14,8 +14,8 @@ class Teacher(models.Model):
     firstname = models.CharField(max_length=64)
     surname   = models.CharField(max_length=64)
     usos_id   = models.IntegerField(primary_key=True)
-    website   = models.CharField(max_length=64, null=True)
-    email     = models.CharField(max_length=64, null=True)
+    website   = models.CharField(max_length=64, null=True, default=None)
+    email     = models.CharField(max_length=64, null=True, default=None)
 
     @property
     def fullname(self):
@@ -53,7 +53,7 @@ class Subject(models.Model):
         verbose_name = "Subject"
         verbose_name_plural = "Subjects"
 
-    usos_id = models.CharField(max_length=32, null=True, default=None) #TODO: set as primary key when ids will be ready
+    usos_id = models.CharField(max_length=32, primary_key=True)
     name    = models.CharField(max_length=64)
 
     @property
@@ -63,40 +63,6 @@ class Subject(models.Model):
     def __str__(self):
         return f'{self.name}'
 
-class SubjectExact(models.Model):
-    class Meta:
-        verbose_name = "Exact subject"
-        verbose_name_plural = "Exact subjects"
-
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
-    TYPE_CHOICES = (
-        ('WYK', 'Wykład'),
-        ('CW', 'Ćwiczenia'),
-        ('LAB', 'Laboratorium'),
-    )
-    type    = models.CharField(max_length=3, choices=TYPE_CHOICES, default=None, null=True)
-
-    @property
-    def name(self):
-        if self.type:
-            return f'{self.subject} ({self.type})'
-        else:
-            return f'{self.subject}'
-
-    def __str__(self):
-        return self.name
-
-class Class(models.Model):
-    class Meta:
-        verbose_name = "Class"
-        verbose_name_plural = "Classes"
-        unique_together = ('teacher', 'subject_exact')
-
-    teacher       = models.ForeignKey(Teacher, on_delete = models.CASCADE)
-    subject_exact = models.ForeignKey(SubjectExact, on_delete = models.CASCADE)
-
-    def __str__(self):
-        return f'{self.teacher} - {self.subject_exact}'
 
 class TeacherComment(models.Model):
     class Meta:
@@ -104,7 +70,7 @@ class TeacherComment(models.Model):
         verbose_name_plural = "Teacher comments"
 
     teacher       = models.ForeignKey(Teacher, on_delete = models.CASCADE)
-    subject_exact = models.ForeignKey(SubjectExact, on_delete = models.CASCADE)
+    subject       = models.ForeignKey(Subject, on_delete = models.CASCADE)
     content       = models.TextField()
     add_date      = models.DateTimeField(auto_now_add=True)
     wikispaces    = models.BooleanField(default=False)
