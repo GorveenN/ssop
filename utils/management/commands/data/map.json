@@ -1,0 +1,2027 @@
+[
+    {
+        "from": 1,
+        "name": "Og\u00f3lne",
+        "to": "???"
+    },
+    {
+        "from": 2,
+        "name": "Tworzenie Aplikacji z Gwiazdk\u0105",
+        "to": ""
+    },
+    {
+        "from": 3,
+        "name": "J\u0119zyki i Narz\u0119dzia Programowania I",
+        "to": "1000-223bJNP1"
+    },
+    {
+        "from": 4,
+        "name": "Bazy danych",
+        "to": "1000-213bBAD"
+    },
+    {
+        "from": 5,
+        "name": "Sieci komputerowe",
+        "to": "1000-214bSIK"
+    },
+    {
+        "from": 6,
+        "name": "Elementy matematyki dyskretnej",
+        "to": "1000-212bMD"
+    },
+    {
+        "from": 7,
+        "name": "GAL - Geometria z Algebr\u0105 Liniow\u0105 II",
+        "to": "1000-112bGA2a"
+    },
+    {
+        "from": 8,
+        "name": "Rachunek Prawdopodobie\u0144stwa I",
+        "to": "1000-114bRP1a"
+    },
+    {
+        "from": 9,
+        "name": "Rachunek Prawdopodobie\u0144stwa II",
+        "to": "1000-135RP2"
+    },
+    {
+        "from": 10,
+        "name": "Wst\u0119p do Analizy Stochastycznej",
+        "to": "1000-135WAS"
+    },
+    {
+        "from": 11,
+        "name": "Procesy Stochastyczne II",
+        "to": "1000-135PS"
+    },
+    {
+        "from": 12,
+        "name": "IPP:",
+        "to": "1000-222bIPP"
+    },
+    {
+        "from": 13,
+        "name": "HCI:",
+        "to": ""
+    },
+    {
+        "from": 14,
+        "name": "Wst\u0119p do matematyki",
+        "to": "1000-111bWMAa"
+    },
+    {
+        "from": 16,
+        "name": "In\u017cynieria Oprogramowania",
+        "to": "1000-214bIOP"
+    },
+    {
+        "from": 17,
+        "name": "XML i nowoczesne technologie zarz\u0105dzania tre\u015bci\u0105",
+        "to": "1000-2M01XM"
+    },
+    {
+        "from": 18,
+        "name": "ZPP",
+        "to": "???"
+    },
+    {
+        "from": 20,
+        "name": "Metody numeryczne",
+        "to": "1000-215bMNU"
+    },
+    {
+        "from": 21,
+        "name": "Algebra liniowa i jej metody obliczeniowe",
+        "to": "1000-711ALI"
+    },
+    {
+        "from": 22,
+        "name": "Analiza Matematyczna",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 23,
+        "name": "Geometria i Algebra Liniowa",
+        "to": "1000-211bGAL"
+    },
+    {
+        "from": 24,
+        "name": "Matematyka Obliczeniowa",
+        "to": "1000-114bMOBa"
+    },
+    {
+        "from": 25,
+        "name": "Rachunek Prawdopodobie\u0144stwa",
+        "to": "1000-114bRP1a"
+    },
+    {
+        "from": 26,
+        "name": "Procesy stochastyczne I",
+        "to": "1000-135PS"
+    },
+    {
+        "from": 27,
+        "name": "Procesy stochastyczne II",
+        "to": "1000-135PS"
+    },
+    {
+        "from": 28,
+        "name": "Programowanie Obiektowe",
+        "to": "1000-212bPO"
+    },
+    {
+        "from": 29,
+        "name": "Metody realizacji j\u0119zyk\u00f3w programowania",
+        "to": "1000-217bMRJ"
+    },
+    {
+        "from": 30,
+        "name": "Metody realizacji j\u0119zyk\u00f3w programowania - \u0107wiczenia",
+        "to": "1000-217bMRJ"
+    },
+    {
+        "from": 31,
+        "name": "Metody realizacji j\u0119zyk\u00f3w programowania - lab",
+        "to": "1000-217bMRJ"
+    },
+    {
+        "from": 32,
+        "name": "Bazy danych - lab",
+        "to": "1000-213bBAD"
+    },
+    {
+        "from": 33,
+        "name": "Wst\u0119p do Informatyki",
+        "to": "1000-111bWI1a"
+    },
+    {
+        "from": 34,
+        "name": "Metody Numeryczne",
+        "to": "1000-215bMNU"
+    },
+    {
+        "from": 35,
+        "name": "Topologia I",
+        "to": "1000-113bTP1a"
+    },
+    {
+        "from": 36,
+        "name": "Topologia II",
+        "to": "1000-134TP2"
+    },
+    {
+        "from": 37,
+        "name": "GAL I - \u0107wiczenia",
+        "to": "1000-111bGA1a"
+    },
+    {
+        "from": 38,
+        "name": "Kryptografia",
+        "to": "1000-2M12KI1"
+    },
+    {
+        "from": 39,
+        "name": "R\u00f3wnania R\u00f3\u017cniczkowe Zwyczajne I",
+        "to": "1000-114bRRZa"
+    },
+    {
+        "from": 40,
+        "name": "Geometria R\u00f3\u017cniczkowa 2",
+        "to": "1000-135GR"
+    },
+    {
+        "from": 41,
+        "name": "Algebraiczna Teoria Liczb",
+        "to": "old"
+    },
+    {
+        "from": 42,
+        "name": "Teoria Liczb",
+        "to": "1000-135TL"
+    },
+    {
+        "from": 43,
+        "name": "Geometria Algebraiczna",
+        "to": "1000-135GEA"
+    },
+    {
+        "from": 44,
+        "name": "Indywidualny projekt programistyczny",
+        "to": "1000-222bIPP"
+    },
+    {
+        "from": 45,
+        "name": "Teoria informacji",
+        "to": "1000-2N03TI"
+    },
+    {
+        "from": 46,
+        "name": "Geometria r\u00f3\u017cniczkowa II",
+        "to": "1000-135GR"
+    },
+    {
+        "from": 47,
+        "name": "Analiza matematyczna 2.1",
+        "to": "1000-113bAM3a"
+    },
+    {
+        "from": 48,
+        "name": "Analiza matematyczna 1.1",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 49,
+        "name": "Analiza matematyczna I.2*",
+        "to": "1000-112bAM2*"
+    },
+    {
+        "from": 50,
+        "name": "R\u00f3wnania R\u00f3\u017cniczkowe Zwyczajne",
+        "to": "1000-114bRRZa"
+    },
+    {
+        "from": 51,
+        "name": "Analiza Matematyczna I",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 52,
+        "name": "Analiza Matematyczna II",
+        "to": "1000-113bAM3a"
+    },
+    {
+        "from": 53,
+        "name": "R\u00f3wnania r\u00f3\u017cniczkowe z op\u00f3\u017anieniem i metody asymptotyczne (...) (monograf)",
+        "to": "old"
+    },
+    {
+        "from": 54,
+        "name": "Algebra I",
+        "to": "1000-113bAG1a"
+    },
+    {
+        "from": 55,
+        "name": "Algebra I *",
+        "to": "1000-113bAG1*"
+    },
+    {
+        "from": 56,
+        "name": "Geometria z algebr\u0105 liniow\u0105",
+        "to": "1000-211bGAL"
+    },
+    {
+        "from": 57,
+        "name": "J\u0119zyki, Automaty, Obliczenia",
+        "to": "1000-214bJAO"
+    },
+    {
+        "from": 59,
+        "name": "Rachunek prawdopodobie\u0144stwa I",
+        "to": "1000-114bRP1a"
+    },
+    {
+        "from": 60,
+        "name": "Analiza matematyczna II",
+        "to": "1000-113bAM3a"
+    },
+    {
+        "from": 61,
+        "name": "Analiza matematyczna II.1*, II.2*",
+        "to": "1000-113bAM3*"
+    },
+    {
+        "from": 62,
+        "name": "R\u00f3wnania r\u00f3\u017cniczkowe zwyczajne",
+        "to": "1000-114bRRZa"
+    },
+    {
+        "from": 63,
+        "name": "Funkcje analityczne",
+        "to": "1000-134FAN"
+    },
+    {
+        "from": 64,
+        "name": "Analiza zespolona",
+        "to": "1000-135ANZ"
+    },
+    {
+        "from": 65,
+        "name": "J\u0119zyki i narz\u0119dzia programowania (C#)",
+        "to": "1000-224bJNP2"
+    },
+    {
+        "from": 66,
+        "name": "Geometria z Algebr\u0105 Liniow\u0105",
+        "to": "1000-211bGAL"
+    },
+    {
+        "from": 67,
+        "name": "Metody programowania (podej\u015bcie imperatywne)",
+        "to": "1000-211bWPI"
+    },
+    {
+        "from": 68,
+        "name": "Wst\u0119p do programowania (podej\u015bcie imperatywne)",
+        "to": "1000-211bWPI"
+    },
+    {
+        "from": 69,
+        "name": "Sieci Petriego",
+        "to": "1000-2M01SP"
+    },
+    {
+        "from": 70,
+        "name": "Logika",
+        "to": "1000-217bLOG"
+    },
+    {
+        "from": 71,
+        "name": "Podstawy matematyki",
+        "to": "1000-211bPM"
+    },
+    {
+        "from": 72,
+        "name": "Wst\u0119p do teorii mnogo\u015bci",
+        "to": "old"
+    },
+    {
+        "from": 73,
+        "name": "System wspomagania dowodzenia Coq",
+        "to": "old"
+    },
+    {
+        "from": 74,
+        "name": "Wst\u0119p do Teorii Mnogo\u015bci",
+        "to": "???"
+    },
+    {
+        "from": 75,
+        "name": "Metody Programowania (funkcyjne)",
+        "to": "1000-211bWPF"
+    },
+    {
+        "from": 76,
+        "name": "Wst\u0119p do programowania (podej\u015bcie funkcyjne)",
+        "to": "1000-211bWPF"
+    },
+    {
+        "from": 77,
+        "name": "J\u0119zyki i paradygmaty programowania (lab)",
+        "to": "1000-216bJPP"
+    },
+    {
+        "from": 79,
+        "name": "Sztuka programowania",
+        "to": "old"
+    },
+    {
+        "from": 80,
+        "name": "Aplikacje WWW",
+        "to": "1000-214bWWW"
+    },
+    {
+        "from": 81,
+        "name": "Rachunek prawdopodobie\u0144stwa i statystyka - \u0107wiczenia + laby",
+        "to": "1000-213bRPS"
+    },
+    {
+        "from": 82,
+        "name": "ASD - \u0107wiczenia",
+        "to": "1000-213bASD"
+    },
+    {
+        "from": 83,
+        "name": "Analiza matematyczna 1.2*",
+        "to": "1000-112bAM2*"
+    },
+    {
+        "from": 84,
+        "name": "Analiza matematyczna I dla informatyk\u00f3w",
+        "to": "1000-211bAM1"
+    },
+    {
+        "from": 85,
+        "name": "Analiza matematyczna II dla informatyk\u00f3w",
+        "to": "1000-212bAM2"
+    },
+    {
+        "from": 86,
+        "name": "R\u00f3wnania r\u00f3\u017cniczkowe cz\u0105stkowe II (\u0107wiczenia)",
+        "to": "1000-135RC2"
+    },
+    {
+        "from": 87,
+        "name": "Cyfrowe przetwarzanie sygna\u0142\u00f3w",
+        "to": "old"
+    },
+    {
+        "from": 88,
+        "name": "Programowanie wsp\u00f3\u0142bie\u017cne",
+        "to": "1000-213bPW"
+    },
+    {
+        "from": 89,
+        "name": "Systemy operacyjne",
+        "to": "1000-214bSOB"
+    },
+    {
+        "from": 90,
+        "name": "J\u0119zyki i paradygmaty programowani",
+        "to": "1000-216bJPP"
+    },
+    {
+        "from": 91,
+        "name": "Programowanie Obiektowe (\u0107wiczenia)",
+        "to": "1000-212bPO"
+    },
+    {
+        "from": 92,
+        "name": "Programowanie Obiektowe (lab)",
+        "to": "1000-212bPO"
+    },
+    {
+        "from": 93,
+        "name": "Zarz\u0105dzanie projektami informatycznymi",
+        "to": "1000-2M08ZPI"
+    },
+    {
+        "from": 94,
+        "name": "Algorytmy i Struktury Danych",
+        "to": "1000-213bASD"
+    },
+    {
+        "from": 95,
+        "name": "Z\u0142o\u017cono\u015b\u0107 Obliczeniowa",
+        "to": "1000-218bZO"
+    },
+    {
+        "from": 96,
+        "name": "Algorytmika internetu",
+        "to": "???"
+    },
+    {
+        "from": 97,
+        "name": "Elementy Matematyki Dyskretnej",
+        "to": "1000-212bMD"
+    },
+    {
+        "from": 98,
+        "name": "Wst\u0119p do Obliczeniowej Biologii Molekularnej",
+        "to": "???"
+    },
+    {
+        "from": 99,
+        "name": "Podstawy Matematyki",
+        "to": "1000-211bPM"
+    },
+    {
+        "from": 100,
+        "name": "Matematyka Dyskretna",
+        "to": "1000-212bMD"
+    },
+    {
+        "from": 101,
+        "name": "Unix i C",
+        "to": "???"
+    },
+    {
+        "from": 102,
+        "name": "JNP II (Python)",
+        "to": "1000-224bJNP2"
+    },
+    {
+        "from": 103,
+        "name": "Algorytmiczne aspekty kryptografii",
+        "to": "???"
+    },
+    {
+        "from": 104,
+        "name": "Wst\u0119p do programowania, \u0107wiczenia",
+        "to": "1000-211bWPI"
+    },
+    {
+        "from": 105,
+        "name": "Programowanie obiektowe",
+        "to": "1000-212bPO"
+    },
+    {
+        "from": 106,
+        "name": "J\u0119zyki i narz\u0119dzia programowania I",
+        "to": "1000-223bJNP1"
+    },
+    {
+        "from": 107,
+        "name": "Systemy Operacyjne",
+        "to": "1000-214bSOB"
+    },
+    {
+        "from": 108,
+        "name": "Semantyka i weryfikacja program\u00f3w",
+        "to": "1000-215bSWP"
+    },
+    {
+        "from": 109,
+        "name": "Topologia I *",
+        "to": "1000-113bTP1*"
+    },
+    {
+        "from": 110,
+        "name": "Analiza matematyczna, \u0107wiczenia",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 111,
+        "name": "Modele matematyczne biologii i medycyny",
+        "to": "1000-135MBM"
+    },
+    {
+        "from": 112,
+        "name": "RRZ (\u0107wiczenia)",
+        "to": "???"
+    },
+    {
+        "from": 113,
+        "name": "AM 1.1 / 1.2",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 114,
+        "name": "AM 2",
+        "to": "1000-113bAM3a"
+    },
+    {
+        "from": 115,
+        "name": "Systemy operacyjne - \u0107w",
+        "to": "1000-214bSOB"
+    },
+    {
+        "from": 116,
+        "name": "Programowanie obiektowe - \u0107w",
+        "to": "1000-212bPO"
+    },
+    {
+        "from": 117,
+        "name": "Programowanie obiektowe - lab",
+        "to": "1000-212bPO"
+    },
+    {
+        "from": 118,
+        "name": "Zaawansowane metody biologii obliczeniowej",
+        "to": "???"
+    },
+    {
+        "from": 119,
+        "name": "Wst\u0119p do Biologii Obliczeniowej",
+        "to": "1000-2N03BO"
+    },
+    {
+        "from": 121,
+        "name": "R\u00f3wnania r\u00f3\u017cniczkowe cz\u0105stkowe I",
+        "to": "1000-135RC1a"
+    },
+    {
+        "from": 122,
+        "name": "Wst\u0119p do programowania (funkcyjny)",
+        "to": "1000-211bWPF"
+    },
+    {
+        "from": 123,
+        "name": "Elementy Matematyki Dyskretnej - \u0106wiczenia",
+        "to": "1000-212bMD"
+    },
+    {
+        "from": 124,
+        "name": "MRJP - \u0106wiczenia",
+        "to": "???"
+    },
+    {
+        "from": 125,
+        "name": "MRJP-lab",
+        "to": "???"
+    },
+    {
+        "from": 126,
+        "name": "Wst\u0119p do informatyki - wyk\u0142ady",
+        "to": "1000-111bWI1a"
+    },
+    {
+        "from": 127,
+        "name": "Wst\u0119p do informatyki - lab",
+        "to": "1000-111bWI1a"
+    },
+    {
+        "from": 128,
+        "name": "Metody Programowania / Wst\u0119p do Programowania",
+        "to": "1000-211bWPI"
+    },
+    {
+        "from": 129,
+        "name": "Wst\u0119p do Oblicze\u0144 Ewolucyjnych i Neuronowych",
+        "to": "1000-2M04MP"
+    },
+    {
+        "from": 130,
+        "name": "Architektura komputera i programowanie niskopoziomowe",
+        "to": "???"
+    },
+    {
+        "from": 131,
+        "name": "Wyk\u0142ady kryptograficzne i teorioliczbowe",
+        "to": "???"
+    },
+    {
+        "from": 132,
+        "name": "Algorytmiczna Teoria Liczb",
+        "to": "1000-2M00TL"
+    },
+    {
+        "from": 133,
+        "name": "Semantyka i weryfikacja",
+        "to": "1000-215bSWP"
+    },
+    {
+        "from": 134,
+        "name": "Prawo dla informatyk\u00f3w",
+        "to": "???"
+    },
+    {
+        "from": 135,
+        "name": "Indywidualny Projekt Programistyczny",
+        "to": "1000-222bIPP"
+    },
+    {
+        "from": 136,
+        "name": "Wst\u0119p do informatyki I",
+        "to": "1000-111bWI1a"
+    },
+    {
+        "from": 137,
+        "name": "J\u0119zyki, Automaty i Obliczenia",
+        "to": "1000-214bJAO"
+    },
+    {
+        "from": 138,
+        "name": "Programowanie Obiektowe, Zespo\u0142owy Projekt Programistyczny",
+        "to": "???"
+    },
+    {
+        "from": 139,
+        "name": "Programowanie Obiektowe i C++",
+        "to": "1000-135POC"
+    },
+    {
+        "from": 140,
+        "name": "Bezpiecze\u0144stwo system\u00f3w komputerowych",
+        "to": "1000-215bBSK"
+    },
+    {
+        "from": 141,
+        "name": "Sieci komputerowe - laboratorium",
+        "to": "1000-214bSIK"
+    },
+    {
+        "from": 142,
+        "name": "Geometria II",
+        "to": "1000-135GM2"
+    },
+    {
+        "from": 143,
+        "name": "Przetwarzanie j\u0119zyka naturalnego:",
+        "to": "1000-2M15PJN"
+    },
+    {
+        "from": 144,
+        "name": "Sztuczna inteligencja - \u0107wiczenia:",
+        "to": "1000-2N00SID"
+    },
+    {
+        "from": 145,
+        "name": "Sztuczna inteligencja - lab:",
+        "to": "1000-2N00SID"
+    },
+    {
+        "from": 146,
+        "name": "Programowanie funkcyjne - lab:",
+        "to": "1000-2M10PF"
+    },
+    {
+        "from": 147,
+        "name": "Systemy ucz\u0105ce si\u0119:",
+        "to": "1000-2N09SUS"
+    },
+    {
+        "from": 148,
+        "name": "Wst\u0119p do modelowania matematycznego w finansach",
+        "to": "???"
+    },
+    {
+        "from": 149,
+        "name": "AM 1 - \u0107wiczenia",
+        "to": "1000-113bAM3a"
+    },
+    {
+        "from": 150,
+        "name": "Logika - \u0107wiczenia",
+        "to": "???"
+    },
+    {
+        "from": 151,
+        "name": "Bazy Danych",
+        "to": "1000-213bBAD"
+    },
+    {
+        "from": 152,
+        "name": "Sztuczna Inteligencja i Systemy Doradcze",
+        "to": "1000-2N00SID"
+    },
+    {
+        "from": 153,
+        "name": "Programowanie w asemblerze",
+        "to": "1000-2M11PWA"
+    },
+    {
+        "from": 154,
+        "name": "Analiza matematyczna - wyk\u0142ady",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 155,
+        "name": "Funkcje Analityczne",
+        "to": "1000-134FAN"
+    },
+    {
+        "from": 156,
+        "name": "R\u00f3wnania R\u00f3\u017cniczkowe Cz\u0105stkowe",
+        "to": "1000-135RC1a"
+    },
+    {
+        "from": 157,
+        "name": "Rachunek r\u00f3\u017cniczkowy i ca\u0142kowy - wyk\u0142ad",
+        "to": "1000-711RRC"
+    },
+    {
+        "from": 158,
+        "name": "In\u017cynieria oprogramowania",
+        "to": "1000-214bIOP"
+    },
+    {
+        "from": 159,
+        "name": "Rachunek prawdopodobie\u0144stwa i statystyka",
+        "to": "1000-213bRPS"
+    },
+    {
+        "from": 160,
+        "name": "Z\u0142o\u017cono\u015b\u0107 obliczeniowa -- \u0107wiczenia",
+        "to": "1000-218bZO"
+    },
+    {
+        "from": 161,
+        "name": "GAL",
+        "to": "1000-211bGAL"
+    },
+    {
+        "from": 162,
+        "name": "WDI",
+        "to": "1000-111bWI1b"
+    },
+    {
+        "from": 163,
+        "name": "Algebra Liniowa i jej Metody Obliczeniowe",
+        "to": "1000-711ALI"
+    },
+    {
+        "from": 164,
+        "name": "Grafika komputerowa",
+        "to": "1000-135GK"
+    },
+    {
+        "from": 165,
+        "name": "Logika dla informatyk\u00f3w",
+        "to": "1000-217bLOG"
+    },
+    {
+        "from": 166,
+        "name": "Indywidualny Projekt Informatyczny",
+        "to": "1000-222bIPP"
+    },
+    {
+        "from": 167,
+        "name": "Wst\u0119p do Programowania (podej\u015bcie funkcyjne)",
+        "to": "1000-211bWPF"
+    },
+    {
+        "from": 168,
+        "name": "Wst\u0119p do informatyki - laby",
+        "to": "1000-111bWI1a"
+    },
+    {
+        "from": 169,
+        "name": "AM I.1 (\u0107wiczenia)",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 170,
+        "name": "Analiza I.2 (\u0107wiczenia)",
+        "to": "1000-112bAM2a"
+    },
+    {
+        "from": 171,
+        "name": "Geometria R\u00f3\u017cniczkowa",
+        "to":  "1000-135GR"
+    },
+    {
+        "from": 172,
+        "name": "Analiza I",
+        "to": "???"
+    },
+    {
+        "from": 173,
+        "name": "Algebra",
+        "to": "1000-111bGA1a"
+    },
+    {
+        "from": 174,
+        "name": "Programowanie funkcyjne",
+        "to": "1000-2M10PF"
+    },
+    {
+        "from": 175,
+        "name": "Semantyka i Weryfikacja Program\u00f3w",
+        "to": "1000-215bSWP"
+    },
+    {
+        "from": 176,
+        "name": "J\u0119zyki, automaty i obliczenia",
+        "to": "1000-214bJAO"
+    },
+    {
+        "from": 177,
+        "name": "Algorytmiczne aspekty teorii gier",
+        "to": "1000-2M02AA"
+    },
+    {
+        "from": 178,
+        "name": "Analiza matematyczna inf I i II",
+        "to": "1000-211bAM1"
+    },
+    {
+        "from": 179,
+        "name": "GAL II",
+        "to": "1000-113bAG1a"
+    },
+    {
+        "from": 180,
+        "name": "Algebra dla MSEM I i II",
+        "to": "1000-111ADM1"
+    },
+    {
+        "from": 181,
+        "name": "Historia Matematyki",
+        "to": "1000-00HM1-OG"
+    },
+    {
+        "from": 182,
+        "name": "Popularyzacja matematyki:",
+        "to": "???"
+    },
+    {
+        "from": 183,
+        "name": "Zaawansowane Systemy Operacyjne",
+        "to": "1000-2N09ZSO"
+    },
+    {
+        "from": 184,
+        "name": "Algebra Liniowa",
+        "to": "1000-711ALI"
+    },
+    {
+        "from": 185,
+        "name": "Metody Obliczeniowe w Finansach",
+        "to": "1000-135MOF"
+    },
+    {
+        "from": 186,
+        "name": "Analiza matematyczna",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 187,
+        "name": "Algorytmy i struktury danych",
+        "to": "1000-213bASD"
+    },
+    {
+        "from": 188,
+        "name": "Algorytmika",
+        "to": "1000-2N00ALG"
+    },
+    {
+        "from": 189,
+        "name": "matematyki dyskretnej - \u0107wiczenia",
+        "to": "1000-212bMD"
+    },
+    {
+        "from": 190,
+        "name": "Algorytmika - \u0107wiczenia",
+        "to": "???"
+    },
+    {
+        "from": 191,
+        "name": "Algorytmy i struktury danych (\u0107wiczenia)",
+        "to": "1000-213bASD"
+    },
+    {
+        "from": 192,
+        "name": "Algorytmy i struktury danych (lab)",
+        "to": "1000-213bASD"
+    },
+    {
+        "from": 193,
+        "name": "Geometria z Algebra Liniowa",
+        "to": "1000-211bGAL"
+    },
+    {
+        "from": 194,
+        "name": "Analiza matematyczna dla informatyk\u00f3w",
+        "to": "1000-211bAM1"
+    },
+    {
+        "from": 195,
+        "name": "Zwroty charakterystyczne:",
+        "to": "???"
+    },
+    {
+        "from": 196,
+        "name": "Optymalizacja II",
+        "to": "1000-134OP1"
+    },
+    {
+        "from": 197,
+        "name": "Sieci Komputerowe",
+        "to": "1000-214bSIK"
+    },
+    {
+        "from": 198,
+        "name": "Wst\u0119p do informatyki",
+        "to": "1000-111bWI1a"
+    },
+    {
+        "from": 199,
+        "name": "Obliczenia Naukowe - laboratorium; Matematyka Obliczeniowa - wyk\u0142ad, \u0107wiczenia",
+        "to": "1000-114bMOBa"
+    },
+    {
+        "from": 200,
+        "name": "Obliczenia Naukowe oraz Proseminarium Numeryczne",
+        "to": "1000-135ONA"
+    },
+    {
+        "from": 201,
+        "name": "R\u00f3wnania R\u00f3\u017cniczkowe Zwyczajne z laboratorium",
+        "to": "1000-114bRRZIb"
+    },
+    {
+        "from": 203,
+        "name": "Bazy danych - laboratorium",
+        "to": "1000-213bBAD"
+    },
+    {
+        "from": 204,
+        "name": "Bazy danych - \u0107wiczenia",
+        "to": "1000-213bBAD"
+    },
+    {
+        "from": 205,
+        "name": "Zaawansowane bazy danych - lab",
+        "to": "1000-2N09ZBD"
+    },
+    {
+        "from": 206,
+        "name": "J\u0119zyki i narz\u0119dzia programowania II - zarz\u0105dzanie baz\u0105 Oracle",
+        "to": "1000-224bJNP2"
+    },
+    {
+        "from": 207,
+        "name": "Statystyka I",
+        "to": "1000-115ST1a"
+    },
+    {
+        "from": 208,
+        "name": "Metody Programowania (podej\u015bcie imperatywne)",
+        "to": "1000-211bWPI"
+    },
+    {
+        "from": 209,
+        "name": "Deskryptywna teoria mnogo\u015bci",
+        "to": "???"
+    },
+    {
+        "from": 210,
+        "name": "Seminarium: Protoko\u0142y Komunikacyjne",
+        "to": "???"
+    },
+    {
+        "from": 211,
+        "name": "Analiza funkcjonalna I",
+        "to": "1000-135AF1"
+    },
+    {
+        "from": 212,
+        "name": "Rachunek prawdopodobie\u0144stwa I/II",
+        "to": "1000-114bRP1a"
+    },
+    {
+        "from": 213,
+        "name": "Rachunek prawdopodobie\u0144stwa I*",
+        "to": "1000-114bRP1*"
+    },
+    {
+        "from": 214,
+        "name": "Rachunek prawdopodobie\u0144stwa III",
+        "to": "1000-1M14RP3"
+    },
+    {
+        "from": 215,
+        "name": "Wst\u0119p do programowania, podej\u015bcie funkcyjne",
+        "to": "1000-211bWPF"
+    },
+    {
+        "from": 216,
+        "name": "Wst\u0119p do Programowania (funkcyjny)",
+        "to": "1000-211bWPF"
+    },
+    {
+        "from": 217,
+        "name": "Programowanie funkcyjne (fakultet)",
+        "to": "1000-2M10PF"
+    },
+    {
+        "from": 218,
+        "name": "Sztuczna inteligencja w grach (monograf)",
+        "to": "???"
+    },
+    {
+        "from": 219,
+        "name": "Sztuczna inteligencja (fakultet)",
+        "to": "???"
+    },
+    {
+        "from": 220,
+        "name": "Systemy ucz\u0105ce si\u0119",
+        "to": "1000-2N09SUS"
+    },
+    {
+        "from": 221,
+        "name": "Optymalizacja program\u00f3w opensource",
+        "to": "???"
+    },
+    {
+        "from": 222,
+        "name": "Analiza Funkcjonalna I",
+        "to": "1000-135AF1"
+    },
+    {
+        "from": 223,
+        "name": "Seminarium magisterskie",
+        "to": "???"
+    },
+    {
+        "from": 224,
+        "name": "Seminarium",
+        "to": "???"
+    },
+    {
+        "from": 225,
+        "name": "Wst\u0119p do Programowania Imperatywnego",
+        "to": "1000-211bWPI"
+    },
+    {
+        "from": 226,
+        "name": "Wst\u0119p do informatyki I i II",
+        "to": "1000-111bWI1a"
+    },
+    {
+        "from": 227,
+        "name": "Sztuczna inteligencja i systemy doradcze",
+        "to": "1000-2N00SID"
+    },
+    {
+        "from": 228,
+        "name": "Algorytmy i Struktury Danych - \u0107wiczenia",
+        "to": "1000-213bASD"
+    },
+    {
+        "from": 229,
+        "name": "Algorytmy i Struktury Danych - laby",
+        "to": "1000-213bASD"
+    },
+    {
+        "from": 230,
+        "name": "Matematyka Obliczeniowa II",
+        "to": "1000-135MO2"
+    },
+    {
+        "from": 231,
+        "name": "Analiza matematyczna I",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 232,
+        "name": "Analiza matematyczna I - wyk\u0142ad",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 233,
+        "name": "Topologia I - \u0107wiczenia",
+        "to": "1000-113bTP1a"
+    },
+    {
+        "from": 234,
+        "name": "Topologia I -wyk\u0142ad",
+        "to": "1000-113bTP1a"
+    },
+    {
+        "from": 235,
+        "name": "Podstawowe zagadnienia prawne przydatne w \u017cyciu informatyka",
+        "to": "1000-2M05ZP"
+    },
+    {
+        "from": 236,
+        "name": "Analiza Matematyczna inf.",
+        "to": "1000-211bAM1"
+    },
+    {
+        "from": 237,
+        "name": "Analiza funkcjonalna 1 \u0107wiczenia",
+        "to": "???"
+    },
+    {
+        "from": 238,
+        "name": "Analiza matematyczna I.1, I.2",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 239,
+        "name": "Analiza Matematyczna II.1",
+        "to": "1000-113bAM3a"
+    },
+    {
+        "from": 240,
+        "name": "Analiza Matematyczna - \u0107wiczenia",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 241,
+        "name": "Geometria R\u00f3\u017cniczkowa I - wyk\u0142ad, \u0107wiczenia",
+        "to": "1000-135GR"
+    },
+    {
+        "from": 242,
+        "name": "R\u00f3wnania R\u00f3\u017cniczkowe Zwyczajne - \u0107wiczenia",
+        "to": "1000-114bRRZa"
+    },
+    {
+        "from": 243,
+        "name": "Pytania",
+        "to": "???"
+    },
+    {
+        "from": 244,
+        "name": "Algebra 1",
+        "to": "1000-134AG2"
+    },
+    {
+        "from": 245,
+        "name": "Algebra 2",
+        "to": "1000-134AG2"
+    },
+    {
+        "from": 247,
+        "name": "AM I",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 248,
+        "name": "Handel Elektroniczny",
+        "to": "1000-2M09OTA"
+    },
+    {
+        "from": 249,
+        "name": "Analiza matematyczna - \u0107wiczenia",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 250,
+        "name": "Wprowadzenie do Teorii Mnogo\u015bci (monograf) - \u0107wiczenia",
+        "to": "???"
+    },
+    {
+        "from": 251,
+        "name": "Wst\u0119p do Matematyki",
+        "to": "1000-111bWMAa"
+    },
+    {
+        "from": 252,
+        "name": "Matematyka Dyskretna - \u0107wiczenia",
+        "to": "1000-212bMD"
+    },
+    {
+        "from": 253,
+        "name": "Topologia",
+        "to": "1000-113bTP1a"
+    },
+    {
+        "from": 254,
+        "name": "Programowanie w logice",
+        "to": "1000-2N00PLO"
+    },
+    {
+        "from": 255,
+        "name": "JPP",
+        "to": "1000-216bJPP"
+    },
+    {
+        "from": 256,
+        "name": "WPF \u0107wiczenia",
+        "to": "1000-211bWPF"
+    },
+    {
+        "from": 257,
+        "name": "Seminarium: Systemy rozproszone",
+        "to": "???"
+    },
+    {
+        "from": 258,
+        "name": "Analiza matematyczna I i II",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 259,
+        "name": "Analiza portfelowa i rynki kapita\u0142owe:",
+        "to": "???"
+    },
+    {
+        "from": 260,
+        "name": "Funkcje analityczne \u0107wiczenia:",
+        "to": "1000-134FAN"
+    },
+    {
+        "from": 261,
+        "name": "Analiza Matematyczna I i II (wyk\u0142ad i \u0107wiczenia)",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 262,
+        "name": "R\u00f3wnania r\u00f3\u017cniczkowe zwyczajne I (wyk\u0142ad, \u0107wiczenia)",
+        "to": "1000-114bRRZa"
+    },
+    {
+        "from": 263,
+        "name": "Egzamin magisterski (przewodnicz\u0105cy komisji)",
+        "to": "???"
+    },
+    {
+        "from": 264,
+        "name": "Matematyka Obliczeniowa I",
+        "to": "1000-114bMOBa"
+    },
+    {
+        "from": 265,
+        "name": "Przedmioty algorytmiczne",
+        "to": "???"
+    },
+    {
+        "from": 266,
+        "name": "Wst\u0119p do Programowania",
+        "to": "???"
+    },
+    {
+        "from": 267,
+        "name": "Analiza Matematyczna I, II",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 268,
+        "name": "R\u00f3wnania R\u00f3\u017cniczkowe Cz\u0105stkowe I - \u0107wiczenia:",
+        "to": "1000-135RC1a"
+    },
+    {
+        "from": 269,
+        "name": "R\u00f3wnania R\u00f3\u017cniczkowe Cz\u0105stkowe II:",
+        "to": "1000-135RC2"
+    },
+    {
+        "from": 270,
+        "name": "Prolog",
+        "to": "???"
+    },
+    {
+        "from": 271,
+        "name": "XML, czyli drzewa z danymi",
+        "to": "???"
+    },
+    {
+        "from": 272,
+        "name": "Teoria z\u0142o\u017cono\u015bci",
+        "to": "1000-218bZO"
+    },
+    {
+        "from": 274,
+        "name": "Wst\u0119p do Informatyki I",
+        "to": "1000-111bWI1a"
+    },
+    {
+        "from": 275,
+        "name": "Systemy ucz\u0105ce si\u0119 (lab)",
+        "to": "1000-2N09SUS"
+    },
+    {
+        "from": 277,
+        "name": "Data Mining",
+        "to": "1000-2M03DM"
+    },
+    {
+        "from": 278,
+        "name": "Systemy Decyzyjne",
+        "to": "1000-135SYD"
+    },
+    {
+        "from": 279,
+        "name": "Algorytmika, ASD",
+        "to": "1000-213bASD"
+    },
+    {
+        "from": 280,
+        "name": "GAL I:",
+        "to": "1000-111bGA1a"
+    },
+    {
+        "from": 281,
+        "name": "Topologia I*",
+        "to": "1000-113bTP1*"
+    },
+    {
+        "from": 282,
+        "name": "Algebra II",
+        "to": "1000-134AG2"
+    },
+    {
+        "from": 283,
+        "name": "Geometria z algebr\u0105 liniow\u0105 I - \u0107wiczenia",
+        "to": "1000-111bGA1a"
+    },
+    {
+        "from": 284,
+        "name": "Rachunek Prawdopodobie\u0144stwa I i II",
+        "to": "1000-114bRP1a"
+    },
+    {
+        "from": 285,
+        "name": "In\u017cynieria finansowa - \u0107wiczenia",
+        "to": "???"
+    },
+    {
+        "from": 286,
+        "name": "Geometria r\u00f3\u017cniczkowa I",
+        "to": "1000-135GR"
+    },
+    {
+        "from": 287,
+        "name": "Algebra I, II",
+        "to": "1000-113bAG1a"
+    },
+    {
+        "from": 288,
+        "name": "Analiza Matematyczna I inf.",
+        "to": "1000-211bAM1"
+    },
+    {
+        "from": 289,
+        "name": "Analiza Matematyczna II inf.",
+        "to": "1000-212bAM2"
+    },
+    {
+        "from": 290,
+        "name": "Algorytmika Praktyczna",
+        "to": "???"
+    },
+    {
+        "from": 291,
+        "name": "Metody Programowania (imperatywne)",
+        "to": "1000-211bWPI"
+    },
+    {
+        "from": 292,
+        "name": "Architektura Komputer\u00f3w i Sieci",
+        "to": "1000-212bAKS"
+    },
+    {
+        "from": 293,
+        "name": "Architektura Komputera i Programowanie Niskopoziomowe",
+        "to": "???"
+    },
+    {
+        "from": 294,
+        "name": "Sieci Komputerowe (lab)",
+        "to": "1000-214bSIK"
+    },
+    {
+        "from": 295,
+        "name": "J\u0119zyki i narz\u0119dzia programowania (C++)",
+        "to": "1000-223bJNP1"
+    },
+    {
+        "from": 296,
+        "name": "Programowanie mikrokontroler\u00f3w",
+        "to": "1000-2M08PMK"
+    },
+    {
+        "from": 297,
+        "name": "Programowanie mikrokontroler\u00f3w 2.0",
+        "to": "1000-2M08PMK"
+    },
+    {
+        "from": 298,
+        "name": "Matematyczne Modele Mechaniki Klasycznej (czy jakos tak)",
+        "to": "???"
+    },
+    {
+        "from": 299,
+        "name": "Jako\u015bciowa Teoria R\u00f3wna\u0144 R\u00f3\u017cniczkowych Zwyczajnych",
+        "to": "1000-135RRJ"
+    },
+    {
+        "from": 300,
+        "name": "R\u00f3wnania r\u00f3\u017cniczkowe zwyczajne - wyk\u0142ad",
+        "to": "1000-114bRRZa"
+    },
+    {
+        "from": 301,
+        "name": "Proseminarium - matematyka w dzia\u0142aniu",
+        "to": "???"
+    },
+    {
+        "from": 302,
+        "name": "WAS",
+        "to": "1000-135WAS"
+    },
+    {
+        "from": 303,
+        "name": "Rachunek prawdopodobie\u0144stwa I / II:",
+        "to": "1000-114bRP1a"
+    },
+    {
+        "from": 304,
+        "name": "Systemy operacyjne (\u0107wiczenia)",
+        "to": "1000-214bSOB"
+    },
+    {
+        "from": 305,
+        "name": "Systemy operacyjne (lab)",
+        "to": "1000-214bSOB"
+    },
+    {
+        "from": 306,
+        "name": "Kompresja danych - Wprowadzenie",
+        "to": "???"
+    },
+    {
+        "from": 308,
+        "name": "Geometria z algebr\u0105 liniow\u0105 II - \u0107wiczenia",
+        "to": "1000-112bGA2a"
+    },
+    {
+        "from": 309,
+        "name": "Topologia 1",
+        "to": "1000-113bTP1a"
+    },
+    {
+        "from": 310,
+        "name": "Charakterystyczne zwroty:",
+        "to": "???"
+    },
+    {
+        "from": 311,
+        "name": "Geometria z algebr\u0105 linow\u0105",
+        "to": "1000-211bGAL"
+    },
+    {
+        "from": 312,
+        "name": "Teoria decyzji statystycznych",
+        "to": "1000-135TDS"
+    },
+    {
+        "from": 313,
+        "name": "Statystyka",
+        "to": "1000-115ST1a"
+    },
+    {
+        "from": 314,
+        "name": "Statystyka 2",
+        "to": "1000-135ST2"
+    },
+    {
+        "from": 315,
+        "name": "In\u017cynieria Lingwistyczna",
+        "to": "???"
+    },
+    {
+        "from": 316,
+        "name": "Logika Kategoryjna [2008/2009, semestr letni]",
+        "to": "???"
+    },
+    {
+        "from": 317,
+        "name": "Programowanie Obiektowe [2008/2009, semestr letni]",
+        "to": "1000-212bPO"
+    },
+    {
+        "from": 318,
+        "name": "Jako\u015bciowa teoria r\u00f3wna\u0144 r\u00f3\u017cniczkowych zwyczajnych",
+        "to": "1000-135RRJ"
+    },
+    {
+        "from": 319,
+        "name": "Konserwatorium wydzia\u0142owe - uk\u0142ady dynamiczne",
+        "to": "???"
+    },
+    {
+        "from": 320,
+        "name": "Bazy Danych oraz MNI I i II (Metodyka Nauczania Informatyki)",
+        "to": "1000-135MI1"
+    },
+    {
+        "from": 321,
+        "name": "Programowanie Obiektowe (\u0107wiczenia + laby)",
+        "to": "1000-212bPO"
+    },
+    {
+        "from": 323,
+        "name": "R\u00f3wnania R\u00f3\u017cniczkowe Cz\u0105stkowe I",
+        "to": "???"
+    },
+    {
+        "from": 324,
+        "name": "Szeregi czasowe I",
+        "to": "???"
+    },
+    {
+        "from": 325,
+        "name": "Szeregi czasowe II",
+        "to": "???"
+    },
+    {
+        "from": 326,
+        "name": "Matematyka i statystyka (WGISR)",
+        "to": "???"
+    },
+    {
+        "from": 327,
+        "name": "JAO",
+        "to": "1000-214bJAO"
+    },
+    {
+        "from": 328,
+        "name": "Z\u0142o\u017cono\u015b\u0107 algorytm\u00f3w tekstowych",
+        "to": "1000-2N09ALT"
+    },
+    {
+        "from": 329,
+        "name": "R\u00f3wnania r\u00f3\u017cniczkowe zwyczajne(\u0107wiczenia)",
+        "to": "???"
+    },
+    {
+        "from": 330,
+        "name": "Analiza matematyczna (\u0107wiczenia)",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 331,
+        "name": "R\u00f3wnania r\u00f3\u017cniczkowe czastkowe(wyk\u0142ad)",
+        "to": "1000-135RC1a"
+    },
+    {
+        "from": 332,
+        "name": "Wst\u0119p do modelowania matematycznego w finanasach i ubezpieczeniach",
+        "to": "???"
+    },
+    {
+        "from": 333,
+        "name": "Optymalizacja I",
+        "to": "???"
+    },
+    {
+        "from": 334,
+        "name": "Rachunek r\u00f3\u017cniczkowy i ca\u0142kowy - \u0107wiczenia",
+        "to": "1000-711RRC"
+    },
+    {
+        "from": 335,
+        "name": "Wstep do modelowania matematycznego w finansach",
+        "to": "???"
+    },
+    {
+        "from": 336,
+        "name": "Matematyka w ubezpieczeniach \u017cyciowych:",
+        "to": "1000-135MUZ"
+    },
+    {
+        "from": 337,
+        "name": "Wst\u0119p do teorii liczb",
+        "to": "???"
+    },
+    {
+        "from": 338,
+        "name": "J\u0119zyki, Automaty i Obliczenia 1",
+        "to": "1000-214bJAO"
+    },
+    {
+        "from": 340,
+        "name": "Przetwarzanie du\u017cych danych",
+        "to": "1000-2M13PDD"
+    },
+    {
+        "from": 341,
+        "name": "J2EE",
+        "to": "1000-225bJNP3"
+    },
+    {
+        "from": 342,
+        "name": "JAVA SE (seminarium)",
+        "to": "1000-225bJNP3"
+    },
+    {
+        "from": 343,
+        "name": "Bazy Danych dla Informatyki (\u0107wiczenia)",
+        "to": "1000-213bBAD"
+    },
+    {
+        "from": 344,
+        "name": "Bazy Danych dla Informatyki (laboratorium)",
+        "to": "1000-213bBAD"
+    },
+    {
+        "from": 345,
+        "name": "In\u017cynieria Oprogramowania (laboratorium)",
+        "to": "1000-214bIOP"
+    },
+    {
+        "from": 346,
+        "name": "Metodyka Nauczania Rachunku Prawdopodobienstwa",
+        "to": "1000-135MRP"
+    },
+    {
+        "from": 347,
+        "name": "Podstawy matematyki - \u0107wiczenia",
+        "to": "1000-211bPM"
+    },
+    {
+        "from": 348,
+        "name": "Systemy zarz\u0105dzania bazami danych",
+        "to": "1000-213bBAD"
+    },
+    {
+        "from": 349,
+        "name": "Zaawansowane bazy danych",
+        "to": "1000-2N09ZBD"
+    },
+    {
+        "from": 350,
+        "name": "Analiza dla Informatyk\u00f3w",
+        "to": "???"
+    },
+    {
+        "from": 351,
+        "name": "Optymalizacja 1",
+        "to": "1000-134OP1"
+    },
+    {
+        "from": 352,
+        "name": "Analiza matematyczna, geometria r\u00f3\u017cniczkowa",
+        "to": "???"
+    },
+    {
+        "from": 353,
+        "name": "R\u00f3wnania r\u00f3\u017cniczkowe cz\u0105stkowe I:",
+        "to": "1000-135RC2"
+    },
+    {
+        "from": 354,
+        "name": "Wprowadzenie do lingwistyki komputerowej",
+        "to": "???"
+    },
+    {
+        "from": 355,
+        "name": "Programowanie wsp\u00f3\u0142bie\u017cne (\u0107wiczenia)",
+        "to": "1000-213bPW"
+    },
+    {
+        "from": 356,
+        "name": "Systemy Operacyjne (\u0107wiczenia)",
+        "to": "1000-214bSOB"
+    },
+    {
+        "from": 357,
+        "name": "Analiza Matematyczna dla Inf",
+        "to": "1000-211bAM1"
+    },
+    {
+        "from": 358,
+        "name": "Wst\u0119p do informatyki (Pascal)",
+        "to": "1000-111bWI1a"
+    },
+    {
+        "from": 359,
+        "name": "Analiza matematyczna II*",
+        "to": "1000-113bAM3*"
+    },
+    {
+        "from": 360,
+        "name": "Analiza 1.2 * 2008/2009",
+        "to": "1000-112bAM2*"
+    },
+    {
+        "from": 361,
+        "name": "Modele Oblicze\u0144",
+        "to": "1000-135MOL"
+    },
+    {
+        "from": 362,
+        "name": "Datamining",
+        "to": "???"
+    },
+    {
+        "from": 363,
+        "name": "Sieci komputerowe - lab",
+        "to": "1000-214bSIK"
+    },
+    {
+        "from": 364,
+        "name": "MRJP - \u0107wiczenia",
+        "to": "1000-217bMRJ"
+    },
+    {
+        "from": 365,
+        "name": "Analiza matematyczna 1.2",
+        "to": "1000-112bAM2a"
+    },
+    {
+        "from": 366,
+        "name": "Analiza matematyczna (inf.) - \u0107wiczenia",
+        "to": "1000-211bAM1"
+    },
+    {
+        "from": 367,
+        "name": "GAL (inf.) - \u0107wiczenia",
+        "to": "???"
+    },
+    {
+        "from": 368,
+        "name": "R\u00f3wnania r\u00f3\u017cniczkowe zwyczajne - \u0107wiczenia",
+        "to": "???"
+    },
+    {
+        "from": 369,
+        "name": "Analiza Matematyczna I.1 i I.2",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 370,
+        "name": "Analiza Matematyczna I.1",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 371,
+        "name": "R\u00f3wnania r\u00f3\u017cniczkowe zwyczajne (\u0107wiczenia)",
+        "to": "???"
+    },
+    {
+        "from": 372,
+        "name": "Analiza Matematyczna I/II",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 373,
+        "name": "Geometria r\u00f3\u017cniczkowa 1",
+        "to": "1000-135GR"
+    },
+    {
+        "from": 374,
+        "name": "Rachunek Prawdopodobie\u0144stwa 1",
+        "to": "1000-114bRP1a"
+    },
+    {
+        "from": 375,
+        "name": "RP2",
+        "to": "1000-135RP2"
+    },
+    {
+        "from": 376,
+        "name": "Procesy Stochastyczne 1",
+        "to": "1000-135PS"
+    },
+    {
+        "from": 377,
+        "name": "Rachunek Prawdopodobie\u0144stwa I*",
+        "to": "1000-114bRP1*"
+    },
+    {
+        "from": 378,
+        "name": "Rachunek Prawdopodobie\u0144stwa II*",
+        "to": "1000-135RP2*"
+    },
+    {
+        "from": 379,
+        "name": "Analiza dla Informatyk\u00f3w II",
+        "to": "1000-212bAM2"
+    },
+    {
+        "from": 380,
+        "name": "Algebra I (bez *)",
+        "to": "1000-113bAG1a"
+    },
+    {
+        "from": 381,
+        "name": "Topologia I konwersatorium",
+        "to": "1000-113bTP1a"
+    },
+    {
+        "from": 382,
+        "name": "WdM \u0107wiczenia",
+        "to": "1000-111bWMAa"
+    },
+    {
+        "from": 383,
+        "name": "J\u0119zyki, automaty i obliczania",
+        "to": "1000-214bJAO"
+    },
+    {
+        "from": 384,
+        "name": "Logika (informatyka)",
+        "to": "1000-217bLOG"
+    },
+    {
+        "from": 385,
+        "name": "Rachunek lambda",
+        "to": "1000-2M02RL"
+    },
+    {
+        "from": 386,
+        "name": "Teoria oblicze\u0144",
+        "to": "1000-2M00TO"
+    },
+    {
+        "from": 387,
+        "name": "In\u017cynieria Finansowa",
+        "to": "1000-135IFI"
+    },
+    {
+        "from": 388,
+        "name": "Analiza Matematyczna inf. (\u0107wiczenia)",
+        "to": "1000-211bAM1"
+    },
+    {
+        "from": 389,
+        "name": "Analiza matematyczna I.1 (\u0107wiczenia)",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 390,
+        "name": "Analiza Matematyczna I.2 (\u0107wiczenia)",
+        "to": "1000-112bAM2a"
+    },
+    {
+        "from": 391,
+        "name": "AM I.1, I.2, II.1, II.2, Analiza funkcjonalna",
+        "to": "???"
+    },
+    {
+        "from": 392,
+        "name": "Programowanie funkcyjne - lab",
+        "to": "1000-2M10PF"
+    },
+    {
+        "from": 393,
+        "name": "Algebra I*",
+        "to": "1000-113bAG1*"
+    },
+    {
+        "from": 394,
+        "name": "Algebra II*",
+        "to": "1000-134AG2*"
+    },
+    {
+        "from": 395,
+        "name": "Prolog - laboratorium",
+        "to": "???"
+    },
+    {
+        "from": 396,
+        "name": "Zespo\u0142owy Projekt Programistyczny",
+        "to": "???"
+    },
+    {
+        "from": 397,
+        "name": "Sztuczna Inteligencja i Systemy Doradcze - LAB",
+        "to": "1000-2N00SID"
+    },
+    {
+        "from": 398,
+        "name": "Analiza Matematyczna 1 (\u0107wiczenia)",
+        "to": "1000-111bAM1a"
+    },
+    {
+        "from": 399,
+        "name": "Analiza Matematyczna 1* (\u0107wiczenia)",
+        "to": "1000-111bAM1b"
+    },
+    {
+        "from": 400,
+        "name": "Analiza funkcjonalna II",
+        "to": "???"
+    },
+    {
+        "from": 401,
+        "name": "Analiza funkcjonalna I*",
+        "to": "???"
+    },
+    {
+        "from": 402,
+        "name": "Systemy operacyjne/Systemy operacyjne LAB",
+        "to": "1000-214bSOB"
+    },
+    {
+        "from": 403,
+        "name": "Programowanie Obiektowe lab",
+        "to": "1000-212bPO"
+    },
+    {
+        "from": 404,
+        "name": "Programowanie Obiektowe \u0107wiczenia",
+        "to": "1000-212bPO"
+    },
+    {
+        "from": 405,
+        "name": "Metody programowanie (potok imperatywny) lab+\u0107wiczenia",
+        "to": "???"
+    },
+    {
+        "from": 406,
+        "name": "Funkcje analityczne (\u0107wiczenia)",
+        "to": "1000-134FAN"
+    },
+    {
+        "from": 407,
+        "name": "RP (proseminarium licencjackie)",
+        "to": "1000-135MRP"
+    },
+    {
+        "from": 408,
+        "name": "Matematyka obliczeniowa (wyk\u0142ad)",
+        "to": "1000-114bMOBa"
+    },
+    {
+        "from": 409,
+        "name": "Proseminarium licencjackie",
+        "to": "???"
+    },
+    {
+        "from": 410,
+        "name": "WDM",
+        "to": "1000-111bWMAa"
+    },
+    {
+        "from": 411,
+        "name": "Programowanie w Logice",
+        "to": "???"
+    },
+    {
+        "from": 412,
+        "name": "Programowanie Wsp\u00f3\u0142bie\u017cne",
+        "to": "1000-213bPW"
+    },
+    {
+        "from": 413,
+        "name": "Wst\u0119p do programowania - podej\u015bcie imperatywne",
+        "to": "1000-211bWPI"
+    },
+    {
+        "from": 414,
+        "name": "Analiza matematyczna inf.",
+        "to": "1000-211bAM1"
+    },
+    {
+        "from": 415,
+        "name": "Uk\u0142ady dynamiczne - seminarium:",
+        "to": "1000-135UD"
+    },
+    {
+        "from": 416,
+        "name": "Analiza Matematyczna II *",
+        "to": "1000-113bAM3*"
+    },
+    {
+        "from": 417,
+        "name": "R\u00f3wnania r\u00f3\u017cniczkowe zwyczajne I",
+        "to": "1000-114bRRZa"
+    }
+]
