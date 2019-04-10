@@ -6,6 +6,7 @@ from pytz import timezone
 USOS_TEACHER_TMPL = "https://usosweb.mimuw.edu.pl/kontroler.php?_action=actionx:katalog2/osoby/pokazOsobe%28os_id:"
 USOS_SUBJ_TMPL = "https://usosweb.mimuw.edu.pl/kontroler.php?_action=katalog2/przedmioty/pokazPrzedmiot&kod="
 
+
 class Teacher(models.Model):
     class Meta:
         verbose_name = "Teacher"
@@ -33,10 +34,6 @@ class Teacher(models.Model):
         return self.teachercomment_set.all().order_by('-add_date')
 
     @property
-    def classes(self):
-        return [s.subject_exact for s in self.class_set.all()]
-
-    @property
     def info(self):
         return {
             'usos_link': USOS_TEACHER_TMPL + str(self.usos_id),
@@ -47,6 +44,7 @@ class Teacher(models.Model):
 
     class Meta:
         ordering = ['surname']
+
 
 class Subject(models.Model):
     class Meta:
@@ -69,8 +67,8 @@ class TeacherComment(models.Model):
         verbose_name = "Teacher comment"
         verbose_name_plural = "Teacher comments"
 
-    teacher       = models.ForeignKey(Teacher, on_delete = models.CASCADE)
-    subject       = models.ForeignKey(Subject, on_delete = models.CASCADE)
+    teacher       = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    subject       = models.ForeignKey(Subject, on_delete=models.CASCADE)
     content       = models.TextField()
     add_date      = models.DateTimeField(auto_now_add=True)
     wikispaces    = models.BooleanField(default=False)
@@ -87,10 +85,11 @@ class TeacherComment(models.Model):
         return self.add_date.astimezone(timezone('Poland')).strftime("%Y-%m-%d %H:%M:%S")
 
     def __str__(self):
-        if self.wikispaces:
-            return f'{self.add_date_pretty} | (OLD) {self.subject_exact} - {self.teacher.fullname}'
-        else:
-            return f'{self.add_date_pretty} | {self.subject_exact} - {self.teacher.fullname}'
+        return f'{self.add_date_pretty} | {self.teacher.fullname}'
+        # if self.wikispaces:
+        #     return f'{self.add_date_pretty} | (OLD) {self.subject_exact} - {self.teacher.fullname}'
+        # else:
+        #     return f'{self.add_date_pretty} | {self.subject_exact} - {self.teacher.fullname}'
 
 class SubjectComment(models.Model):
     class Meta:
