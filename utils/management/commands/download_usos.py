@@ -95,55 +95,6 @@ def filter_teachers(editions, subjects):
     return empty
 
 
-# ===================================================== #
-#                       Mapping
-# ===================================================== #
-
-# Return map where subject from wikispaces is mapped to all possible subjects from usos.
-# wikispaces_data is old db dump where usos_data is formated usos data.
-def map_subject_old_new(wikispaces_data, usos_data):
-    teacher_to_subject = dict()
-
-    for subject in usos_data:
-        for teacher in subject['lecturers']:
-            teacher_id = int(teacher)
-            if teacher not in teacher_to_subject:
-                teacher_to_subject[teacher_id] = dict()
-            teacher_to_subject[teacher_id][subject['id']] = subject['name']
-
-    print(teacher_to_subject)
-
-    empty = dict()
-    for comment in wikispaces_data:
-        if comment['model'] == "app.teachercomment":
-            sub_id = comment['fields']['subject_exact']
-            teach_id = comment['fields']['teacher']
-            if sub_id not in empty:
-                empty[sub_id] = dict()
-            if teach_id in teacher_to_subject:
-                for key, value in teacher_to_subject[teach_id].items():
-                    empty[sub_id][key] = value
-    print(empty)
-
-    final_json = []
-    for item in wikispaces_data:
-        if item['model'] == "app.subject":
-            to_add = dict()
-            to_add['from'] = item['pk']
-            to_add['name'] = item['fields']['name']
-            to_add['to'] = None
-            if item['pk'] not in empty:
-                empty[item['pk']] = dict()
-            to_add['poss'] = empty[item['pk']]
-            final_json += [to_add]
-    json.dump(final_json, open('possible_mapping.json', 'w'), indent=4)
-
-
-# usos_data = json.load(open('subjects_from_5_years.json'))
-# wikispaces_data = json.load(open('../fixtures/app.json'))
-# map_subject_old_new(wikispaces_data, usos_data)
-
-
 class Command(BaseCommand):
 
     def add_arguments(self, parser):

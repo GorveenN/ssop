@@ -2,12 +2,12 @@
     {
         "from": 1,
         "name": "Og\u00f3lne",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 2,
         "name": "Tworzenie Aplikacji z Gwiazdk\u0105",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 3,
@@ -62,7 +62,7 @@
     {
         "from": 13,
         "name": "HCI:",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 14,
@@ -82,7 +82,7 @@
     {
         "from": 18,
         "name": "ZPP",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 20,
@@ -192,7 +192,7 @@
     {
         "from": 41,
         "name": "Algebraiczna Teoria Liczb",
-        "to": "old"
+        "to": "0"
     },
     {
         "from": 42,
@@ -252,7 +252,7 @@
     {
         "from": 53,
         "name": "R\u00f3wnania r\u00f3\u017cniczkowe z op\u00f3\u017anieniem i metody asymptotyczne (...) (monograf)",
-        "to": "old"
+        "to": "0"
     },
     {
         "from": 54,
@@ -342,17 +342,17 @@
     {
         "from": 72,
         "name": "Wst\u0119p do teorii mnogo\u015bci",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 73,
         "name": "System wspomagania dowodzenia Coq",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 74,
         "name": "Wst\u0119p do Teorii Mnogo\u015bci",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 75,
@@ -372,7 +372,7 @@
     {
         "from": 79,
         "name": "Sztuka programowania",
-        "to": "old"
+        "to": "0"
     },
     {
         "from": 80,
@@ -412,7 +412,7 @@
     {
         "from": 87,
         "name": "Cyfrowe przetwarzanie sygna\u0142\u00f3w",
-        "to": "old"
+        "to": "0"
     },
     {
         "from": 88,
@@ -457,7 +457,7 @@
     {
         "from": 96,
         "name": "Algorytmika internetu",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 97,
@@ -467,7 +467,7 @@
     {
         "from": 98,
         "name": "Wst\u0119p do Obliczeniowej Biologii Molekularnej",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 99,
@@ -482,7 +482,7 @@
     {
         "from": 101,
         "name": "Unix i C",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 102,
@@ -492,7 +492,7 @@
     {
         "from": 103,
         "name": "Algorytmiczne aspekty kryptografii",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 104,
@@ -537,7 +537,7 @@
     {
         "from": 112,
         "name": "RRZ (\u0107wiczenia)",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 113,
@@ -567,7 +567,7 @@
     {
         "from": 118,
         "name": "Zaawansowane metody biologii obliczeniowej",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 119,
@@ -592,12 +592,12 @@
     {
         "from": 124,
         "name": "MRJP - \u0106wiczenia",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 125,
         "name": "MRJP-lab",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 126,
@@ -622,12 +622,12 @@
     {
         "from": 130,
         "name": "Architektura komputera i programowanie niskopoziomowe",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 131,
         "name": "Wyk\u0142ady kryptograficzne i teorioliczbowe",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 132,
@@ -642,7 +642,7 @@
     {
         "from": 134,
         "name": "Prawo dla informatyk\u00f3w",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 135,
@@ -662,7 +662,7 @@
     {
         "from": 138,
         "name": "Programowanie Obiektowe, Zespo\u0142owy Projekt Programistyczny",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 139,
@@ -712,7 +712,7 @@
     {
         "from": 148,
         "name": "Wst\u0119p do modelowania matematycznego w finansach",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 149,
@@ -882,7 +882,7 @@
     {
         "from": 182,
         "name": "Popularyzacja matematyki:",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 183,
@@ -947,7 +947,7 @@
     {
         "from": 195,
         "name": "Zwroty charakterystyczne:",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 196,
@@ -1012,12 +1012,12 @@
     {
         "from": 209,
         "name": "Deskryptywna teoria mnogo\u015bci",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 210,
         "name": "Seminarium: Protoko\u0142y Komunikacyjne",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 211,
@@ -1072,7 +1072,7 @@
     {
         "from": 221,
         "name": "Optymalizacja program\u00f3w opensource",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 222,
@@ -1082,12 +1082,12 @@
     {
         "from": 223,
         "name": "Seminarium magisterskie",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 224,
         "name": "Seminarium",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 225,
@@ -1182,7 +1182,7 @@
     {
         "from": 243,
         "name": "Pytania",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 244,
@@ -1212,7 +1212,7 @@
     {
         "from": 250,
         "name": "Wprowadzenie do Teorii Mnogo\u015bci (monograf) - \u0107wiczenia",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 251,
@@ -1277,7 +1277,7 @@
     {
         "from": 263,
         "name": "Egzamin magisterski (przewodnicz\u0105cy komisji)",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 264,
@@ -1287,7 +1287,7 @@
     {
         "from": 265,
         "name": "Przedmioty algorytmiczne",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 266,
@@ -1312,12 +1312,12 @@
     {
         "from": 270,
         "name": "Prolog",
-        "to":
+        "to": "1000-2N00PLO"
     },
     {
         "from": 271,
         "name": "XML, czyli drzewa z danymi",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 272,
@@ -1417,7 +1417,7 @@
     {
         "from": 293,
         "name": "Architektura Komputera i Programowanie Niskopoziomowe",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 294,
@@ -1442,7 +1442,7 @@
     {
         "from": 298,
         "name": "Matematyczne Modele Mechaniki Klasycznej (czy jakos tak)",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 299,
@@ -1457,7 +1457,7 @@
     {
         "from": 301,
         "name": "Proseminarium - matematyka w dzia\u0142aniu",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 302,
@@ -1497,7 +1497,7 @@
     {
         "from": 310,
         "name": "Charakterystyczne zwroty:",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 311,
@@ -1522,12 +1522,12 @@
     {
         "from": 315,
         "name": "In\u017cynieria Lingwistyczna",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 316,
         "name": "Logika Kategoryjna [2008/2009, semestr letni]",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 317,
@@ -1542,7 +1542,7 @@
     {
         "from": 319,
         "name": "Konserwatorium wydzia\u0142owe - uk\u0142ady dynamiczne",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 320,
@@ -1697,7 +1697,7 @@
     {
         "from": 352,
         "name": "Analiza matematyczna, geometria r\u00f3\u017cniczkowa",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 353,
@@ -1707,7 +1707,7 @@
     {
         "from": 354,
         "name": "Wprowadzenie do lingwistyki komputerowej",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 355,
@@ -1747,7 +1747,7 @@
     {
         "from": 362,
         "name": "Datamining",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 363,
@@ -1912,12 +1912,12 @@
     {
         "from": 395,
         "name": "Prolog - laboratorium",
-        "to":
+        "to": "1000-2N00PLO"
     },
     {
         "from": 396,
         "name": "Zespo\u0142owy Projekt Programistyczny",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 397,
@@ -1982,7 +1982,7 @@
     {
         "from": 409,
         "name": "Proseminarium licencjackie",
-        "to": ""
+        "to": "0"
     },
     {
         "from": 410,
