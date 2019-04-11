@@ -467,3 +467,28 @@ ul.topnav li a:hover {
 }
 
 
+/* Star Rating */
+.starrating > input {
+    display: none;
+}
+
+/* Remove radio buttons */
+.starrating > label:before {
+    content: "\2605"; /* Star */
+    margin: 2px;
+    display: inline-block;
+}
+
+.starrating > label {
+    color: #222222; /* Start color when not clicked */
+}
+
+.starrating > input:checked ~ label {
+    color: #ffca08;
+}
+
+/* Set yellow color when star checked */
+.starrating > input:hover ~ label {
+    color: #ffca08;
+}
+/* Set yellow color when star hover */
