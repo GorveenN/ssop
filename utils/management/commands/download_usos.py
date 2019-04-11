@@ -69,7 +69,7 @@ class Command(BaseCommand):
         query2 = "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name&name={}{}"
         query3 = "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name|is_currently_conducted&name={}{}{}&num=20&start={}"
         subjects = dict()
-
+        # Must add ommiting already added courses in case of course repetition.
         for letter1 in alphabet:
             if try_query(query1.format(letter1)).json()['items']:
                 for letter2 in alphabet:
@@ -83,7 +83,7 @@ class Command(BaseCommand):
                             while response['next_page']:
                                 response = try_query(query3.format(letter1, letter2, letter3, i)).json()
                                 for subject in response['items']:
-                                    if subject['id'][:4] == '1000' and subject['is_currently_conducted']:
+                                    if subject['id'][:4] == '1000' and subject['is_currently_conducted'] and subject['id'] not in subjects:
                                         print(subject['name']['pl'])
                                         lecturers = get_subject_teacher(subject['id'], editions)
                                         if len(lecturers):
