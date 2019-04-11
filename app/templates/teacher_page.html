@@ -33,10 +33,20 @@
 {% block content %}
     <h1>{{teacher.fullname}}</h1>
     {% block info %}
-        <div class="container cont2">
-            <h5 class="font-italic">Strona: <a href="{{ teacher.website|default_if_none:'' }}">{{ teacher.website|default_if_none:'' }}</a></h5>
-            <h5 class="font-italic">USOSWeb: <a href="{{ teacher.usos_link|default_if_none:'' }}">link</a></h5>
-            <h5 class="font-italic">Mail: <a href="mailto:{{ teacher.email|default_if_none:'' }}">{{ teacher.email|default_if_none:'' }}</a></h5>
+
+        <div class="flex-container">
+            <div>
+                <h5 class="font-italic">Ogólna ocena: 5</h5>
+                <h5 class="font-italic">Szczegółowość tłumaczenia: 5</h5>
+                <h5 class="font-italic">Poziom wymagań: 5</h5>
+                <h5 class="font-italic">Angażowanie studentów w zajęcia: 5</h5>
+            </div>
+
+            <div>
+                <h5 class="font-italic">Strona: <a href="{{ teacher.website|default_if_none:'' }}">{{ teacher.website|default_if_none:'' }}</a></h5>
+                <h5 class="font-italic">USOSWeb: <a href="{{ teacher.usos_link|default_if_none:'' }}">link</a></h5>
+                <h5 class="font-italic">Mail: <a href="mailto:{{ teacher.email|default_if_none:'' }}">{{ teacher.email|default_if_none:'' }}</a></h5>
+            </div>
         </div>
 
         <h3> Prowadzone przedmioty </h3>

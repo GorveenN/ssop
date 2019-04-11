@@ -6,6 +6,7 @@ from pytz import timezone
 USOS_TEACHER_TMPL = "https://usosweb.mimuw.edu.pl/kontroler.php?_action=actionx:katalog2/osoby/pokazOsobe%28os_id:"
 USOS_SUBJ_TMPL = "https://usosweb.mimuw.edu.pl/kontroler.php?_action=katalog2/przedmioty/pokazPrzedmiot&kod="
 
+
 class Teacher(models.Model):
     class Meta:
         verbose_name = "Teacher"
@@ -128,6 +129,7 @@ class TeacherComment(models.Model):
         # else:
         #     return f'{self.add_date_pretty} | {self.subject_exact} - {self.teacher.fullname}'
 
+
 class SubjectComment(models.Model):
     class Meta:
         verbose_name = "Subject comment"
@@ -149,6 +151,7 @@ class SubjectComment(models.Model):
 
     def __str__(self):
         return f'{self.add_date_pretty}: {self.subject}'
+
 
 class Report(models.Model):
     class Meta:
