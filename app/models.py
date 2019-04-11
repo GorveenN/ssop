@@ -34,7 +34,7 @@ class Teacher(models.Model):
 
     @property
     def classes(self):
-        return [s.subject_exact for s in self.class_set.all()]
+        return [s.subject for s in self.class_set.all()]
 
     @property
     def info(self):

@@ -113,8 +113,8 @@ def add_vote(request):
 @require_GET
 def teacher_page(request, usos_id):
     tcr = get_object_or_404(Teacher, usos_id=usos_id)
-    sbj = get_object_or_404(SubjectExact, subject__name='Ogólne')
-    comments = tcr.teachercomment_set.filter(subject_exact=sbj, visible=True).order_by('-add_date')
+    sbj = get_object_or_404(Subject, name='Ogólne')
+    comments = tcr.teachercomment_set.filter(subject=sbj, visible=True).order_by('-add_date')
     add_comment_form = AddCommentForm()
 
     return render(
@@ -140,9 +140,9 @@ def teacher_comment_page(request, usos_id, subject):
         sbj = subject
         comments = tcr.teachercomment_set.filter(visible=True).order_by('-add_date')
     else:
-        sbj = get_object_or_404(SubjectExact, subject__name=subject)
-        clz = get_object_or_404(Class, teacher=usos_id, subject_exact=sbj)
-        comments = tcr.teachercomment_set.filter(subject_exact=sbj, visible=True).order_by('-add_date')
+        sbj = get_object_or_404(Subject, name=subject)
+        clz = get_object_or_404(Class, teacher=usos_id, subject=sbj)
+        comments = tcr.teachercomment_set.filter(subject=sbj, visible=True).order_by('-add_date')
     add_comment_form = AddCommentForm()
 
     return render(
@@ -194,8 +194,8 @@ def add_teacher(request):
             if (info):
                 teacher.firstname, teacher.surname, teacher.website, teacher.email = info
                 teacher.save()
-                subject = SubjectExact.objects.get(subject__name='Ogólne')
-                clz = Class(teacher=teacher, subject_exact=subject)
+                subject = Subject.objects.get(subject__name='Ogólne')
+                clz = Class(teacher=teacher, subject=subject)
                 clz.save()
                 messages.success(request, f'Prowadzący {teacher.fullname} został dodany!')
                 return redirect('ssop_home')
