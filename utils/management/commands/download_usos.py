@@ -70,47 +70,18 @@ class Command(BaseCommand):
         query3 = "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name|is_currently_conducted&name={}{}{}&num=20&start={}"
         subjects = dict()
 
-        # for letter1 in alphabet:
-        #     if try_query(query1.format(letter1)).json()['items']:
-        #         for letter2 in alphabet:
-        #             if try_query(query2.format(letter1, letter2)).json()['items']:
-        #                 for letter3 in alphabet:
-        #                     print("======================")
-        #                     print('Searching for phrase: ' + letter1 + letter2 + letter3)
-        #                     print("======================")
-        #                     response = {'items': [], 'next_page': True}
-        #                     i = 0
-        #                     while response['next_page']:
-        #                         response = try_query(query3.format(letter1, letter2, letter3, i)).json()
-        #                         for subject in response['items']:
-        #                             if subject['id'][:4] == '1000' and subject['is_currently_conducted']:
-        #                                 print(subject['name']['pl'])
-        #                                 lecturers = get_subject_teacher(subject['id'], editions)
-        #                                 if len(lecturers):
-        #                                     subjects[subject['id']] = {
-        #                                         "name": subject['name']['pl'],
-        #                                         "lecturers": lecturers
-        #                                     }
-        #                                     print("Added course entry.")
-        #                                 else:
-        #                                     print("Course seems to be inactive.")
-        #                         i += 20
-
-
-        query1 = "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name&name={}"
-        query2 = "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name|is_currently_conducted&name={}{}&num=20&start={}"
-        subjects = dict()
-
         for letter1 in alphabet:
             if try_query(query1.format(letter1)).json()['items']:
                 for letter2 in alphabet:
+                    if try_query(query2.format(letter1, letter2)).json()['items']:
+                        for letter3 in alphabet:
                             print("======================")
-                            print('Searching for phrase: ' + letter1 + letter2)
+                            print('Searching for phrase: ' + letter1 + letter2 + letter3)
                             print("======================")
                             response = {'items': [], 'next_page': True}
                             i = 0
                             while response['next_page']:
-                                response = try_query(query2.format(letter1, letter2, i)).json()
+                                response = try_query(query3.format(letter1, letter2, letter3, i)).json()
                                 for subject in response['items']:
                                     if subject['id'][:4] == '1000' and subject['is_currently_conducted']:
                                         print(subject['name']['pl'])
@@ -125,7 +96,36 @@ class Command(BaseCommand):
                                             print("Course seems to be inactive.")
                                 i += 20
 
-        json.dump(subjects, open(options['output'], 'w'), indent=4)
+
+        # query1 = "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name&name={}"
+        # query2 = "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name|is_currently_conducted&name={}{}&num=20&start={}"
+        # subjects = dict()
+        #
+        # for letter1 in alphabet:
+        #     if try_query(query1.format(letter1)).json()['items']:
+        #         for letter2 in alphabet:
+        #                     print("======================")
+        #                     print('Searching for phrase: ' + letter1 + letter2)
+        #                     print("======================")
+        #                     response = {'items': [], 'next_page': True}
+        #                     i = 0
+        #                     while response['next_page']:
+        #                         response = try_query(query2.format(letter1, letter2, i)).json()
+        #                         for subject in response['items']:
+        #                             if subject['id'][:4] == '1000' and subject['is_currently_conducted']:
+        #                                 print(subject['name']['pl'])
+        #                                 lecturers = get_subject_teacher(subject['id'], editions)
+        #                                 if len(lecturers):
+        #                                     subjects[subject['id']] = {
+        #                                         "name": subject['name']['pl'],
+        #                                         "lecturers": lecturers
+        #                                     }
+        #                                     print("Added course entry.")
+        #                                 else:
+        #                                     print("Course seems to be inactive.")
+        #                         i += 20
+        #
+        # json.dump(subjects, open(options['output'], 'w'), indent=4)
 
 
 # example output
