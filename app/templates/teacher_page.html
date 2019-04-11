@@ -19,7 +19,7 @@
                             <li class="divider"></li>
                         {% for subj in teacher.classes %}
                             <li>
-                                <a href="{% url 'teacher_comment_page' usos_id=teacher.usos_id subject=subj %}">{{ subj }}</a>
+                                <a href="{% url 'teacher_comment_page' usos_id=teacher.usos_id subject=subj.usos_id %}">{{ subj }}</a>
                             </li>
                             <li class="divider"></li>
                         {% endfor %}

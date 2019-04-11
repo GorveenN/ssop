@@ -91,20 +91,30 @@ class Command(BaseCommand):
 
         added_subjects = {}
         for sub_id, sub_val in new_subjects.items():
-            t = Subject(usos_id=sub_id,
+            added_subjects[sub_id] = Subject(usos_id=sub_id,
                     name=sub_val['name']
                     )
-            t.save()
-            added_subjects[sub_id] = t
-            print(t)
+            added_subjects[sub_id].save()
+            print(added_subjects[sub_id])
             print("=============")
             print(set(sub_val['lecturers']))
             for lec in set(sub_val['lecturers']):
                 print(new_teachers[int(lec)])
                 Class(teacher=new_teachers[int(lec)],
-                      subject=t
+                      subject=added_subjects[sub_id]
                       ).save()
             print("=============")
+
+        for comment in new_comments:
+            TeacherComment(teacher=new_teachers[int(comment['teacher'])],
+                           subject=added_subjects[comment['subject']],
+                           content=comment['content'],
+                           add_date=comment['add_date'],
+                           wikispaces=comment['wikispaces'],
+                           up_votes=comment['up_votes'],
+                           down_votes=comment['down_votes'],
+                           visible=comment['visible']
+                           ).save()
 
         print(new_mapping)
         print(new_subjects)

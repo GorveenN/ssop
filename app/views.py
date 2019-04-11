@@ -11,14 +11,17 @@ from django.core.exceptions import PermissionDenied
 from app.forms import *
 from app.models import *
 
+
 def get_fields(obj, fields):
     return {field: getattr(obj, field) for field in fields if hasattr(obj, field)}
+
 
 def get_id(list):
     return [i.usos_id for i in list]
 
+
 def group_by_letter(m):
-    ALPHABET = 'AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWXYZŹŻ'
+    ALPHABET = '0123456789AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWXYZŹŻ'
     ret = {}
     for obj in m.objects.all():
         fl = str(obj)[0]
@@ -28,6 +31,7 @@ def group_by_letter(m):
             else:
                 ret[fl] = [obj]
     return sorted(ret.items(), key=lambda i: ALPHABET.index(i[0]))
+
 
 @require_GET
 def ssop_home(request):
@@ -64,7 +68,7 @@ def subject_page(request, subject_name): # TODO
 
 @require_POST
 def add_comment(request):
-    sbj = get_object_or_404(SubjectExact, id=request.POST['subject_exact_id'])
+    sbj = get_object_or_404(Subject, usos_id=request.POST['subject_exact_id'])
     tcr = get_object_or_404(Teacher, usos_id=request.POST['teacher_id'])
     form = AddCommentForm(request.POST)
 
@@ -140,7 +144,7 @@ def teacher_comment_page(request, usos_id, subject):
         sbj = subject
         comments = tcr.teachercomment_set.filter(visible=True).order_by('-add_date')
     else:
-        sbj = get_object_or_404(Subject, name=subject)
+        sbj = get_object_or_404(Subject, usos_id=subject)
         clz = get_object_or_404(Class, teacher=usos_id, subject=sbj)
         comments = tcr.teachercomment_set.filter(subject=sbj, visible=True).order_by('-add_date')
     add_comment_form = AddCommentForm()
