@@ -15,7 +15,7 @@ def get_subject_teacher(subject_id, editions):
     lecturers = {}
 
     for edition in editions:
-        print("Checking edition: " + edition)
+        # print("Checking edition: " + edition)
         response = try_query(query.format(subject_id, edition)).json()
         if 'message' not in response and response['lecturers']:
             for lecturer in response['lecturers']:
@@ -69,6 +69,7 @@ class Command(BaseCommand):
         query2 = "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name&name={}{}"
         query3 = "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name|is_currently_conducted&name={}{}{}&num=20&start={}"
         subjects = dict()
+        visited_ids = set()
         # Must add ommiting already added courses in case of course repetition.
         for letter1 in alphabet:
             if try_query(query1.format(letter1)).json()['items']:
@@ -83,8 +84,9 @@ class Command(BaseCommand):
                             while response['next_page']:
                                 response = try_query(query3.format(letter1, letter2, letter3, i)).json()
                                 for subject in response['items']:
-                                    if subject['id'][:4] == '1000' and subject['is_currently_conducted'] and subject['id'] not in subjects:
-                                        print(subject['name']['pl'])
+                                    if subject['id'] not in visited_ids and subject['id'][:4] == '1000' and subject['is_currently_conducted']:
+                                        visited_ids.add(subject['id'])
+                                        print('------: ' + subject['name']['pl'])
                                         lecturers = get_subject_teacher(subject['id'], editions)
                                         if len(lecturers):
                                             subjects[subject['id']] = {
@@ -125,7 +127,7 @@ class Command(BaseCommand):
         #                                     print("Course seems to be inactive.")
         #                         i += 20
         #
-        # json.dump(subjects, open(options['output'], 'w'), indent=4)
+        json.dump(subjects, open(options['output'], 'w'), indent=4)
 
 
 # example output
