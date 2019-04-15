@@ -66,7 +66,7 @@
     <a class="list-group-item">
         <h5 class="list-group-item-heading">
             {{ question_text }}
-            <span class="starrating" id="rating" style="float: right; display: flex; flex-direction: row-reverse">
+            <span class="starrating{{forloop.counter}} starrating" id="rating" style="float: right; display: flex; flex-direction: row-reverse">
                 <input type="radio" id="star1" name="rating" value="1" /><label for="star1"></label>
                 <input type="radio" id="star2" name="rating" value="2" /><label for="star2"></label>
                 <input type="radio" id="star3" name="rating" value="3" /><label for="star3"></label>

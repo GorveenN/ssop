@@ -485,8 +485,11 @@ ul.topnav li a:hover {
     color: #555555;
 }
 
-.starrating > input:checked ~ label {
+/*Set yellow color on star hover */
+.starrating > label:hover
+{
     color: #ffca08;
+    cursor: pointer;
 }
 
 /* Set yellow color of all stars preceding the hovered star */
@@ -494,10 +497,26 @@ ul.topnav li a:hover {
     color: #ffca08;
 }
 
-/*Set yellow color on star hover */
-.starrating > label:hover
-{
+
+
+/* .starrating > input:checked ~ label {
     color: #ffca08;
-    cursor: pointer;
 }
+
+
+
+/* Star Rating 1 */
+
+.starrating1 > input:checked ~ label {
+    color: #ffca08;
+}
+
+
+
+
+/*Star Rating 2*/
+/* .starrating2 > input:checked ~ .starrating2 > label {
+    color: #ffca08;
+} */
+
 
