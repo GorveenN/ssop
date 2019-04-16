@@ -65,11 +65,11 @@
 
 <!-- TODO: Can't we use Django loop to avoid repeating stars? -->
 <!-- TODO: Add forms, connect to database, fix stars :D -->
-<!-- TODO: Stars don't work :/ -->
 
 <button data-toggle="collapse" data-target="#pytaniaAnkiet"><h3>Ankieta</h3></button>
 
 <div id="pytaniaAnkiet" class="list-group collapse">
+    <form action="javascript:void(0)">
     {% for question_text in survey_questions %}
     <a class="list-group-item">
         <h5 class="list-group-item-heading">
@@ -79,15 +79,17 @@
                 <!-- {% for i in i|rjust:5 %}
                     <input type="radio" id="star{{forloop.counter}}" name="rating" value="{{forloop.counter}}" /><label class="label" for="star{{forloop.counter}}"></label>
                 {% endfor %} -->
-                <input type="radio" id="star1{{forloop.counter}}" name="rating{{ forloop.counter }}" value="1" /><label class="label{{forloop.counter}}" for="star1{{forloop.counter}}"></label>
-                <input type="radio" id="star2{{forloop.counter}}" name="rating{{ forloop.counter }}" value="2" /><label class="label{{forloop.counter}}" for="star2{{forloop.counter}}"></label>
-                <input type="radio" id="star3{{forloop.counter}}" name="rating{{ forloop.counter }}" value="3" /><label class="label{{forloop.counter}}" for="star3{{forloop.counter}}"></label>
-                <input type="radio" id="star4{{forloop.counter}}" name="rating{{ forloop.counter }}" value="4" /><label class="label{{forloop.counter}}" for="star4{{forloop.counter}}"></label>
-                <input type="radio" id="star5{{forloop.counter}}" name="rating{{ forloop.counter }}" value="5" /><label class="label{{forloop.counter}}" for="star5{{forloop.counter}}"></label>
+                <input type="radio" id="star1{{forloop.counter}}" name="rating{{ forloop.counter }}" value="1" /><label for="star1{{forloop.counter}}"></label>
+                <input type="radio" id="star2{{forloop.counter}}" name="rating{{ forloop.counter }}" value="2" /><label for="star2{{forloop.counter}}"></label>
+                <input type="radio" id="star3{{forloop.counter}}" name="rating{{ forloop.counter }}" value="3" /><label for="star3{{forloop.counter}}"></label>
+                <input type="radio" id="star4{{forloop.counter}}" name="rating{{ forloop.counter }}" value="4" /><label for="star4{{forloop.counter}}"></label>
+                <input type="radio" id="star5{{forloop.counter}}" name="rating{{ forloop.counter }}" value="5" /><label for="star5{{forloop.counter}}"></label>
             </span>
         </h5>
     </a>
     {% endfor %}
+    <h4 style="margin-top: 0;"><input type="Submit" value="Oceń" /></h4>
+    </form>
 </div>
 
 
