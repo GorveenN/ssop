@@ -1,98 +1,31 @@
 from django.core.management.base import BaseCommand
+from retrying import retry
 import requests
 import json
 
-
-def load_json(filename):
-    return json.load(open(filename))
-
-
-def save_json(jason, filename):
-    json.dump(jason, open(filename, 'w'), indent=4)
+# Execute query until it doesn't throw exception.
+@retry
+def try_query(string):
+    return requests.get(string)
 
 
-# Returns possibly all courses taught at MIMUW faculty.
-def fetch_usos_subj(alphabet):
-    subjects = []
-    for letter1 in alphabet:
-        if requests.get(
-                "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name&name={}".format(
-                    letter1)).json()['items']:
-            for letter2 in alphabet:
-                if requests.get(
-                        "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name&name={}{}".format(
-                            letter1, letter2)).json()['items']:
-                    for letter3 in alphabet:
-                        print('Searching for phrase: ' + letter1 + letter2 + letter3)
-                        response = {'items': [], 'next_page': True}
-                        i = 0
-                        while response['next_page']:
-                            response = requests.get(
-                                "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name|is_currently_conducted|profile_url&name={}{}{}&num=20&start={}".format(
-                                    letter1, letter2, letter3, i)).json()
-                            for subject in response['items']:
-                                if subject['id'][:4] == '1000' and subject['is_currently_conducted']:
-                                    subjects += [subject]
-                            i += 20
-    return subjects
+def get_subject_teacher(subject_id, editions):
 
+    query = "https://usosapps.uw.edu.pl/services/courses/course_edition?course_id={}&term_id={}&fields=lecturers"
+    lecturers = {}
 
-# Returns list of subjects with data about its editions(list of teachers).
-def filter_active_courses(subjects, editions):
-    filtered = []
-    for subject in subjects:
-        print('==============================')
-        print(subject['name']['pl'])
-        added = False
-        for edition in editions:
-            print("Checking edition: " + edition)
-            response = requests.get(
-                "https://usosapps.uw.edu.pl/services/courses/course_edition?course_id={}&term_id={}&fields=lecturers".format(subject['id'], edition)).json()
-            if 'message' not in response and response['lecturers']:
-                added = True
-                subject[edition] = [response['lecturers']]
-        if added:
-            filtered += [subject]
-            print("Added course entry.")
-        else:
-            print("Course seems to be inactive.")
-    return filtered
-
-
-# Returns subjects list with list of teachers who taught given subject.
-def get_recent(editions, courses):
-    empty = []
-    for item in courses:
-        new_item = dict()
-        new_item['id'] = item['id']
-        new_item['url'] = item['profile_url']
-        new_item['name'] = item['name']['pl']
-        new_item['lecturers'] = []
-        for edition in editions:
-            if edition in item:
-                for lecturer in item[edition][0]:
-                    new_item['lecturers'] += [lecturer['id']]
-        if new_item['lecturers']:
-            new_item['lecturers'] = list(dict.fromkeys(new_item['lecturers']))
-            empty += [new_item]
-    return empty
-
-
-# Returns teachers list who taught given subjects in db compliant form.
-# It takes as argument raw usos output.
-def filter_teachers(editions, subjects):
-    empty = {}
-    for subject in subjects:
-        for edition in editions:
-            if edition in subject:
-                for lec in subject[edition][0]:
-                    lec_id = lec['id']
-                    empty[lec_id] = dict()
-                    empty[lec_id]['firstname'] = lec['first_name']
-                    empty[lec_id]['surname'] = lec['last_name']
-                    empty[lec_id]['website'] = None
-                    empty[lec_id]['email'] = None
-    return empty
+    for edition in editions:
+        # print("Checking edition: " + edition)
+        response = try_query(query.format(subject_id, edition)).json()
+        if 'message' not in response and response['lecturers']:
+            for lecturer in response['lecturers']:
+                lecturers[int(lecturer['user_id'])] = {
+                    "firstname": lecturer['first_name'],
+                    "surname": lecturer['last_name'],
+                    "website": None,
+                    "email": None
+                }
+    return lecturers
 
 
 class Command(BaseCommand):
@@ -100,7 +33,7 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.help = 'Fetch usos data.'
 
-        parser.add_argument('editions',
+        parser.add_argument('--editions',
                             nargs='+',
                             type=str
                             )
@@ -114,7 +47,6 @@ class Command(BaseCommand):
         parser.add_argument('--output',
                             type=str,
                             help='Specifies path where json will be saved.')
-
 
     def handle(self, *args, **options):
         if options['alphabet']:
@@ -131,12 +63,112 @@ class Command(BaseCommand):
                         '2015L', '2015Z',
                         '2014L', '2014Z',
                         '2013L', '2013Z',
-                        '2012L', '2012Z',
-                        '2011L', '2011Z',
-                        '2010L', '2010Z'
                         }
 
-        usos_dump = fetch_usos_subj(alphabet)
-        save_json(get_recent(editions, filter_active_courses(usos_dump, editions)), 'subjects_' + options['output'])
-        save_json(filter_teachers(editions, usos_dump), 'teachers_' + options['output'])
+        query1 = "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name&name={}"
+        query2 = "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name&name={}{}"
+        query3 = "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name|is_currently_conducted&name={}{}{}&num=20&start={}"
+        subjects = dict()
+        visited_ids = set()
+        # Must add ommiting already added courses in case of course repetition.
+        for letter1 in alphabet:
+            if try_query(query1.format(letter1)).json()['items']:
+                for letter2 in alphabet:
+                    if try_query(query2.format(letter1, letter2)).json()['items']:
+                        for letter3 in alphabet:
+                            print("======================")
+                            print('Searching for phrase: ' + letter1 + letter2 + letter3)
+                            print("======================")
+                            response = {'items': [], 'next_page': True}
+                            i = 0
+                            while response['next_page']:
+                                response = try_query(query3.format(letter1, letter2, letter3, i)).json()
+                                for subject in response['items']:
+                                    if subject['id'] not in visited_ids and subject['id'][:4] == '1000' and subject['is_currently_conducted']:
+                                        visited_ids.add(subject['id'])
+                                        print('------: ' + subject['name']['pl'])
+                                        lecturers = get_subject_teacher(subject['id'], editions)
+                                        if len(lecturers):
+                                            subjects[subject['id']] = {
+                                                "name": subject['name']['pl'],
+                                                "lecturers": lecturers
+                                            }
+                                            print("Added course entry.")
+                                        else:
+                                            print("Course seems to be inactive.")
+                                i += 20
 
+
+        # query1 = "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name&name={}"
+        # query2 = "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name|is_currently_conducted&name={}{}&num=20&start={}"
+        # subjects = dict()
+        #
+        # for letter1 in alphabet:
+        #     if try_query(query1.format(letter1)).json()['items']:
+        #         for letter2 in alphabet:
+        #                     print("======================")
+        #                     print('Searching for phrase: ' + letter1 + letter2)
+        #                     print("======================")
+        #                     response = {'items': [], 'next_page': True}
+        #                     i = 0
+        #                     while response['next_page']:
+        #                         response = try_query(query2.format(letter1, letter2, i)).json()
+        #                         for subject in response['items']:
+        #                             if subject['id'][:4] == '1000' and subject['is_currently_conducted']:
+        #                                 print(subject['name']['pl'])
+        #                                 lecturers = get_subject_teacher(subject['id'], editions)
+        #                                 if len(lecturers):
+        #                                     subjects[subject['id']] = {
+        #                                         "name": subject['name']['pl'],
+        #                                         "lecturers": lecturers
+        #                                     }
+        #                                     print("Added course entry.")
+        #                                 else:
+        #                                     print("Course seems to be inactive.")
+        #                         i += 20
+        #
+        json.dump(subjects, open(options['output'], 'w'), indent=4)
+
+
+# example output
+
+# {
+#     "1000-2N09ZSO": {
+#         "name": "Zaawansowane systemy operacyjne",
+#         "lecturers": {
+#             "397": {
+#                 "firstname": "Janina",
+#                 "surname": "Mincer-Daszkiewicz",
+#                 "website": null,
+#                 "email": null
+#             }
+#         }
+#     }
+# }
+
+# services/courses/course_edition example response
+# {
+#     "lecturers": [
+#         {
+#             "last_name": "Janowska",
+#             "first_name": "Agata",
+#             "id": "325",
+#             "user_id": "325"
+#         }
+#     ]
+# }
+
+# services/courses/search example response
+#
+# {
+#     "items": [
+#         {
+#             "id": "1000-1M00BO",
+#             "name": {
+#                 "pl": "Badania operacyjne",
+#                 "en": "Operation research"
+#             }
+#         }
+#     ],
+#     "next_page": true
+# }

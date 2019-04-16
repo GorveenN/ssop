@@ -1,6 +1,5 @@
 import uuid
 from django.db import models
-from datetime import datetime
 from pytz import timezone
 
 USOS_TEACHER_TMPL = "https://usosweb.mimuw.edu.pl/kontroler.php?_action=actionx:katalog2/osoby/pokazOsobe%28os_id:"
@@ -49,6 +48,7 @@ class Teacher(models.Model):
     class Meta:
         ordering = ['surname']
 
+
 class Subject(models.Model):
     class Meta:
         verbose_name = "Subject"
@@ -64,29 +64,6 @@ class Subject(models.Model):
     def __str__(self):
         return f'{self.name}'
 
-# class SubjectExact(models.Model):
-#     class Meta:
-#         verbose_name = "Exact subject"
-#         verbose_name_plural = "Exact subjects"
-#
-#     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
-#     TYPE_CHOICES = (
-#         ('WYK', 'Wykład'),
-#         ('CW', 'Ćwiczenia'),
-#         ('LAB', 'Laboratorium'),
-#     )
-#     type    = models.CharField(max_length=3, choices=TYPE_CHOICES, default=None, null=True)
-#
-#     @property
-#     def name(self):
-#         if self.type:
-#             return f'{self.subject} ({self.type})'
-#         else:
-#             return f'{self.subject}'
-#
-#     def __str__(self):
-#         return self.name
-#
 
 class Class(models.Model):
     class Meta:
@@ -99,6 +76,7 @@ class Class(models.Model):
 
     def __str__(self):
         return f'{self.teacher} - {self.subject}'
+
 
 class TeacherComment(models.Model):
     class Meta:
@@ -124,10 +102,7 @@ class TeacherComment(models.Model):
 
     def __str__(self):
         return f'{self.add_date_pretty} | {self.subject} - {self.teacher.fullname}'
-        # if self.wikispaces:
-        #     return f'{self.add_date_pretty} | (OLD) {self.subject_exact} - {self.teacher.fullname}'
-        # else:
-        #     return f'{self.add_date_pretty} | {self.subject_exact} - {self.teacher.fullname}'
+
 
 
 class SubjectComment(models.Model):
