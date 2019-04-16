@@ -104,6 +104,7 @@ class TeacherComment(models.Model):
         return f'{self.add_date_pretty} | {self.subject} - {self.teacher.fullname}'
 
 
+
 class SubjectComment(models.Model):
     class Meta:
         verbose_name = "Subject comment"

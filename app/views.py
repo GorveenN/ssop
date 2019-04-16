@@ -175,66 +175,6 @@ def rules_page(request):
     )
 
 
-def new_teacher(request):
-    add_comment_form = AddTeacherForm()
-    return render(
-        request,
-        'new_teacher.html',
-        {
-            'all_subjects': group_by_letter(Subject),
-            'all_teachers': group_by_letter(Teacher),
-            'add_comment_form' : add_comment_form
-        }
-    )
-
-
-@require_POST
-def add_teacher(request):
-    form = AddTeacherForm(request.POST)
-    with transaction.atomic():
-        if form.is_valid():
-            teacher = form.save(commit=False)
-            info = download_teacher_info(form.cleaned_data['usos_id'])
-            if (info):
-                teacher.firstname, teacher.surname, teacher.website, teacher.email = info
-                teacher.save()
-                subject = Subject.objects.get(subject__name='Ogólne')
-                clz = Class(teacher=teacher, subject=subject)
-                clz.save()
-                messages.success(request, f'Prowadzący {teacher.fullname} został dodany!')
-                return redirect('ssop_home')
-            else:
-                messages.error(request, f'Nie udało się dodać prowadzącego!')
-        else:
-            add_comment_form = AddTeacherForm()
-            messages.error(request, f'Podane USOS ID jest niepoprawne albo jest już na stronie!')
-    return redirect('new_teacher')
-
-
-def new_subject(request):
-    add_comment_form = AddSubjectForm()
-    return render(
-        request,
-        'new_subject.html',
-        {
-            'all_subjects': group_by_letter(Subject),
-            'all_teachers': group_by_letter(Teacher),
-            'add_comment_form': add_comment_form
-        }
-    )
-
-
-@require_POST
-def add_subject(request): # TODO
-    raise PermissionDenied
-    return render_to_response(
-        'ssop_home.html',
-        {
-            'all_subjects': group_by_letter(Subject),
-            'all_teachers': group_by_letter(Teacher),
-        }
-    )
-
 @require_POST
 @transaction.atomic
 def report_comment(request):
