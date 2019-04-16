@@ -507,7 +507,7 @@ ul.topnav li a:hover {
 
 /* Star Rating 1 */
 
-.starrating1 > input:checked ~ label {
+.starrating > input:checked ~ .label1 {
     color: #ffca08;
 }
 
