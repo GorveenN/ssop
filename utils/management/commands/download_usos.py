@@ -57,12 +57,12 @@ class Command(BaseCommand):
         if options['editions']:
             editions = options['editions']
         else:
-            editions = {'2018L', '2018Z',
-                        '2017L', '2017Z',
-                        '2016L', '2016Z',
-                        '2015L', '2015Z',
-                        '2014L', '2014Z',
-                        '2013L', '2013Z',
+            editions = {'2018', '2018L', '2018Z',
+                        '2017', '2017L', '2017Z',
+                        '2016', '2016L', '2016Z',
+                        '2015', '2015L', '2015Z',
+                        '2014', '2014L', '2014Z',
+                        '2013', '2013L', '2013Z',
                         }
 
         query1 = "https://usosapps.uw.edu.pl/services/courses/search?lang=pl&fac_id=10000000&fields=id|name&name={}"
