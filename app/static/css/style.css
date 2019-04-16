@@ -509,7 +509,7 @@ ul.topnav li a:hover {
 
 
 
-/* .starrating > input:checked ~ label {
+.starrating > input:checked ~ label {
     color: #ffca08;
 }
 
@@ -517,15 +517,15 @@ ul.topnav li a:hover {
 
 /* Star Rating 1 */
 
-.starrating > input:checked ~ .label1 {
+/* .starrating1 > input:checked ~ label {
     color: #ffca08;
-}
+} */
 
 
 
 
 /*Star Rating 2*/
-/* .starrating2 > input:checked ~ .starrating2 > label {
+/* .starrating2 > input:checked ~ label {
     color: #ffca08;
 } */
 

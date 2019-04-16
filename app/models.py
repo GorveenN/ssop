@@ -149,8 +149,19 @@ class SurveyQuestion(models.Model):
     class Meta:
         verbose_name = "Survey question"
         verbose_name_plural = "Survey questions"
+        abstract = True
 
     question_text = models.CharField(max_length = 100)
 
     def __str__(self):
         return self.question_text
+
+class TeacherSurveyQuestion(SurveyQuestion, models.Model):
+    class Meta:
+        verbose_name = "Teacher  survey question"
+        verbose_name_plural = "Teacher survey questions"
+
+class SubjectSurveyQuestion(SurveyQuestion):
+    class Meta:
+        verbose_name = "Subject survey question"
+        verbose_name_plural = "Subject survey questions"

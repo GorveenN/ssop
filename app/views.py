@@ -62,7 +62,8 @@ def subject_page(request, subject_name): # TODO
         'subject_page.html',
         {
             'all_subjects': group_by_letter(Subject),
-            'all_teachers': group_by_letter(Teacher)
+            'all_teachers': group_by_letter(Teacher),
+            'surveyquestions': SubjectSurveyQuestion.objects.all()
         }
     )
 
@@ -132,7 +133,7 @@ def teacher_page(request, usos_id):
             'comments': comments,
             'subject': sbj,
             'add_comment_form': add_comment_form,
-            'survey_questions': SurveyQuestion.objects.all()
+            'survey_questions': TeacherSurveyQuestion.objects.all()
         }
     )
 
