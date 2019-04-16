@@ -142,3 +142,15 @@ class Report(models.Model):
     @property
     def add_date_pretty(self):
         return self.add_date.astimezone(timezone('Poland')).strftime("%Y-%m-%d %H:%M:%S")
+
+
+# Not so sure that it should be stored here
+class SurveyQuestion(models.Model):
+    class Meta:
+        verbose_name = "Survey question"
+        verbose_name_plural = "Survey questions"
+
+    question_text = models.CharField(max_length = 100)
+
+    def __str__(self):
+        return self.question_text

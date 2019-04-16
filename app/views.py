@@ -118,6 +118,7 @@ def add_vote(request):
 def teacher_page(request, usos_id):
     tcr = get_object_or_404(Teacher, usos_id=usos_id)
     sbj = get_object_or_404(Subject, name='Ogólne')
+    #sq = SurveyQuestion.objects.all()
     comments = tcr.teachercomment_set.filter(subject=sbj, visible=True).order_by('-add_date')
     add_comment_form = AddCommentForm()
 
@@ -130,7 +131,8 @@ def teacher_page(request, usos_id):
             'teacher': tcr,
             'comments': comments,
             'subject': sbj,
-            'add_comment_form': add_comment_form
+            'add_comment_form': add_comment_form,
+            'survey_questions': SurveyQuestion.objects.all()
         }
     )
 
