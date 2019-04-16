@@ -27,6 +27,11 @@ class Command(BaseCommand):
         for subject in load_json(options['map']):
             mapping[str(subject['from'])] = subject['to']
 
+        usos_json['0'] = {
+            "name": "Ogólne",
+            "lecturers": {}
+            }
+
         comments_wikispaces = []
         lecturers_wikispaces = dict()
 
@@ -41,7 +46,7 @@ class Command(BaseCommand):
             elif teacher['model'] == "app.teachercomment":
                 comments_wikispaces += [{
                     "teacher": teacher['fields']['teacher'],
-                    "subject": mapping[int(teacher['fields']['subject_exact'])],
+                    "subject": mapping[str(teacher['fields']['subject_exact'])],
                     "content": teacher['fields']['content'],
                     "add_date": teacher['fields']['add_date'],
                     "wikispaces": teacher['fields']['wikispaces'],
@@ -50,11 +55,19 @@ class Command(BaseCommand):
                     "visible": teacher['fields']['visible'],
                 }]
 
-                usos_json[mapping[teacher['fields']['subject_exact']]]['lecturers'][teacher['fields']['teacher']] = {
-                    "firstname": lecturers_wikispaces[teacher['fields']['teacher']]['firstname'],
-                    "surname": lecturers_wikispaces[teacher['fields']['teacher']]['surname'],
+                dic = {"email": None,}
+                #print(str(teacher['fields']['teacher']))
+                #print(teacher['fields']['subject_exact'])
+                #print(mapping[str(teacher['fields']['subject_exact'])])
+
+                #print(usos_json)
+                #print(usos_json[str(mapping[str(teacher['fields']['subject_exact'])])])
+
+                usos_json[str(mapping[str(teacher['fields']['subject_exact'])])]['lecturers'][str(teacher['fields']['teacher'])] = {
+                    "firstname": lecturers_wikispaces[str(teacher['fields']['teacher'])]['firstname'],
+                    "surname": lecturers_wikispaces[str(teacher['fields']['teacher'])]['surname'],
                     "website": None,
-                    "email": None
+                    'email': None
                 }
 
         lecturer_objects = dict()
@@ -65,10 +78,12 @@ class Command(BaseCommand):
                                                   name=subject_info['name']
                                                   )
             subject_objects[subject_id].save()
+            print(subject_id)
 
-            for lecturer_id, lecturer_info in subject_info['teachers'].items():
+            for lecturer_id, lecturer_info in subject_info['lecturers'].items():
                 if lecturer_id not in lecturer_objects:
                     lecturer_objects[lecturer_id] = Teacher(
+                        usos_id=lecturer_id,
                         firstname=lecturer_info['firstname'],
                         surname=lecturer_info['surname'],
                         website=None,
@@ -81,7 +96,7 @@ class Command(BaseCommand):
                       ).save()
 
         for comment in comments_wikispaces:
-            TeacherComment(teacher=lecturer_objects[comment['teacher']],
+            TeacherComment(teacher=lecturer_objects[str(comment['teacher'])],
                            subject=subject_objects[comment['subject']],
                            content=comment['content'],
                            add_date=comment['add_date'],
