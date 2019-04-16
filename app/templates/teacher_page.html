@@ -75,10 +75,6 @@
         <h5 class="list-group-item-heading">
             {{ question_text }}
             <span class="starrating" style="float: right; display: flex; flex-direction: row-reverse">
-                <!-- Why isn't this working? -->
-                <!-- {% for i in i|rjust:5 %}
-                    <input type="radio" id="star{{forloop.counter}}" name="rating" value="{{forloop.counter}}" /><label class="label" for="star{{forloop.counter}}"></label>
-                {% endfor %} -->
                 <input type="radio" id="star1{{forloop.counter}}" name="rating{{ forloop.counter }}" value="1" /><label class="label{{forloop.counter}}" for="star1{{forloop.counter}}"></label>
                 <input type="radio" id="star2{{forloop.counter}}" name="rating{{ forloop.counter }}" value="2" /><label class="label{{forloop.counter}}" for="star2{{forloop.counter}}"></label>
                 <input type="radio" id="star3{{forloop.counter}}" name="rating{{ forloop.counter }}" value="3" /><label class="label{{forloop.counter}}" for="star3{{forloop.counter}}"></label>

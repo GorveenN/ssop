@@ -156,10 +156,12 @@ class SurveyQuestion(models.Model):
     def __str__(self):
         return self.question_text
 
+
 class TeacherSurveyQuestion(SurveyQuestion, models.Model):
     class Meta:
         verbose_name = "Teacher  survey question"
         verbose_name_plural = "Teacher survey questions"
+
 
 class SubjectSurveyQuestion(SurveyQuestion):
     class Meta:

@@ -82,7 +82,7 @@
     {
         "from": 18,
         "name": "ZPP",
-        "to": "0"
+        "to": "1000-2L5ZPP"
     },
     {
         "from": 20,
@@ -592,12 +592,12 @@
     {
         "from": 124,
         "name": "MRJP - \u0106wiczenia",
-        "to": "0"
+        "to": "1000-217bMRJ"
     },
     {
         "from": 125,
         "name": "MRJP-lab",
-        "to": "0"
+        "to": "1000-217bMRJ"
     },
     {
         "from": 126,
@@ -662,7 +662,7 @@
     {
         "from": 138,
         "name": "Programowanie Obiektowe, Zespo\u0142owy Projekt Programistyczny",
-        "to": "0"
+        "to": "1000-2L5ZPP"
     },
     {
         "from": 139,
@@ -882,7 +882,7 @@
     {
         "from": 182,
         "name": "Popularyzacja matematyki:",
-        "to": "0"
+        "to": "1000-1S03PM"
     },
     {
         "from": 183,
@@ -1457,7 +1457,7 @@
     {
         "from": 301,
         "name": "Proseminarium - matematyka w dzia\u0142aniu",
-        "to": "0"
+        "to": "1000-1L08MD"
     },
     {
         "from": 302,
@@ -1542,7 +1542,7 @@
     {
         "from": 319,
         "name": "Konserwatorium wydzia\u0142owe - uk\u0142ady dynamiczne",
-        "to": "0"
+        "to": "1000-1L00UD"
     },
     {
         "from": 320,
@@ -1917,7 +1917,7 @@
     {
         "from": 396,
         "name": "Zespo\u0142owy Projekt Programistyczny",
-        "to": "0"
+        "to": "1000-2D17ZPM"
     },
     {
         "from": 397,

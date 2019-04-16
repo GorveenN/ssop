@@ -10,6 +10,7 @@
 
 {% block subject_name_in_comment %}
     {% if subject == 'Wszystkie komentarze' %}
+{#        TODO subject_exact do porawy#}
         <p class="date">{{ comment.subject_exact }}</p>
     {% endif %}
 {% endblock %}
