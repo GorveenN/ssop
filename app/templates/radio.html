@@ -2,31 +2,36 @@
 
 {% block title %}RADIO{% endblock %}
 
-
-<form class="add_comment_form" action="" method="post">
-    {% csrf_token %}
-    <input type="hidden" value="{{ subject.id }}" name="subject_exact_id">
-    <input type="hidden" value="{{ teacher.usos_id }}" name="teacher_id">
-
-
 {% block content %}
-    {% for form in radio_form %}
-        <div id="pytaniaAnkiet" class="list-group">
+    <form class="add_comment_form" method="post">
+    {% csrf_token %}
+
+    {{ managment_form }}
+
+    <div id="pytaniaAnkiet" class="list-group">
+        {% for que, form in map %}
             <div class="list-group-item">
-                <span>pytanie</span>
+                <span>{{ que }}</span>
                 <span class="starrating">
                     {% for field in form %}
+
+                        <input type="hidden" id="{{ field.id_for_label }}" value="{{ que.pk }}">
+
                         {% for item in field %}
-                            {% if item.data.value is not '' %}
-                            <input type="radio" id="{{ item.id_for_label }}"
-                                   name="{{ field.id_for_label }}"
-                                   value="{{ item.data.value }}"/>
-                            <label for="{{ item.id_for_label }}"></label>
+                            {% if item.data.value > 0 and item.data.value < 6 %}
+                                <input type="radio" id="{{ item.id_for_label }}"
+                                       name="{{ field.id_for_label }}"
+                                       value="{{ item.data.value }}"/>
+                                <label for="{{ item.id_for_label }}"></label>
                             {% endif %}
                         {% endfor %}
+
                     {% endfor %}
                 </span>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+
+    </div>
+        <button class="btn btn-outline-info" type="submit">Zagłosuj</button>
+    </form>
 {% endblock %}

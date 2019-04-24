@@ -61,18 +61,7 @@ class AddSubjectForm(ModelForm):
             'style':'resize:none;'
         })
 
-
-class RateTeacherForm2(forms.Form):
-    rating = forms.ChoiceField(choices=[
-        (1, ''),
-        (2, ''),
-        (3, ''),
-        (4, ''),
-        (5, ''),
-    ], widget=forms.RadioSelect)
-
-
-class RateTeacherForm1(forms.ModelForm):
+class RateTeacherForm(forms.ModelForm):
     class Meta:
         model = TeacherSurveyAnswer
         fields = ['rating', 'question']
