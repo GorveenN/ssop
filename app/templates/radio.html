@@ -14,18 +14,17 @@
                 <span>{{ que }}</span>
                 <span class="starrating">
                     {% for field in form %}
-
-                        <input type="hidden" id="{{ field.id_for_label }}" value="{{ que.pk }}">
+                        <input type="hidden" name="{{ field.id_for_label }}" value="{{ que.pk }}">
 
                         {% for item in field %}
                             {% if item.data.value > 0 and item.data.value < 6 %}
                                 <input type="radio" id="{{ item.id_for_label }}"
                                        name="{{ field.id_for_label }}"
-                                       value="{{ item.data.value }}"/>
+                                       value="{{ item.data.value }}"
+                                        required/>
                                 <label for="{{ item.id_for_label }}"></label>
                             {% endif %}
                         {% endfor %}
-
                     {% endfor %}
                 </span>
             </div>

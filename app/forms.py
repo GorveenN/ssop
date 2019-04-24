@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import TeacherComment, Teacher, Subject, SurveyAnswer, TeacherSurveyAnswer
+from .models import TeacherComment, Teacher, TeacherSurveyAnswer, SubjectSurveyAnswer
 
 
 class AddCommentForm(ModelForm):
@@ -61,7 +61,14 @@ class AddSubjectForm(ModelForm):
             'style':'resize:none;'
         })
 
+
 class RateTeacherForm(forms.ModelForm):
     class Meta:
         model = TeacherSurveyAnswer
+        fields = ['rating', 'question']
+
+
+class RateSubjectForm(forms.ModelForm):
+    class Meta:
+        model = SubjectSurveyAnswer
         fields = ['rating', 'question']

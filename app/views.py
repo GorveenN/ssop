@@ -239,9 +239,8 @@ def radio(request):
     if request.method == 'POST':
         formset = StarsRatingFormSet(request.POST)
         if formset.is_valid():
-            print(formset)
             for item in formset:
-                item.save()
+                item.save(commit=True)
             print('Entered valid form')
     else:
         formset = StarsRatingFormSet()
