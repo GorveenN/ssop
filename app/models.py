@@ -10,6 +10,7 @@ class Teacher(models.Model):
     class Meta:
         verbose_name = "Teacher"
         verbose_name_plural = "Teachers"
+        ordering = ['surname']
 
     firstname = models.CharField(max_length=64)
     surname   = models.CharField(max_length=64)
@@ -44,9 +45,6 @@ class Teacher(models.Model):
             'web_link': '',
             'usos_id': self.usos_id
         }
-
-    class Meta:
-        ordering = ['surname']
 
 
 class Subject(models.Model):
@@ -157,7 +155,7 @@ class SurveyQuestion(models.Model):
         return self.question_text
 
 
-class TeacherSurveyQuestion(SurveyQuestion, models.Model):
+class TeacherSurveyQuestion(SurveyQuestion):
     class Meta:
         verbose_name = "Teacher  survey question"
         verbose_name_plural = "Teacher survey questions"
