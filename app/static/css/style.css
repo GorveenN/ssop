@@ -477,7 +477,6 @@ ul.topnav li a:hover {
 
 
 /* Star Rating */
-/* TODO: Fix stars on check */
 
 /* Remove radio buttons unelegant display */
 .starrating > input {
@@ -508,25 +507,6 @@ ul.topnav li a:hover {
 }
 
 
-
-/* .starrating > input:checked ~ label {
+ .starrating > input:checked ~ label {
     color: #ffca08;
 }
-
-
-
-/* Star Rating 1 */
-
-.starrating > input:checked ~ .label1 {
-    color: #ffca08;
-}
-
-
-
-
-/*Star Rating 2*/
-/* .starrating2 > input:checked ~ .starrating2 > label {
-    color: #ffca08;
-} */
-
-
