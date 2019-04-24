@@ -1,5 +1,6 @@
 from django.forms import ModelForm
-from .models import TeacherComment, Teacher, Subject
+from django import forms
+from .models import TeacherComment, Teacher, Subject, SurveyAnswer, TeacherSurveyAnswer
 
 
 class AddCommentForm(ModelForm):
@@ -19,6 +20,7 @@ class AddCommentForm(ModelForm):
         self.fields['content'].widget.attrs.update({
             'style':'resize:none;'
         })
+
 
 class AddTeacherForm(ModelForm):
     class Meta:
@@ -58,3 +60,19 @@ class AddSubjectForm(ModelForm):
         self.fields['usos_id'].widget.attrs.update({
             'style':'resize:none;'
         })
+
+
+class RateTeacherForm2(forms.Form):
+    rating = forms.ChoiceField(choices=[
+        (1, ''),
+        (2, ''),
+        (3, ''),
+        (4, ''),
+        (5, ''),
+    ], widget=forms.RadioSelect)
+
+
+class RateTeacherForm1(forms.ModelForm):
+    class Meta:
+        model = TeacherSurveyAnswer
+        fields = ['rating', 'question']

@@ -122,6 +122,7 @@ def teacher_page(request, usos_id):
     #sq = SurveyQuestion.objects.all()
     comments = tcr.teachercomment_set.filter(subject=sbj, visible=True).order_by('-add_date')
     add_comment_form = AddCommentForm()
+    radio_form = RateTeacherForm()
 
     return render(
         request,
@@ -133,6 +134,7 @@ def teacher_page(request, usos_id):
             'comments': comments,
             'subject': sbj,
             'add_comment_form': add_comment_form,
+            'radio_form': radio_form,
             'survey_questions': TeacherSurveyQuestion.objects.all()
         }
     )
@@ -229,3 +231,20 @@ def report_handle(request, uuid):
         messages.warning(request, f'Zgłoszenie {report.uuid} zostało już obsłużone!')
 
     return redirect('ssop_home')
+
+
+
+from django.forms import formset_factory
+
+
+def radio(request):
+    
+    return render(
+        request,
+        'radio.html',
+        {
+            'radio_form'  : formset_factory(RateTeacherForm2, extra=2),
+            'all_subjects': group_by_letter(Subject),
+            'all_teachers': group_by_letter(Teacher),
+        }
+    )
