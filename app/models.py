@@ -16,6 +16,7 @@ class Teacher(models.Model):
     usos_id   = models.IntegerField(primary_key=True)
     website   = models.CharField(max_length=64, null=True)
     email     = models.CharField(max_length=64, null=True)
+    ordering = ['surname']
 
     @property
     def fullname(self):
@@ -44,9 +45,6 @@ class Teacher(models.Model):
             'web_link': '',
             'usos_id': self.usos_id
         }
-
-    class Meta:
-        ordering = ['surname']
 
 
 class Subject(models.Model):
