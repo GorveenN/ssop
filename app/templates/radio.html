@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}RADIO{% endblock %}
+
+{% block content %}
+    <form class="add_comment_form" method="post">
+    {% csrf_token %}
+
+    {{ managment_form }}
+
+    <div id="pytaniaAnkiet" class="list-group">
+        {% for que, form in map %}
+            <div class="list-group-item">
+                <span>{{ que }}</span>
+                <span class="starrating">
+                    {% for field in form %}
+                        <input type="hidden" name="{{ field.id_for_label }}" value="{{ que.pk }}">
+
+                        {% for item in field %}
+                            {% if item.data.value > 0 and item.data.value < 6 %}
+                                <input type="radio" id="{{ item.id_for_label }}"
+                                       name="{{ field.id_for_label }}"
+                                       value="{{ item.data.value }}"
+                                        required/>
+                                <label for="{{ item.id_for_label }}"></label>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </span>
+            </div>
+        {% endfor %}
+
+    </div>
+        <button class="btn btn-outline-info" type="submit">Zagłosuj</button>
+    </form>
+{% endblock %}

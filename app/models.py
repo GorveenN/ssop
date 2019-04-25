@@ -10,6 +10,7 @@ class Teacher(models.Model):
     class Meta:
         verbose_name = "Teacher"
         verbose_name_plural = "Teachers"
+        ordering = ['surname']
 
     firstname = models.CharField(max_length=64)
     surname   = models.CharField(max_length=64)
@@ -147,8 +148,43 @@ class SurveyQuestion(models.Model):
     class Meta:
         verbose_name = "Survey question"
         verbose_name_plural = "Survey questions"
+        abstract = True
 
     question_text = models.CharField(max_length = 100)
 
     def __str__(self):
         return self.question_text
+
+
+class TeacherSurveyQuestion(SurveyQuestion):
+    class Meta:
+        verbose_name = "Teacher  survey question"
+        verbose_name_plural = "Teacher survey questions"
+
+
+class SubjectSurveyQuestion(SurveyQuestion):
+    class Meta:
+        verbose_name = "Subject survey question"
+        verbose_name_plural = "Subject survey questions"
+
+
+class SurveyAnswer(models.Model):
+    class Meta:
+        abstract = True
+
+    ratings = (
+        (5, 5),
+        (4, 4),
+        (3, 3),
+        (2, 2),
+        (1, 1),
+    )
+    rating = models.IntegerField(choices=ratings, null=False, blank=False)
+
+
+class SubjectSurveyAnswer(SurveyAnswer):
+    question = models.ForeignKey(SubjectSurveyQuestion, models.CASCADE)
+
+
+class TeacherSurveyAnswer(SurveyAnswer):
+    question = models.ForeignKey(TeacherSurveyQuestion, models.CASCADE)

@@ -12,4 +12,5 @@ urlpatterns = [
     path('user_rules/',             views.rules_page,   name='rules_page'),
     path('report/',       views.report_comment, name='report_comment'),
     path('report/<slug:uuid>',      views.report_handle, name='report_handle'),
+    path('radio/',      views.radio, name='radio'),
 ]

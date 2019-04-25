@@ -477,13 +477,20 @@ ul.topnav li a:hover {
 
 
 /* Star Rating */
+/* TODO: Fix stars on check */
+
+.starrating {
+    float: right;
+    display: flex;
+    flex-direction: row-reverse
+}
 
 /* Remove radio buttons unelegant display */
 .starrating > input {
     display: none;
 }
 
-.starrating > label:before {
+.starrating > label:after {
     content: "\2605"; /* Star */
     margin: 2px;
     display: inline-block;
@@ -506,7 +513,6 @@ ul.topnav li a:hover {
     color: #ffca08;
 }
 
-
- .starrating > input:checked ~ label {
+.starrating > input:checked ~ label {
     color: #ffca08;
 }

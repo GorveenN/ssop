@@ -7,6 +7,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from utils.management.commands.download_teacher import download_teacher_info
 from django.core.exceptions import PermissionDenied
+from django.forms import formset_factory
 
 from app.forms import *
 from app.models import *
@@ -62,7 +63,8 @@ def subject_page(request, subject_name): # TODO
         'subject_page.html',
         {
             'all_subjects': group_by_letter(Subject),
-            'all_teachers': group_by_letter(Teacher)
+            'all_teachers': group_by_letter(Teacher),
+            'surveyquestions': SubjectSurveyQuestion.objects.all()
         }
     )
 
@@ -132,7 +134,7 @@ def teacher_page(request, usos_id):
             'comments': comments,
             'subject': sbj,
             'add_comment_form': add_comment_form,
-            'survey_questions': SurveyQuestion.objects.all()
+            'survey_questions': TeacherSurveyQuestion.objects.all()
         }
     )
 
@@ -228,3 +230,29 @@ def report_handle(request, uuid):
         messages.warning(request, f'Zgłoszenie {report.uuid} zostało już obsłużone!')
 
     return redirect('ssop_home')
+
+
+def radio(request):
+    que = TeacherSurveyQuestion.objects.all()
+    StarsRatingFormSet = formset_factory(RateTeacherForm, extra=len(que))
+
+    if request.method == 'POST':
+        formset = StarsRatingFormSet(request.POST)
+        if formset.is_valid():
+            for item in formset:
+                item.save(commit=True)
+            print('Entered valid form')
+    else:
+        formset = StarsRatingFormSet()
+
+    return render(
+        request,
+        'radio.html',
+        {
+            'managment_form': formset.management_form,
+            'questions'    : TeacherSurveyQuestion.objects.all(),
+            'map'          : zip(que, formset.forms),
+            'all_subjects': group_by_letter(Subject),
+            'all_teachers': group_by_letter(Teacher),
+        }
+    )
