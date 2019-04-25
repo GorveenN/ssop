@@ -238,6 +238,7 @@ def radio(request):
 
     if request.method == 'POST':
         formset = StarsRatingFormSet(request.POST)
+        print(request.POST)
         if formset.is_valid():
             for item in formset:
                 item.save(commit=True)
@@ -249,6 +250,7 @@ def radio(request):
         request,
         'radio.html',
         {
+            'proper'        : formset,
             'managment_form': formset.management_form,
             'questions'    : TeacherSurveyQuestion.objects.all(),
             'map'          : zip(que, formset.forms),

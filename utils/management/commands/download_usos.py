@@ -14,6 +14,7 @@ def get_subject_teacher(subject_id, editions):
     query = "https://usosapps.uw.edu.pl/services/courses/course_edition?course_id={}&term_id={}&fields=lecturers"
     lecturers = {}
 
+
     for edition in editions:
         # print("Checking edition: " + edition)
         response = try_query(query.format(subject_id, edition)).json()
