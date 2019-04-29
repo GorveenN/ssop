@@ -70,7 +70,7 @@ def subject_page(request, subject_name): # TODO
 
 @require_POST
 def add_comment(request):
-    sbj = get_object_or_404(Subject, usos_id=request.POST['subject_exact_id'])
+    sbj = get_object_or_404(Subject, usos_id=request.POST['subject_id'])
     tcr = get_object_or_404(Teacher, usos_id=request.POST['teacher_id'])
     form = AddCommentForm(request.POST)
 
@@ -78,7 +78,7 @@ def add_comment(request):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.teacher = tcr
-            comment.subject_exact = sbj
+            comment.subject = sbj
             comment.save()
 
     return redirect(request.GET['redirect'])
