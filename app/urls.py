@@ -12,9 +12,6 @@ urlpatterns = [
     path('user_rules/',             views.rules_page,   name='rules_page'),
     path('report/',       views.report_comment, name='report_comment'),
     path('report/<slug:uuid>',      views.report_handle, name='report_handle'),
-    path('radio/',      views.radio, name='radio'),
-    path('form_test/',      views.form_test, name='form_test'),
-    path('teachers/add_form_test/',      views.add_form_test, name='add_form_test'),
     path('teachers/add_teacher_survey/', views.add_teacher_survey, name='add_teacher_survey'),
     path('teachers/add_subject_survey/', views.add_subject_survey, name='add_subject_survey'),
 ]
