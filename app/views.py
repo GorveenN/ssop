@@ -117,39 +117,10 @@ def add_vote(request):
     return response
 
 
-    que = TeacherSurveyQuestion.objects.all()
-    StarsRatingFormSet = formset_factory(StarRatingForm, extra=len(que))
-    add_comment_form = AddCommentForm()
-
-    if request.method == 'POST':
-        formset = StarsRatingFormSet(request.POST)
-        print(request.POST)
-        if formset.is_valid():
-            #for item in formset:
-            #    item.save(commit=True)
-            print('Entered valid form')
-    else:
-        formset = StarsRatingFormSet()
-
-    return render(
-        request,
-        'form_test.html',
-        {
-            'add_comment_form'  : add_comment_form,
-            'managment_form'    : formset.management_form,
-            'survey'            : zip(que, formset.forms),
-            'all_subjects'      : group_by_letter(Subject),
-            'all_teachers'      : group_by_letter(Teacher),
-        }
-    )
-
-
-
 @require_GET
 def teacher_page(request, usos_id):
     tcr = get_object_or_404(Teacher, usos_id=usos_id)
-    sbj = get_object_or_404(Subject, name='Ogólne')
-    comments = tcr.teachercomment_set.filter(subject=sbj, visible=True).order_by('-add_date')
+    comments = tcr.teachercomment_set.filter(visible=True).order_by('-add_date')
     add_comment_form = AddCommentForm()
 
     que = TeacherSurveyQuestion.objects.all()
@@ -164,7 +135,7 @@ def teacher_page(request, usos_id):
             'all_teachers': group_by_letter(Teacher),
             'teacher': tcr,
             'comments': comments,
-            'subject': sbj,
+            'subject': 'Wszystkie komentarze',
             'add_comment_form': add_comment_form,
             'managment_form': formset.management_form,
             'survey': zip(que, formset.forms)
@@ -173,25 +144,18 @@ def teacher_page(request, usos_id):
 
 @require_GET
 def teacher_comment_page(request, usos_id, subject):
-    if subject == 'Ogólne':
+    if subject == 'Wszystkie komentarze':
         return redirect('teacher_page', usos_id=usos_id)
 
     tcr = get_object_or_404(Teacher, usos_id=usos_id)
-    if subject == 'Wszystkie komentarze':
-        sbj = subject
-        que = {}
-        man_form = {}
-        survey = {}
-        comments = tcr.teachercomment_set.filter(visible=True).order_by('-add_date')
-    else:
-        que = TeacherSurveyQuestion.objects.all()
-        factory = formset_factory(StarRatingForm, extra=len(que))
-        formset = factory()
-        man_form = formset.management_form
-        survey = zip(que, formset.forms)
+    que = TeacherSurveyQuestion.objects.all()
+    factory = formset_factory(StarRatingForm, extra=len(que))
+    formset = factory()
+    man_form = formset.management_form
+    survey = zip(que, formset.forms)
 
-        sbj = get_object_or_404(Subject, usos_id=subject)
-        comments = tcr.teachercomment_set.filter(subject=sbj, visible=True).order_by('-add_date')
+    sbj = get_object_or_404(Subject, usos_id=subject)
+    comments = tcr.teachercomment_set.filter(subject=sbj, visible=True).order_by('-add_date')
     add_comment_form = AddCommentForm()
 
     return render(
@@ -275,111 +239,33 @@ def report_handle(request, uuid):
     return redirect('ssop_home')
 
 
-def radio(request):
-    que = TeacherSurveyQuestion.objects.all()
-    StarsRatingFormSet = formset_factory(RateTeacherForm, extra=len(que))
-
-    if request.method == 'POST':
-        formset = StarsRatingFormSet(request.POST)
-        print(request.POST)
-        if formset.is_valid():
-            for item in formset:
-                item.save(commit=True)
-            print('Entered valid form')
-    else:
-        formset = StarsRatingFormSet()
-
-    return render(
-        request,
-        'radio.html',
-        {
-            'proper'        : formset,
-            'managment_form': formset.management_form,
-            'questions'    : TeacherSurveyQuestion.objects.all(),
-            'map'          : zip(que, formset.forms),
-            'all_subjects': group_by_letter(Subject),
-            'all_teachers': group_by_letter(Teacher),
-        }
-    )
-
-
-def form_test(request):
-    que = TeacherSurveyQuestion.objects.all()
-    StarsRatingFormSet = formset_factory(StarRatingForm, extra=len(que))
-    add_comment_form = AddCommentForm()
-
-    if request.method == 'POST':
-        formset = StarsRatingFormSet(request.POST)
-        print(request.POST)
-        if formset.is_valid():
-            #for item in formset:
-            #    item.save(commit=True)
-            print('Entered valid form')
-    else:
-        formset = StarsRatingFormSet()
-
-    return render(
-        request,
-        'form_test.html',
-        {
-            'add_comment_form'  : add_comment_form,
-            'managment_form'    : formset.management_form,
-            'survey'            : zip(que, formset.forms),
-            'all_subjects'      : group_by_letter(Subject),
-            'all_teachers'      : group_by_letter(Teacher),
-        }
-    )
-
-@require_POST
-def add_form_test(request):
-    # sbj = get_object_or_404(Subject, usos_id=request.POST['subject_id'])
-    # tcr = get_object_or_404(Teacher, usos_id=request.POST['teacher_id'])
-    questions = len(TeacherSurveyQuestion.objects.all())
-    factory = formset_factory(StarRatingForm, extra=questions)
-    formset = factory(request.POST)
-
-    print(request.POST)
-    for idx, form in zip(range(0, questions), formset):
-        with transaction.atomic():
-            if form.is_valid():
-                survey = TeacherSurveyAnswer()
-                # survey.teacher = tcr
-                # survey.subject = sbj
-                survey.rating = form['rating']
-                survey.question_id = request.POST["form-{}-question".format(idx)]
-                survey.save()
-
-    return redirect(request.GET['redirect'])
-
 @require_POST
 def add_subject_survey(request):
-    # sbj = get_object_or_404(Subject, usos_id=request.POST['subject_id'])
+    sbj = get_object_or_404(Subject, usos_id=request.POST['subject_id'])
     questions = len(SubjectSurveyQuestion.objects.all())
     factory = formset_factory(StarRatingForm, extra=questions)
     formset = factory(request.POST)
 
-    print(request.POST)
     for idx, form in zip(range(0, questions), formset):
         with transaction.atomic():
             if form.is_valid():
-                survey = SubjectSurveyAnswer()
-                # survey.subject = sbj
-                survey.rating = form['rating']
+                survey = TeacherSurveyAnswer()
+                survey.subject = sbj
+                survey.rating = form['rating'].value()
                 survey.question_id = request.POST["form-{}-question".format(idx)]
                 survey.save()
 
     return redirect(request.GET['redirect'])
 
+
 @require_POST
 def add_teacher_survey(request):
-    print(request.POST)
     sbj = get_object_or_404(Subject, usos_id=request.POST['subject_id'])
     tcr = get_object_or_404(Teacher, usos_id=request.POST['teacher_id'])
     questions = len(TeacherSurveyQuestion.objects.all())
     factory = formset_factory(StarRatingForm, extra=questions)
     formset = factory(request.POST)
 
-    print(request.POST)
     for idx, form in zip(range(0, questions), formset):
         with transaction.atomic():
             if form.is_valid():

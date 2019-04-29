@@ -10,7 +10,7 @@
                     class="sr-only">(current)</span></a>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% block subject_name %}Ogólne{% endblock %} <b
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% block subject_name %}Wszystkie komentarze{% endblock %} <b
                     class="caret"></b></a>
             <ul class="dropdown-menu multi-column scrollable-menu columns-1" role="menu">
                 <div class="row">
@@ -59,7 +59,7 @@
         <h3> Prowadzone przedmioty </h3>
         <div class="list-group">
             {% for subject in teacher.classes %}
-                <a class="list-group-item">
+                <a class="list-group-item" href="{% url 'teacher_comment_page' usos_id=teacher.usos_id subject=subject.usos_id %}">
                     <!-- change parametr to usos_id -->
                     <h5 class="list-group-item-heading"> {{ subject }} </h5>
                 </a>
@@ -67,7 +67,7 @@
         </div>
 
 
-        <h3>Komentarze ogólne:</h3>
+        <h3>Wszystkie komentarze:</h3>
     {% endblock %}
     {% for comment in comments %}
         <div class="well well-sm">
