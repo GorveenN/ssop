@@ -17,6 +17,7 @@ class AddCommentForm(ModelForm):
             self.fields[field].widget.attrs.update({
                 'class': 'form-control',
             })
+        self.fields['content'].required = False
         self.fields['content'].widget.attrs.update({
             'style':'resize:none;'
         })
@@ -60,6 +61,18 @@ class AddSubjectForm(ModelForm):
         self.fields['usos_id'].widget.attrs.update({
             'style':'resize:none;'
         })
+
+
+class StarRatingForm(forms.Form):
+    choices = (
+        (5, 5),
+        (4, 4),
+        (3, 3),
+        (2, 2),
+        (1, 1),
+    )
+
+    rating = forms.ChoiceField(choices=choices, widget=forms.RadioSelect())
 
 
 class RateTeacherForm(forms.ModelForm):

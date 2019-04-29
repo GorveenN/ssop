@@ -17,11 +17,11 @@ class Command(BaseCommand):
         parser.help = 'Populate database by usos data.'
         parser.add_argument('--map', type=str)
         parser.add_argument('--usos', type=str,)
-        parser.add_argument('--wikispaces', type=str,)
+        parser.add_argument('--wiki', type=str,)
 
     def handle(self, *args, **options):
         usos_json = load_json(options['usos'])
-        wikispaces_json = load_json(options['wikispaces'])
+        wikispaces_json = load_json(options['wiki'])
 
         mapping = dict()
         for subject in load_json(options['map']):
@@ -31,6 +31,7 @@ class Command(BaseCommand):
             "name": "Ogólne",
             "lecturers": {}
             }
+
 
         comments_wikispaces = []
         lecturers_wikispaces = dict()
@@ -62,6 +63,7 @@ class Command(BaseCommand):
                     'email': None
                 }
 
+
         lecturer_objects = dict()
         subject_objects = dict()
 
@@ -82,10 +84,17 @@ class Command(BaseCommand):
                         email=None
                     )
                     lecturer_objects[lecturer_id].save()
+                if subject_id != '0':
+                    Class(teacher=lecturer_objects[lecturer_id],
+                        subject=subject_objects[subject_id]
+                        ).save()
 
-                Class(teacher=lecturer_objects[lecturer_id],
-                      subject=subject_objects[subject_id]
-                      ).save()
+        blank = Subject.objects.all().filter(usos_id=0).first()
+        teachers = Class.objects.all()
+        for id, obj in lecturer_objects.items():
+            Class(teacher=obj,
+                  subject=blank
+                  ).save()
 
         for comment in comments_wikispaces:
             TeacherComment(teacher=lecturer_objects[str(comment['teacher'])],
