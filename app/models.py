@@ -172,19 +172,22 @@ class SurveyAnswer(models.Model):
     class Meta:
         abstract = True
 
-    ratings = (
-        (5, 5),
-        (4, 4),
-        (3, 3),
-        (2, 2),
-        (1, 1),
-    )
-    rating = models.IntegerField(choices=ratings, null=False, blank=False)
+    rating = models.IntegerField(null=False)
 
 
 class SubjectSurveyAnswer(SurveyAnswer):
+    class Meta:
+        verbose_name = "Subject survey answer"
+        verbose_name_plural = "Subject survey answer"
+
     question = models.ForeignKey(SubjectSurveyQuestion, models.CASCADE)
 
 
 class TeacherSurveyAnswer(SurveyAnswer):
+    class Meta:
+        verbose_name = "Teacher survey answer"
+        verbose_name_plural = "Teacher survey answer"
+
     question = models.ForeignKey(TeacherSurveyQuestion, models.CASCADE)
+    teacher = models.ForeignKey(Teacher, models.CASCADE)
+    subject = models.ForeignKey(Subject, models.CASCADE)

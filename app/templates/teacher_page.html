@@ -4,186 +4,207 @@
 {% block title %}{{ teacher.fullname }}{% endblock %}
 
 {% block special_menu %}
-<ul class="nav navbar-nav navbar-right">
-    <li>
-        <a href="{% url 'teacher_page' usos_id=teacher.usos_id %}">{{ teacher.name }}<span class="sr-only">(current)</span></a>
-    </li>
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% block subject_name %}Ogólne{% endblock %} <b class="caret"></b></a>
-        <ul class="dropdown-menu multi-column scrollable-menu columns-1" role="menu">
-            <div class="row">
-                <ul class="multi-column-dropdown one-col">
-                    <li>
-                        <a href="{% url 'teacher_comment_page' usos_id=teacher.usos_id subject='Wszystkie komentarze' %}">Wszystkie komentarze</a>
-                    </li>
-                    <li class="divider"></li>
-                    {% for subj in teacher.classes %}
-                    <li>
-                        <a href="{% url 'teacher_comment_page' usos_id=teacher.usos_id subject=subj.usos_id %}">{{ subj }}</a>
-                    </li>
-                    <li class="divider"></li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </ul>
-    </li>
-</ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="{% url 'teacher_page' usos_id=teacher.usos_id %}">{{ teacher.name }}<span
+                    class="sr-only">(current)</span></a>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% block subject_name %}Ogólne{% endblock %} <b
+                    class="caret"></b></a>
+            <ul class="dropdown-menu multi-column scrollable-menu columns-1" role="menu">
+                <div class="row">
+                    <ul class="multi-column-dropdown one-col">
+                        <li>
+                            <a href="{% url 'teacher_comment_page' usos_id=teacher.usos_id subject='Wszystkie komentarze' %}">Wszystkie
+                                komentarze</a>
+                        </li>
+                        <li class="divider"></li>
+                        {% for subj in teacher.classes %}
+                            <li>
+                                <a href="{% url 'teacher_comment_page' usos_id=teacher.usos_id subject=subj.usos_id %}">{{ subj }}</a>
+                            </li>
+                            <li class="divider"></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </ul>
+        </li>
+    </ul>
 {% endblock %}
 
 {% block content %}
-<h1>{{teacher.fullname}}</h1>
+    <h1>{{ teacher.fullname }}</h1>
     {% block info %}
 
-    <div class="flex-container">
-        <div>
-            <h5 class="font-italic">Ogólna ocena: 5</h5>
-            <h5 class="font-italic">Szczegółowość tłumaczenia: 5</h5>
-            <h5 class="font-italic">Poziom wymagań: 5</h5>
-            <h5 class="font-italic">Angażowanie studentów w zajęcia: 5</h5>
+        <div class="flex-container">
+            <div>
+                <h5 class="font-italic">Ogólna ocena: 5</h5>
+                <h5 class="font-italic">Szczegółowość tłumaczenia: 5</h5>
+                <h5 class="font-italic">Poziom wymagań: 5</h5>
+                <h5 class="font-italic">Angażowanie studentów w zajęcia: 5</h5>
+            </div>
+
+            <div>
+                <h5 class="font-italic">Strona: <a
+                        href="{{ teacher.website|default_if_none:'' }}">{{ teacher.website|default_if_none:'' }}</a>
+                </h5>
+                <h5 class="font-italic">USOSWeb: <a href="{{ teacher.usos_link|default_if_none:'' }}">link</a></h5>
+                <h5 class="font-italic">Mail: <a
+                        href="mailto:{{ teacher.email|default_if_none:'' }}">{{ teacher.email|default_if_none:'' }}</a>
+                </h5>
+            </div>
         </div>
 
-        <div>
-            <h5 class="font-italic">Strona: <a href="{{ teacher.website|default_if_none:'' }}">{{ teacher.website|default_if_none:'' }}</a></h5>
-            <h5 class="font-italic">USOSWeb: <a href="{{ teacher.usos_link|default_if_none:'' }}">link</a></h5>
-            <h5 class="font-italic">Mail: <a href="mailto:{{ teacher.email|default_if_none:'' }}">{{ teacher.email|default_if_none:'' }}</a></h5>
+        <h3> Prowadzone przedmioty </h3>
+        <div class="list-group">
+            {% for subject in teacher.classes %}
+                <a class="list-group-item">
+                    <!-- change parametr to usos_id -->
+                    <h5 class="list-group-item-heading"> {{ subject }} </h5>
+                </a>
+            {% endfor %}
         </div>
-    </div>
-
-<h3> Prowadzone przedmioty </h3>
-<div class="list-group">
-    {% for subject in teacher.classes %}
-    <a class="list-group-item">
-        <!-- change parametr to usos_id -->
-        <h5 class="list-group-item-heading"> {{ subject }} </h5>
-    </a>
-    {% endfor %}
-</div>
 
 
-
-
-
-<!-- TODO: Can't we use Django loop to avoid repeating stars? -->
-<!-- TODO: Add forms, connect to database, fix stars :D -->
-<!-- TODO: Stars don't work :/ -->
-
-
-<button data-toggle="collapse" data-target="#pytaniaAnkiet"><h3>Ankieta</h3></button>
-
-<div id="pytaniaAnkiet" class="list-group collapse">
-    {% for question_text in survey_questions %}
-    <a class="list-group-item">
-        <h5 class="list-group-item-heading">
-            {{ question_text }}
-            <span class="starrating" style="float: right; display: flex; flex-direction: row-reverse">
-                <input type="radio" id="star1{{forloop.counter}}" name="rating{{ forloop.counter }}" value="1" /><label class="label{{forloop.counter}}" for="star1{{forloop.counter}}"></label>
-                <input type="radio" id="star2{{forloop.counter}}" name="rating{{ forloop.counter }}" value="2" /><label class="label{{forloop.counter}}" for="star2{{forloop.counter}}"></label>
-                <input type="radio" id="star3{{forloop.counter}}" name="rating{{ forloop.counter }}" value="3" /><label class="label{{forloop.counter}}" for="star3{{forloop.counter}}"></label>
-                <input type="radio" id="star4{{forloop.counter}}" name="rating{{ forloop.counter }}" value="4" /><label class="label{{forloop.counter}}" for="star4{{forloop.counter}}"></label>
-                <input type="radio" id="star5{{forloop.counter}}" name="rating{{ forloop.counter }}" value="5" /><label class="label{{forloop.counter}}" for="star5{{forloop.counter}}"></label>
-            </span>
-        </h5>
-    </a>
-    {% endfor %}
-</div>
-
-
-
-<h3>Komentarze ogólne:</h3>
+        <h3>Komentarze ogólne:</h3>
     {% endblock %}
     {% for comment in comments %}
-<div class="well well-sm">
-    {% if comment.wikispaces %}
-    <div class="wikispaces-info">
-        <a data-toggle="tooltip" data-placement="top" title="Ten komentarz pochodzi ze starej wersji strony (mimuw.wikispaces.com). Data jego napisanie jest nieznana, więc może się on nieco mijać z prawdą.">WIKISPACES</a>
-    </div>
-    {% else %}
-    <p class="date">{{comment.add_date_pretty}}</p>
-    {% endif %}
-    {% block subject_name_in_comment %}{% endblock %}
-    <p class="comment-content">{{comment.content}}</p>
-    {% with c_id=comment.id|stringformat:"s" %}
-    {% with cookie_val='tc-'|add:c_id %}
-    <div class="d-flex">
-        <form class="vote" action="{% url 'add_vote' %}?redirect={{ request.get_full_path | urlencode }}" method="post">
-            {% csrf_token %}
-            <input type="hidden" value="{{ comment.id }}" name="comment_id">
-            <input type="hidden" value="{{ teacher.usos_id }}" name="teacher_id">
-            {% if not cookie_val in request.COOKIES %}
-
-            <button type="submit" name="vote" value="+" class="vote-button">
-                <span class="glyphicon glyphicon-plus-sign up-vote" aria-hidden="true"></span>
-            </button>
-            <span class="up-vote">{{comment.up_votes}}</span>
-
-            <span class="down-vote">{{comment.down_votes}}</span>
-            <button type="submit" name="vote" value="-" class="vote-button">
-                <span class="glyphicon glyphicon-minus-sign down-vote" aria-hidden="true"></span>
-            </button>
-            {% elif request.COOKIES|get_item:cookie_val == '+' %}
-            <button type="submit" name="vote" value="+" class="vote-button selected-vote">
-                <span class="glyphicon glyphicon-plus-sign up-vote" aria-hidden="true"></span>
-            </button>
-            <span class="up-vote">{{comment.up_votes}}</span>
-
-            <span class="down-vote">{{comment.down_votes}}</span>
-            <button type="submit" name="vote" value="-" class="vote-button mute-vote">
-                <span class="glyphicon glyphicon-minus-sign down-vote" aria-hidden="true"></span>
-            </button>
-            {% elif request.COOKIES|get_item:cookie_val == '-' %}
-            <button type="submit" name="vote" value="+" class="vote-button mute-vote">
-                <span class="glyphicon glyphicon-plus-sign up-vote" aria-hidden="true"></span>
-            </button>
-            <span class="up-vote">{{comment.up_votes}}</span>
-
-            <span class="down-vote">{{comment.down_votes}}</span>
-            <button type="submit" name="vote" value="-" class="vote-button selected-vote">
-                <span class="glyphicon glyphicon-minus-sign down-vote" aria-hidden="true"></span>
-            </button>
+        <div class="well well-sm">
+            {% if comment.wikispaces %}
+                <div class="wikispaces-info">
+                    <a data-toggle="tooltip" data-placement="top"
+                       title="Ten komentarz pochodzi ze starej wersji strony (mimuw.wikispaces.com). Data jego napisanie jest nieznana, więc może się on nieco mijać z prawdą.">WIKISPACES</a>
+                </div>
+            {% else %}
+                <p class="date">{{ comment.add_date_pretty }}</p>
             {% endif %}
-        </form>
-        {% endwith %}
-        {% endwith %}
+            {% block subject_name_in_comment %}{% endblock %}
+            <p class="comment-content">{{ comment.content }}</p>
+            {% with c_id=comment.id|stringformat:"s" %}
+                {% with cookie_val='tc-'|add:c_id %}
+                    <div class="d-flex">
+                    <form class="vote" action="{% url 'add_vote' %}?redirect={{ request.get_full_path | urlencode }}"
+                          method="post">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ comment.id }}" name="comment_id">
+                        <input type="hidden" value="{{ teacher.usos_id }}" name="teacher_id">
+                        {% if not cookie_val in request.COOKIES %}
 
-        <button onclick="showHideElement('report_comment_{{ comment.id }}')" class="btn btn-warning btn-sm ml-auto" style="float:right;border-radius:24px;padding:1px 8px;font-weight:bolder;">Zgłoś nadużycie</button>
-    </div>
-    <form id="report_comment_{{ comment.id }}" action="{% url 'report_comment' %}?redirect={{ request.get_full_path | urlencode }}" method="post" style="display:none">
-        {% csrf_token %}
-        <br>
-        <div class="form-group">
-            <label>Powód zgłoszenia komentarza:</label>
-            <input type="hidden" value="{{ comment.id }}" name="comment_id">
-            <input type="hidden" value="{{ request.get_full_path | urlencode }}" name="redirect">
-            <textarea class="form-control" name="content" cols="30" rows="3" style="resize:none;" required></textarea>
+                            <button type="submit" name="vote" value="+" class="vote-button">
+                                <span class="glyphicon glyphicon-plus-sign up-vote" aria-hidden="true"></span>
+                            </button>
+                            <span class="up-vote">{{ comment.up_votes }}</span>
+
+                            <span class="down-vote">{{ comment.down_votes }}</span>
+                            <button type="submit" name="vote" value="-" class="vote-button">
+                                <span class="glyphicon glyphicon-minus-sign down-vote" aria-hidden="true"></span>
+                            </button>
+                        {% elif request.COOKIES|get_item:cookie_val == '+' %}
+                            <button type="submit" name="vote" value="+" class="vote-button selected-vote">
+                                <span class="glyphicon glyphicon-plus-sign up-vote" aria-hidden="true"></span>
+                            </button>
+                            <span class="up-vote">{{ comment.up_votes }}</span>
+
+                            <span class="down-vote">{{ comment.down_votes }}</span>
+                            <button type="submit" name="vote" value="-" class="vote-button mute-vote">
+                                <span class="glyphicon glyphicon-minus-sign down-vote" aria-hidden="true"></span>
+                            </button>
+                        {% elif request.COOKIES|get_item:cookie_val == '-' %}
+                            <button type="submit" name="vote" value="+" class="vote-button mute-vote">
+                                <span class="glyphicon glyphicon-plus-sign up-vote" aria-hidden="true"></span>
+                            </button>
+                            <span class="up-vote">{{ comment.up_votes }}</span>
+
+                            <span class="down-vote">{{ comment.down_votes }}</span>
+                            <button type="submit" name="vote" value="-" class="vote-button selected-vote">
+                                <span class="glyphicon glyphicon-minus-sign down-vote" aria-hidden="true"></span>
+                            </button>
+                        {% endif %}
+                    </form>
+                {% endwith %}
+            {% endwith %}
+
+            <button onclick="showHideElement('report_comment_{{ comment.id }}')" class="btn btn-warning btn-sm ml-auto"
+                    style="float:right;border-radius:24px;padding:1px 8px;font-weight:bolder;">Zgłoś nadużycie
+            </button>
+            </div>
+            <form id="report_comment_{{ comment.id }}"
+                  action="{% url 'report_comment' %}?redirect={{ request.get_full_path | urlencode }}" method="post"
+                  style="display:none">
+                {% csrf_token %}
+                <br>
+                <div class="form-group">
+                    <label>Powód zgłoszenia komentarza:</label>
+                    <input type="hidden" value="{{ comment.id }}" name="comment_id">
+                    <input type="hidden" value="{{ request.get_full_path | urlencode }}" name="redirect">
+                    <textarea class="form-control" name="content" cols="30" rows="3" style="resize:none;"
+                              required></textarea>
+                </div>
+                <button class="btn btn-danger btn-sm" type="submit"
+                        style="border-radius:24px;padding:1px 8px;font-weight:bolder;">Wyślij
+                </button>
+            </form>
+
         </div>
-        <button class="btn btn-danger btn-sm" type="submit" style="border-radius:24px;padding:1px 8px;font-weight:bolder;">Wyślij</button>
-    </form>
-
-</div>
     {% empty %}
-<div class="well well-sm">
-    <p>Nie ma tu jeszcze żadnego komentarza. Może czas to zmienić? :)</p>
-</div>
+        <div class="well well-sm">
+            <p>Nie ma tu jeszcze żadnego komentarza. Może czas to zmienić? :)</p>
+        </div>
     {% endfor %}
     {% if subject != 'Wszystkie komentarze' %}
-<form class="add_comment_form" action="{% url 'add_comment' %}?redirect={{ request.get_full_path | urlencode }}" method="post">
-    {% csrf_token %}
-    <input type="hidden" value="{{ subject.id }}" name="subject_exact_id">
-    <input type="hidden" value="{{ teacher.usos_id }}" name="teacher_id">
+        <h4>Wypelnij ankiete:</h4>
+        <form class="add_comment_form"
+              action="{% url 'add_teacher_survey' %}?redirect={{ request.get_full_path | urlencode }}"
+              method="post">
+            {% csrf_token %}
+            {{ managment_form }}
+            <input type="hidden" value="{{ subject.usos_id }}" name="subject_id">
+            <input type="hidden" value="{{ teacher.usos_id }}" name="teacher_id">
 
-    {% for field in add_comment_form %}
-    <div class="form-group">
-        {{ field.label_tag }}
-        {{ field }}
-    </div>
-    {% endfor %}
-    <label>
-        <input type="checkbox" required>
-        Potwierdzam, że zapoznałem się z
-    </label>
-    <a href="{% url 'rules_page' %}?teacher={{ teacher.usos_id }}">regulaminem</a>.
-    <br>
-    <button class="btn btn-default" type="submit">Dodaj komentarz</button>
-</form>
+            <div id="pytaniaAnkiet" class="list-group">
+                {% for que, form in survey %}
+                    <div class="list-group-item">
+                        <span>{{ que }}</span>
+                        <span class="starrating">
+                    <input type="hidden" name="form-{{ forloop.counter0 }}-question" value="{{ que.pk }}">
+
+                            {% for field in form %}
+                                {% for item in field %}
+                                    <input type="radio" id="{{ item.id_for_label }}"
+                                           name="{{ field.html_name }}"
+                                           value="{{ item.data.value }}"
+                                           required/>
+                                    <label for="{{ item.id_for_label }}"></label>
+                                {% endfor %}
+                            {% endfor %}
+                        </span>
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="btn btn-default" type="submit">Dodaj ankiete</button>
+        </form>
+
+        <h4>Dodaj komentarz:</h4>
+        <form class="add_comment_form" action="{% url 'add_comment' %}?redirect={{ request.get_full_path | urlencode }}"
+              method="post">
+            {% csrf_token %}
+            <input type="hidden" value="{{ subject.usos_id }}" name="subject_id">
+            <input type="hidden" value="{{ teacher.usos_id }}" name="teacher_id">
+
+            {% for field in add_comment_form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <label>
+                <input type="checkbox" required>
+                Potwierdzam, że zapoznałem się z
+            </label>
+            <a href="{% url 'rules_page' %}?teacher={{ teacher.usos_id }}">regulaminem</a>.
+            <br>
+            <button class="btn btn-default" type="submit">Dodaj komentarz</button>
+        </form>
     {% endif %}
 {% endblock %}
