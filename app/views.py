@@ -73,15 +73,35 @@ def add_comment(request):
     sbj = get_object_or_404(Subject, usos_id=request.POST['subject_id'])
     tcr = get_object_or_404(Teacher, usos_id=request.POST['teacher_id'])
     form = AddCommentForm(request.POST)
+    cookie_string = "tc-" + str(tcr.usos_id) + "-" + str(sbj.usos_id)
+    disable_cookie_string = cookie_string + "-dsb"
+    change_cookie_string = cookie_string + "-chg"
+    change_expiry_time = 10 * 60  # 10 minutes
+    disable_expiry_time = 365 * 24 * 60 * 60  # 1 year
+    set_cookies = False
+    change_id = ""
+    change = change_cookie_string in request.COOKIES
 
-    with transaction.atomic():
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.teacher = tcr
-            comment.subject = sbj
-            comment.save()
+    if change or disable_cookie_string not in request.COOKIES:
+        set_cookies = not change
+        with transaction.atomic():
+            if form.is_valid():
+                if not change:
+                    comment = form.save(commit=False)
+                    comment.teacher = tcr
+                    comment.subject = sbj
+                    comment.save()
+                    change_id = str(comment.pk)
+                else:
+                    TeacherComment.objects.filter(pk=int(request.COOKIES[change_cookie_string])).update(content=form.save(commit=False).content)
 
-    return redirect(request.GET['redirect'])
+    response = redirect(request.GET['redirect'])
+
+    if set_cookies:
+        response.set_cookie(key=change_cookie_string, value=change_id, max_age=change_expiry_time)
+        response.set_cookie(key=disable_cookie_string, max_age=disable_expiry_time)
+
+    return response
 
 @require_POST
 def add_vote(request):
@@ -265,15 +285,41 @@ def add_teacher_survey(request):
     questions = len(TeacherSurveyQuestion.objects.all())
     factory = formset_factory(StarRatingForm, extra=questions)
     formset = factory(request.POST)
+    cookie_string = "ts-" + str(tcr.usos_id) + "-" + str(sbj.usos_id)
+    disable_cookie_string = cookie_string + "-dsb"
+    change_cookie_string = cookie_string + "-chg"
+    change_expiry_time = 10 * 60  # 10 minutes
+    disable_expiry_time = 365 * 24 * 60 * 60  # 1 year
+    set_cookies = False
+    change_ids = ""
+    change = change_cookie_string in request.COOKIES
 
-    for idx, form in zip(range(0, questions), formset):
-        with transaction.atomic():
-            if form.is_valid():
-                survey = TeacherSurveyAnswer()
-                survey.teacher = tcr
-                survey.subject = sbj
-                survey.rating = form['rating'].value()
-                survey.question_id = request.POST["form-{}-question".format(idx)]
-                survey.save()
+    if change or disable_cookie_string not in request.COOKIES:
+        set_cookies = not change
+        if change:
+            i = 0
+            ids = request.COOKIES[change_cookie_string][1:].split("+")
+        print(request.POST)
+        for idx, form in zip(range(0, questions), formset):
+            with transaction.atomic():
+                if form.is_valid():
+                    if change:
+                        TeacherSurveyAnswer.objects.filter(pk=int(ids[i])).update(rating=form["rating"].value())
+                        i += 1
 
-    return redirect(request.GET['redirect'])
+                    else: #new entry
+                        survey = TeacherSurveyAnswer()
+                        survey.teacher = tcr
+                        survey.subject = sbj
+                        survey.rating = form['rating'].value()
+                        survey.question_id = request.POST["form-{}-question".format(idx)]
+                        survey.save()
+                        change_ids += "+" + str(survey.pk)
+
+    response = redirect(request.GET['redirect'])
+
+    if set_cookies:
+        response.set_cookie(key=change_cookie_string, value=change_ids, max_age=change_expiry_time)
+        response.set_cookie(key=disable_cookie_string, max_age=disable_expiry_time)
+
+    return response
