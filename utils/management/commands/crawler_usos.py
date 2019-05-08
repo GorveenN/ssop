@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
-import requests, re, json
+import requests
+import re
+import json
 
 
 def get_course_id(soup):
@@ -98,7 +100,7 @@ def get_classes_period(soup):
     try:
         return 'zimowy' if 'zimowy' in soup.find('i', text=re.compile('Semestr')).text.strip() else 'letni'
     except AttributeError:
-        return ""
+        return "całoroczny"
 
 
 def get_types_of_classes(soup):
@@ -124,7 +126,7 @@ def get_group_instructors(soup):
 
 def get_course_data(url):
     """ Collects course data
-            :return: (course's code, dictionary with information about the course)
+            :return: course's code, dictionary with information about the course
     """
     data = {}
     soup = BeautifulSoup(requests.get(url).content, 'html.parser')
