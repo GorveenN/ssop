@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from django.core.management.base import BaseCommand
 import requests
 import re
 import json
@@ -203,15 +204,15 @@ def generate_list_of_urls_with_listed_courses(url_start):
     return pages_list
 
 
-def main():
-    url_start = 'https://usosweb.mimuw.edu.pl/kontroler.php?_action=katalog2/przedmioty/szukajPrzedmiotu&cp_showDescriptions=0&cp_' \
-               'showGroupsColumn=0&cp_cdydsDisplayLevel=2&f_tylkoWRejestracji=0&f_obcojezyczne=0&method=faculty_organized&kieruj' \
-               'NaPlanyGrupy=0&jed_org_kod=10000000&tabd196_offset=0&tabd196_limit=30&tabd196_order=2a1a'
+class Command(BaseCommand):
 
-    urls_list = generate_list_of_urls_with_listed_courses(url_start)
-    data = collect_all_courses_data(urls_list)
-    with open('./courses.json', 'w') as json_file:
-        json.dump(data, json_file, indent=4)
+    def handle(self, *args, **options):
+        url_start = 'https://usosweb.mimuw.edu.pl/kontroler.php?_action=katalog2/przedmioty/szukajPrzedmiotu&cp_showDescriptions=0&cp_' \
+                   'showGroupsColumn=0&cp_cdydsDisplayLevel=2&f_tylkoWRejestracji=0&f_obcojezyczne=0&method=faculty_organized&kieruj' \
+                   'NaPlanyGrupy=0&jed_org_kod=10000000&tabd196_offset=0&tabd196_limit=30&tabd196_order=2a1a'
 
+        urls_list = generate_list_of_urls_with_listed_courses(url_start)
+        data = collect_all_courses_data(urls_list)
+        with open('./courses.json', 'w') as json_file:
+            json.dump(data, json_file, indent=4)
 
-main()
