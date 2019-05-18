@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from jsonfield import JSONField
 from pytz import timezone
 
 USOS_TEACHER_TMPL = "https://usosweb.mimuw.edu.pl/kontroler.php?_action=actionx:katalog2/osoby/pokazOsobe%28os_id:"
@@ -53,8 +54,15 @@ class Subject(models.Model):
         verbose_name = "Subject"
         verbose_name_plural = "Subjects"
 
-    usos_id = models.CharField(max_length=32, primary_key=True) #TODO: set as primary key when ids will be ready
-    name    = models.CharField(max_length=64)
+    usos_id             = models.CharField(max_length=32, primary_key=True)
+    name                = models.CharField(max_length=64)
+    ects                = models.FloatField(default=None, null=True)
+    language            = models.CharField(max_length=32, default=None, null=True)
+    period              = models.CharField(max_length=32, default=None, null=True)
+    # types             = JSONField(default=None, null=True)
+    type_of_course      = models.CharField(max_length=32, default=None, null=True)
+    groups_of_courses   = JSONField(default=None, null=True)
+    types_of_classes    = JSONField(default=None, null=True)
 
     @property
     def usos_link(self):
@@ -180,6 +188,7 @@ class SubjectSurveyAnswer(SurveyAnswer):
         verbose_name_plural = "Subject survey answer"
 
     question = models.ForeignKey(SubjectSurveyQuestion, models.CASCADE)
+    subject = models.ForeignKey(Subject, models.CASCADE)
 
 
 class TeacherSurveyAnswer(SurveyAnswer):
@@ -190,3 +199,22 @@ class TeacherSurveyAnswer(SurveyAnswer):
     question = models.ForeignKey(TeacherSurveyQuestion, models.CASCADE)
     teacher = models.ForeignKey(Teacher, models.CASCADE)
     subject = models.ForeignKey(Subject, models.CASCADE)
+
+
+class CourseGroup:
+    name = models.CharField(max_length=32, null=False)
+
+
+class TypeOfCourse:
+    name = models.CharField(max_length=32, null=False)
+
+
+    # usos_id             = models.CharField(max_length=32, primary_key=True)
+    # name                = models.CharField(max_length=64)
+    # ects                = models.FloatField(default=None, null=True)
+    # language            = models.CharField(max_length=32, default=None, null=True)
+    # period              = models.CharField(max_length=32, default=None, null=True)
+    # # types             = JSONField(default=None, null=True)
+    # type_of_course      = models.CharField(max_length=32, default=None, null=True)
+    # groups_of_courses   = JSONField(default=None, null=True)
+    # types_of_classes    = JSONField(default=None, null=True)
