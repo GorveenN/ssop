@@ -1,22 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}{{subject}}{% endblock %}
+{% block title %}{{ subject.name }}{% endblock %}
 
 {% block content %}
-    <div class="left">
-        <ul class="leftnav">
-            {% for subject in all_subjects %}
-                <li><a href="{% url 'subject_page' subject.usos_id %}">{{subject}}</a></li>
-    <!--                <a class="usos_link" href=subject["usos_link"]>usos</a></li> -->
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="right">
-        <h1>{{subject}}</h1>
-        {% for comment in comments %}
-            <p class="date">{{comment['date']}}</p>
-            <p>{{comment['content']}}</p>
-            <!-- votes -->
-        {% endfor %}
-    </div>
+
+<div class="left">
+
+</div>
+<div class="right">
+    <h1>{{subject.name}}</h1>
+
+    {% for comment in comments %}
+            <p class="date">{{ comment.add_date }}</p>
+            <p>{{ comment.content }}</p>
+            votes
+    {% endfor %}
+</div>
+
 {% endblock %}

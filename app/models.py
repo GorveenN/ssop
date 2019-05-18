@@ -76,41 +76,15 @@ class Class(models.Model):
     def __str__(self):
         return f'{self.teacher} - {self.subject}'
 
-
-class TeacherComment(models.Model):
+class Comment(models.Model):
     class Meta:
-        verbose_name = "Teacher comment"
-        verbose_name_plural = "Teacher comments"
+        verbose_name = "Comment"
+        verbose_name_plural = "Comments"
+        abstract = True
 
-    teacher       = models.ForeignKey(Teacher, on_delete = models.CASCADE)
     subject       = models.ForeignKey(Subject, on_delete = models.CASCADE)
     content       = models.TextField()
     add_date      = models.DateTimeField(auto_now_add=True)
-    wikispaces    = models.BooleanField(default=False)
-    up_votes      = models.IntegerField(default=0)
-    down_votes    = models.IntegerField(default=0)
-    visible       = models.BooleanField(default=True)
-
-    @property
-    def votes_result(self):
-        return self.up_votes - self.down_votes
-
-    @property
-    def add_date_pretty(self):
-        return self.add_date.astimezone(timezone('Poland')).strftime("%Y-%m-%d %H:%M:%S")
-
-    def __str__(self):
-        return f'{self.add_date_pretty} | {self.subject} - {self.teacher.fullname}'
-
-
-class SubjectComment(models.Model):
-    class Meta:
-        verbose_name = "Subject comment"
-        verbose_name_plural = "Subject comments"
-
-    subject    = models.ForeignKey(Subject, on_delete=models.CASCADE)
-    content    = models.TextField()
-    add_date   = models.DateTimeField(auto_now_add=True)
     up_votes   = models.IntegerField(default=0)
     down_votes = models.IntegerField(default=0)
 
@@ -121,6 +95,25 @@ class SubjectComment(models.Model):
     @property
     def votes_result(self):
         return self.up_votes - self.down_votes
+
+
+class TeacherComment(Comment):
+    class Meta:
+        verbose_name = "Teacher comment"
+        verbose_name_plural = "Teacher comments"
+
+    teacher       = models.ForeignKey(Teacher, on_delete = models.CASCADE)
+    wikispaces    = models.BooleanField(default=False)
+    visible       = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f'{self.add_date_pretty} | {self.subject} - {self.teacher.fullname}'
+
+
+class SubjectComment(Comment):
+    class Meta:
+        verbose_name = "Subject comment"
+        verbose_name_plural = "Subject comments"
 
     def __str__(self):
         return f'{self.add_date_pretty}: {self.subject}'

@@ -45,26 +45,21 @@ def ssop_home(request):
         }
     )
 
+@require_GET
+def subject_page(request, usos_id): # TODO
 
-def subject_page(request, subject_name): # TODO
-    raise PermissionDenied
-    # all_subjects = [
-    #     get_fields(s, ['name', 'usos_link', 'usos_id'])
-    #     for s in Subject.objects.all()
-    # ]
-    # if (sub_id in get_id(subjects)): # TODO nie działą jeszcze bo nie ma id
-    #     dictionary['subject'] = Subject.objects.get(usos_id=sub_id).name
-    #     comments = SubjectComment.objects.filter(subject=sub_id)
-    #     comments = prepare_comments(comments)
-    #     dictionary['comments'] = comments
-    #     return render_to_response('subject.html', dictionary)
-    # else:
-    return render_to_response(
+    subject = get_object_or_404(Subject, usos_id=usos_id)
+    comments = subject.subjectcomment_set.order_by('-add_date')
+
+    return render(
+        request,
         'subject_page.html',
         {
+            'subject': subject,
             'all_subjects': group_by_letter(Subject),
             'all_teachers': group_by_letter(Teacher),
-            'surveyquestions': SubjectSurveyQuestion.objects.all()
+            'surveyquestions': SubjectSurveyQuestion.objects.all(),
+            'comments': comments
         }
     )
 

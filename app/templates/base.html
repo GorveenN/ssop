@@ -62,7 +62,7 @@
                                                 <li class="divider"></li>
                                                 {% for subject in list %}
                                                     <li>
-                                                        <a href="#">{{ subject.name }}</a>
+                                                        <a href="{% url 'subject_page' usos_id=subject.usos_id %}">{{ subject.name }}</a>
                                                     </li>
                                                 {% endfor %}
                                             {% endfor %}
