@@ -94,25 +94,34 @@ def make_choices(objects):
         choices += ((item.name, item.name),)
     return choices
 
+
 class SearchSubjectForm(forms.Form):
+    name = forms.CharField(required=False)
+    min_ects = forms.FloatField(required=False)
+    max_ects = forms.FloatField(required=False)
+
     classType = forms.MultipleChoiceField(
-        # queryset=ClassType.objects.all(),
         choices=make_choices(ClassType.objects.all()),
-        widget=forms.CheckboxSelectMultiple)
+        widget=forms.CheckboxSelectMultiple,
+        required=False)
 
-    courseGroup = forms.ModelMultipleChoiceField(
-        queryset=CourseGroup.objects.all(),
-        widget=forms.CheckboxSelectMultiple)
+    courseGroup =  forms.MultipleChoiceField(
+        choices=make_choices(CourseGroup.objects.all()),
+        widget=forms.CheckboxSelectMultiple,
+        required=False)
 
-    courseLanguage = forms.ModelMultipleChoiceField(
-        queryset=CourseLanguage.objects.all(),
-        widget=forms.CheckboxSelectMultiple)
+    courseLanguage =  forms.MultipleChoiceField(
+        choices=make_choices(CourseLanguage.objects.all()),
+        widget=forms.CheckboxSelectMultiple,
+        required=False)
 
-    coursePeriod = forms.ModelMultipleChoiceField(
-        queryset=CoursePeriod.objects.all(),
-        widget=forms.CheckboxSelectMultiple)
+    coursePeriod =  forms.MultipleChoiceField(
+        choices=make_choices(CoursePeriod.objects.all()),
+        widget=forms.CheckboxSelectMultiple,
+        required=False)
 
-    courseType = forms.ModelMultipleChoiceField(
-        queryset=CourseType.objects.all(),
-        widget=forms.CheckboxSelectMultiple)
+    courseType =  forms.MultipleChoiceField(
+        choices=make_choices(CourseType.objects.all()),
+        widget=forms.CheckboxSelectMultiple,
+        required=False)
 

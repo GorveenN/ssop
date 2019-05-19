@@ -68,6 +68,7 @@ class Subject(models.Model):
     def usos_link(self):
         return USOS_SUBJ_TMPL + str(self.usos_id)
 
+
     def __str__(self):
         return f'{self.name}'
 

@@ -1,8 +1,43 @@
 {% extends 'base.html' %}
+{% load ssop_tags %}
 
 {% block title %}SSOP{% endblock %}
 
 {% block content %}
+    {% if queried_sub %}
+        <table id="table_id" class="table table-striped table-bordered table-sm">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>nazwa</th>
+                <th>ects</th>
+                <th>język</th>
+                <th>semestr</th>
+                <th>typ</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in queried_sub %}
+            <tr>
+                <td>{{ item.usos_id|rename_none }}</td>
+                <td>{{ item|rename_none }}</td>
+                <td>{{ item.ects|rename_none }}</td>
+                <td>{{ item.language|rename_none }}</td>
+                <td>{{ item.period|rename_none }}</td>
+                <td>{{ item.type_of_course|rename_none }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+        {{ queried_sub }}
+    {% endif %}
+
+
+    {% if queried_sub %}
+        {{ queried_sub }}
+    {% endif %}
 
 
     <form method="post"

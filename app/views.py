@@ -9,6 +9,7 @@ from utils.management.commands.download_teacher import download_teacher_info
 from django.core.exceptions import PermissionDenied
 from django.forms import formset_factory
 from django.db.models import Q
+import json
 
 from app.forms import *
 from app.models import *
@@ -326,27 +327,72 @@ def add_teacher_survey(request):
     return response
 
 
+
+# name                  # usos_id             = models.CharField(max_length=32, primary_key=True)
+# name                  # name                = models.CharField(max_length=64)
+# min_ects, max_ects    # ects                = models.FloatField(default=None, null=True)
+# courseLanguage        # language            = models.CharField(max_length=32, default=None, null=True)
+# coursePeriod          # period              = models.CharField(max_length=32, default=None, null=True)
+# courseType            # type_of_course      = models.CharField(max_length=32, default=None, null=True)
+# courseGroup           # groups_of_courses   = JSONField(default=None, null=True)
+# classType             # types_of_classes    = JSONField(default=None, null=True)
+
 def search(request):
     html_data = {
                 'all_subjects': group_by_letter(Subject),
                 'all_teachers': group_by_letter(Teacher)
             }
 
-    if request.method == 'POST':
+    if request.method == 'POST' and SearchSubjectForm(request.POST).is_valid():
         print(request.POST)
-        fields = [['classType', ''], 'courseGroup', 'courseLanguage', 'coursePeriod', 'courseType']
-        subjects = Subject.objects.all()
-        for key, value in request.POST.items():
-            print(request.POST.getlist(key))
 
-        abc = ['courseLanguage', 'language']
+        Qs = {
+            'name': Q(),
+            'ects': Q(),
+            'courseLanguage': Q(),
+            'coursePeriod': Q(),
+            'courseType': Q(),
+            'courseGroup': Q(),
+            'classType': Q()
+        }
 
-        #proseminaria
-        #monograficzne
+        if request.POST['name'] != '':
+            Qs['name'] |= Q(name__contains=json.dumps(request.POST['name']))
+            Qs['name'] |= Q(usos_id__contains=json.dumps(request.POST['name']))
 
-        Q_obj = Q()
-        Q_obj |= Q(type_of_course='proseminaria')
-        Q_obj |= Q(type_of_course='monograficzne')
+        if request.POST['max_ects'] != '':
+            Qs['ects'] &= Q(ects__lt=float(request.POST['max_ects']))
+
+        if request.POST['min_ects'] != '':
+            Qs['ects'] &= Q(ects__gt=float(request.POST['min_ects']))
+
+        if 'courseLanguage' in request.POST:
+            for item in request.POST.getlist('courseLanguage'):
+                Qs['courseLanguage'] |= Q(language=json.dumps(item))
+
+        if 'coursePeriod' in request.POST:
+            for item in request.POST.getlist('coursePeriod'):
+                Qs['coursePeriod'] |= Q(period=json.dumps(item))
+
+        if 'courseType' in request.POST:
+            for item in request.POST.getlist('courseType'):
+                Qs['courseType'] |= Q(type_of_course=json.dumps(item))
+
+        if 'courseGroup' in request.POST:
+            for item in request.POST.getlist('courseGroup'):
+                print(json.dumps(item))
+                Qs['courseGroup'] |= Q(groups_of_courses__contains=json.dumps(item))
+
+        if 'classType' in request.POST:
+            for item in request.POST.getlist('classType'):
+                Qs['classType'] |= Q(types_of_classes__contains=json.dumps(item))
+
+
+        masterQ = Q()
+        for key, value in Qs.items():
+            masterQ &= value
+
+        subjects = Subject.objects.all().filter(masterQ)
 
 
         # for field in fields:
@@ -364,3 +410,4 @@ def search(request):
     html_data['queried_sub'] = None
     html_data['form'] = SearchSubjectForm()
     return render(request, 'search_page.html', html_data)
+
