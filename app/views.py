@@ -153,7 +153,7 @@ def teacher_page(request, usos_id):
     formset = factory()
     general_rating = [
         (question,
-            TeacherSurveyAnswer.objects.filter(question=question, teacher=tcr, subject=0).aggregate(Avg('rating'))['rating__avg'])
+            TeacherSurveyAnswer.objects.filter(question=question, teacher=tcr).aggregate(Avg('rating'))['rating__avg'])
         for question in que]
 
     return render(
