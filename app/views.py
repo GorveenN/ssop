@@ -361,16 +361,6 @@ def add_teacher_survey(request):
     return response
 
 
-
-# name                  # usos_id             = models.CharField(max_length=32, primary_key=True)
-# name                  # name                = models.CharField(max_length=64)
-# min_ects, max_ects    # ects                = models.FloatField(default=None, null=True)
-# courseLanguage        # language            = models.CharField(max_length=32, default=None, null=True)
-# coursePeriod          # period              = models.CharField(max_length=32, default=None, null=True)
-# courseType            # type_of_course      = models.CharField(max_length=32, default=None, null=True)
-# courseGroup           # groups_of_courses   = JSONField(default=None, null=True)
-# classType             # types_of_classes    = JSONField(default=None, null=True)
-
 def search(request):
     html_data = {
                 'all_subjects': group_by_letter(Subject),
