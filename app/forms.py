@@ -1,6 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 from .models import TeacherComment, Teacher, TeacherSurveyAnswer, SubjectSurveyAnswer
+from .models import *
 
 
 class AddCommentForm(ModelForm):
@@ -85,3 +86,33 @@ class RateSubjectForm(forms.ModelForm):
     class Meta:
         model = SubjectSurveyAnswer
         fields = ['rating', 'question']
+
+
+def make_choices(objects):
+    choices = ()
+    for item in objects:
+        choices += ((item.name, item.name),)
+    return choices
+
+class SearchSubjectForm(forms.Form):
+    classType = forms.MultipleChoiceField(
+        # queryset=ClassType.objects.all(),
+        choices=make_choices(ClassType.objects.all()),
+        widget=forms.CheckboxSelectMultiple)
+
+    courseGroup = forms.ModelMultipleChoiceField(
+        queryset=CourseGroup.objects.all(),
+        widget=forms.CheckboxSelectMultiple)
+
+    courseLanguage = forms.ModelMultipleChoiceField(
+        queryset=CourseLanguage.objects.all(),
+        widget=forms.CheckboxSelectMultiple)
+
+    coursePeriod = forms.ModelMultipleChoiceField(
+        queryset=CoursePeriod.objects.all(),
+        widget=forms.CheckboxSelectMultiple)
+
+    courseType = forms.ModelMultipleChoiceField(
+        queryset=CourseType.objects.all(),
+        widget=forms.CheckboxSelectMultiple)
+

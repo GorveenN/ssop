@@ -201,20 +201,20 @@ class TeacherSurveyAnswer(SurveyAnswer):
     subject = models.ForeignKey(Subject, models.CASCADE)
 
 
-class CourseGroup:
+class StringArray(models.Model):
+    class Meta:
+        ordering = ['name']
+        abstract = True
+
     name = models.CharField(max_length=32, null=False)
 
+    def __str__(self):
+        return self.name
 
-class TypeOfCourse:
-    name = models.CharField(max_length=32, null=False)
 
+class CourseLanguage(StringArray):pass
+class CoursePeriod(StringArray):pass
+class CourseType(StringArray):pass
+class CourseGroup(StringArray):pass
+class ClassType(StringArray):pass
 
-    # usos_id             = models.CharField(max_length=32, primary_key=True)
-    # name                = models.CharField(max_length=64)
-    # ects                = models.FloatField(default=None, null=True)
-    # language            = models.CharField(max_length=32, default=None, null=True)
-    # period              = models.CharField(max_length=32, default=None, null=True)
-    # # types             = JSONField(default=None, null=True)
-    # type_of_course      = models.CharField(max_length=32, default=None, null=True)
-    # groups_of_courses   = JSONField(default=None, null=True)
-    # types_of_classes    = JSONField(default=None, null=True)

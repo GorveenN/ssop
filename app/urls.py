@@ -14,4 +14,5 @@ urlpatterns = [
     path('report/<slug:uuid>',      views.report_handle, name='report_handle'),
     path('teachers/add_teacher_survey/', views.add_teacher_survey, name='add_teacher_survey'),
     path('teachers/add_subject_survey/', views.add_subject_survey, name='add_subject_survey'),
+    path('search/', views.search, name='search'),
 ]

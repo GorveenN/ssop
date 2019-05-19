@@ -8,6 +8,7 @@ from django.template.loader import render_to_string
 from utils.management.commands.download_teacher import download_teacher_info
 from django.core.exceptions import PermissionDenied
 from django.forms import formset_factory
+from django.db.models import Q
 
 from app.forms import *
 from app.models import *
@@ -323,3 +324,43 @@ def add_teacher_survey(request):
         response.set_cookie(key=disable_cookie_string, max_age=disable_expiry_time)
 
     return response
+
+
+def search(request):
+    html_data = {
+                'all_subjects': group_by_letter(Subject),
+                'all_teachers': group_by_letter(Teacher)
+            }
+
+    if request.method == 'POST':
+        print(request.POST)
+        fields = [['classType', ''], 'courseGroup', 'courseLanguage', 'coursePeriod', 'courseType']
+        subjects = Subject.objects.all()
+        for key, value in request.POST.items():
+            print(request.POST.getlist(key))
+
+        abc = ['courseLanguage', 'language']
+
+        #proseminaria
+        #monograficzne
+
+        Q_obj = Q()
+        Q_obj |= Q(type_of_course='proseminaria')
+        Q_obj |= Q(type_of_course='monograficzne')
+
+
+        # for field in fields:
+        #     if field in request.POST:
+        #         for name in request.POST.getlist(field):
+        #             print(name)
+        #             subjects.filter(name=name)
+
+        print(subjects)
+
+        html_data['queried_sub'] = subjects
+        html_data['form'] = SearchSubjectForm()
+        return render(request, 'search_page.html', html_data)
+
+    html_data['queried_sub'] = None
+    html_data['form'] = SearchSubjectForm()
+    return render(request, 'search_page.html', html_data)
