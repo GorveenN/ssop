@@ -12,4 +12,4 @@ class Command(BaseCommand):
         jason = json.load(open(options['jason']))
         for item in jason:
             print(item)
-            TeacherSurveyQuestion(question_text=item['question_text']).save()
+            SubjectSurveyQuestion(question_text=item['question_text']).save()
