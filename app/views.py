@@ -8,6 +8,7 @@ from django.template.loader import render_to_string
 from utils.management.commands.download_teacher import download_teacher_info
 from django.core.exceptions import PermissionDenied
 from django.forms import formset_factory
+from django.db.models import Avg
 
 from app.forms import *
 from app.models import *
@@ -144,11 +145,14 @@ def teacher_page(request, usos_id):
     tcr = get_object_or_404(Teacher, usos_id=usos_id)
     comments = tcr.teachercomment_set.filter(visible=True).order_by('-add_date')
     add_comment_form = AddCommentForm()
-
     que = TeacherSurveyQuestion.objects.all()
     factory = formset_factory(StarRatingForm, extra=len(que))
     formset = factory()
-
+    general_rating = [
+        (question,
+            TeacherSurveyAnswer.objects.filter(question=question, teacher=tcr, subject=0).aggregate(Avg('rating'))['rating__avg'])
+        for question in que]
+    
     return render(
         request,
         'teacher_page.html',
@@ -160,7 +164,8 @@ def teacher_page(request, usos_id):
             'subject': 'Wszystkie komentarze',
             'add_comment_form': add_comment_form,
             'managment_form': formset.management_form,
-            'survey': zip(que, formset.forms)
+            'survey': zip(que, formset.forms),
+            'general_rating': general_rating
         }
     )
 
