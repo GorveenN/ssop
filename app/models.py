@@ -173,6 +173,7 @@ class SubjectSurveyAnswer(SurveyAnswer):
         verbose_name_plural = "Subject survey answer"
 
     question = models.ForeignKey(SubjectSurveyQuestion, models.CASCADE)
+    subject = models.ForeignKey(Subject, models.CASCADE)
 
 
 class TeacherSurveyAnswer(SurveyAnswer):
