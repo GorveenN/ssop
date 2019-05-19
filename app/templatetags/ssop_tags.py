@@ -12,7 +12,6 @@ def get_item(d, k):
 
 @register.filter(name='floor')
 def floor(num):
-    if num is None:
+    if num is None or num == "":
         return '0'
-
     return math.floor(num)
