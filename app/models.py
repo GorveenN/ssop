@@ -68,6 +68,16 @@ class Subject(models.Model):
     def usos_link(self):
         return USOS_SUBJ_TMPL + str(self.usos_id)
 
+    @property
+    def average_rating(self):
+        survey_answers = SubjectSurveyAnswer.objects.all().filter(subject=self)
+        if not len(survey_answers):
+            return '-'
+        sum = 0
+        for answer in survey_answers:
+            sum += answer.rating
+        return str(sum / len(answer))
+
 
     def __str__(self):
         return f'{self.name}'

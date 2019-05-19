@@ -5,7 +5,7 @@ $(document).ready(function () {
             "emptyTable": "Brak wynikow dla podanego zapytania",
             "info": "Rekordy od _START_ do _END_ z _TOTAL_ wynikow.",
             "infoEmpty": "Brak wynikow",
-            "infoFiltered": "(filtered from _MAX_ total entries)",
+            "infoFiltered": "(wyfiltrowane z _MAX_ rekordow)",
             "infoPostFix": "",
             "thousands": ",",
             "lengthMenu": "Pokaz _MENU_ rekordow",

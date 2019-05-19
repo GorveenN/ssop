@@ -11,6 +11,7 @@ def make_choices(objects):
         choices += ((item.name, item.name),)
     return choices
 
+
 def ects_choices():
     tup = ()
     for i in range(0, 21):

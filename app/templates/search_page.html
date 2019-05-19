@@ -23,6 +23,7 @@
                 <th>język</th>
                 <th>semestr</th>
                 <th>typ</th>
+                <th>ocena</th>
             </tr>
             </thead>
             <tbody>
@@ -35,6 +36,7 @@
                     <td>{{ item.language|rename_none }}</td>
                     <td>{{ item.period|rename_none }}</td>
                     <td>{{ item.type_of_course|rename_none }}</td>
+                    <td>{{ item.average_rating }}</td>
                 </tr>
             {% endfor %}
 
@@ -47,7 +49,8 @@
           action="{% url 'search' %}">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-outline-info" type="submit">Wyszukaj</button>
+        <button class="btn btn-default" type="submit">Wyszukaj</button>
     </form>
+    <br>
     {{ form.media.js }}
 {% endblock %}
