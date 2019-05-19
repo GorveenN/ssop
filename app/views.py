@@ -357,8 +357,8 @@ def search(request):
         }
 
         if request.POST['name'] != '':
-            Qs['name'] |= Q(name__contains=json.dumps(request.POST['name']))
-            Qs['name'] |= Q(usos_id__contains=json.dumps(request.POST['name']))
+            Qs['name'] |= Q(name__contains=escape_string(request.POST['name']))
+            Qs['name'] |= Q(usos_id__contains=escape_string(request.POST['name']))
 
         if request.POST['max_ects'] != '':
             Qs['ects'] &= Q(ects__lt=float(request.POST['max_ects']))
@@ -368,41 +368,32 @@ def search(request):
 
         if 'courseLanguage' in request.POST:
             for item in request.POST.getlist('courseLanguage'):
-                Qs['courseLanguage'] |= Q(language=json.dumps(item))
+                Qs['courseLanguage'] |= Q(language=escape_string(item))
 
         if 'coursePeriod' in request.POST:
             for item in request.POST.getlist('coursePeriod'):
-                Qs['coursePeriod'] |= Q(period=json.dumps(item))
+                Qs['coursePeriod'] |= Q(period=escape_string(item))
 
         if 'courseType' in request.POST:
             for item in request.POST.getlist('courseType'):
-                Qs['courseType'] |= Q(type_of_course=json.dumps(item))
+                Qs['courseType'] |= Q(type_of_course=escape_string(item))
 
         if 'courseGroup' in request.POST:
             for item in request.POST.getlist('courseGroup'):
                 print(json.dumps(item))
-                Qs['courseGroup'] |= Q(groups_of_courses__contains=json.dumps(item))
+                Qs['courseGroup'] |= Q(groups_of_courses__contains=escape_string(item))
 
         if 'classType' in request.POST:
             for item in request.POST.getlist('classType'):
-                Qs['classType'] |= Q(types_of_classes__contains=json.dumps(item))
-
+                Qs['classType'] |= Q(types_of_classes__contains=escape_string(item))
 
         masterQ = Q()
         for key, value in Qs.items():
             masterQ &= value
-
         subjects = Subject.objects.all().filter(masterQ)
 
-
-        # for field in fields:
-        #     if field in request.POST:
-        #         for name in request.POST.getlist(field):
-        #             print(name)
-        #             subjects.filter(name=name)
-
+        print(masterQ)
         print(subjects)
-
         html_data['queried_sub'] = subjects
         html_data['form'] = SearchSubjectForm()
         return render(request, 'search_page.html', html_data)

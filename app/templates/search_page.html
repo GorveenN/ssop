@@ -2,6 +2,15 @@
 {% load ssop_tags %}
 
 {% block title %}SSOP{% endblock %}
+{% block stylesheet %}
+    {{ form.media.css }}
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+{% endblock %}
+
+
 
 {% block content %}
     {% if queried_sub %}
@@ -17,26 +26,20 @@
             </tr>
             </thead>
             <tbody>
+
             {% for item in queried_sub %}
-            <tr>
-                <td>{{ item.usos_id|rename_none }}</td>
-                <td>{{ item|rename_none }}</td>
-                <td>{{ item.ects|rename_none }}</td>
-                <td>{{ item.language|rename_none }}</td>
-                <td>{{ item.period|rename_none }}</td>
-                <td>{{ item.type_of_course|rename_none }}</td>
-            </tr>
+                <tr>
+                    <td>{{ item.usos_id|rename_none }}</td>
+                    <td>{{ item|rename_none }}</td>
+                    <td>{{ item.ects|rename_none }}</td>
+                    <td>{{ item.language|rename_none }}</td>
+                    <td>{{ item.period|rename_none }}</td>
+                    <td>{{ item.type_of_course|rename_none }}</td>
+                </tr>
             {% endfor %}
+
             </tbody>
         </table>
-
-
-        {{ queried_sub }}
-    {% endif %}
-
-
-    {% if queried_sub %}
-        {{ queried_sub }}
     {% endif %}
 
 
@@ -46,4 +49,5 @@
         {{ form.as_p }}
         <button class="btn btn-outline-info" type="submit">Wyszukaj</button>
     </form>
+    {{ form.media.js }}
 {% endblock %}
