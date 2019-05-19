@@ -12,6 +12,9 @@ def get_item(d, k):
 
 @register.filter(name='floor')
 def floor(num):
-    if num is None or num == "":
+    try:
+        outcome = math.floor(num)
+    except TypeError:
         return '0'
-    return math.floor(num)
+
+    return outcome
