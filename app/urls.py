@@ -8,7 +8,8 @@ urlpatterns = [
     path('teachers/add_vote',  views.add_vote, name='add_vote'),
     path('teachers/add_comment',  views.add_comment, name='add_comment'),
     path('teachers/<int:usos_id>/<str:subject>', views.teacher_comment_page, name='teacher_comment_page'),
-    path('subjects/<slug:subject_name>', views.subject_page, name='subject_page'), # TODO change to usos_id
+    path('subjects/<str:usos_id>', views.subject_page, name='subject_page'), # TODO problem: it shouldn't be a string, but
+    # int obviously doesn't work and slug / uuid seems to fail as well :/
     path('user_rules/',             views.rules_page,   name='rules_page'),
     path('report/',       views.report_comment, name='report_comment'),
     path('report/<slug:uuid>',      views.report_handle, name='report_handle'),

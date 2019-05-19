@@ -10,6 +10,7 @@ from django.core.exceptions import PermissionDenied
 from django.forms import formset_factory
 from django.db.models import Q
 import json
+from django.db.models import Avg
 
 from app.forms import *
 from app.models import *
@@ -47,26 +48,28 @@ def ssop_home(request):
         }
     )
 
+@require_GET
+def subject_page(request, usos_id): # TODO
 
-def subject_page(request, subject_name): # TODO
-    raise PermissionDenied
-    # all_subjects = [
-    #     get_fields(s, ['name', 'usos_link', 'usos_id'])
-    #     for s in Subject.objects.all()
-    # ]
-    # if (sub_id in get_id(subjects)): # TODO nie działą jeszcze bo nie ma id
-    #     dictionary['subject'] = Subject.objects.get(usos_id=sub_id).name
-    #     comments = SubjectComment.objects.filter(subject=sub_id)
-    #     comments = prepare_comments(comments)
-    #     dictionary['comments'] = comments
-    #     return render_to_response('subject.html', dictionary)
-    # else:
-    return render_to_response(
+    subject = get_object_or_404(Subject, usos_id=usos_id)
+    comments = subject.subjectcomment_set.order_by('-add_date')
+    add_comment_form = AddCommentForm()
+    survey_questions = SubjectSurveyQuestion.objects.all()
+    factory = formset_factory(StarRatingForm, extra=len(survey_questions))
+    formset = factory()
+
+    return render(
+        request,
         'subject_page.html',
         {
+            'subject': subject,
             'all_subjects': group_by_letter(Subject),
             'all_teachers': group_by_letter(Teacher),
-            'surveyquestions': SubjectSurveyQuestion.objects.all()
+            'surveyquestions': SubjectSurveyQuestion.objects.all(),
+            'comments': comments,
+            'add_comment_form': add_comment_form,
+            'managment_form': formset.management_form,
+            'survey': zip(survey_questions, formset.forms)
         }
     )
 
@@ -148,6 +151,10 @@ def teacher_page(request, usos_id):
     que = TeacherSurveyQuestion.objects.all()
     factory = formset_factory(StarRatingForm, extra=len(que))
     formset = factory()
+    general_rating = [
+        (question,
+            TeacherSurveyAnswer.objects.filter(question=question, teacher=tcr, subject=0).aggregate(Avg('rating'))['rating__avg'])
+        for question in que]
 
     return render(
         request,
@@ -160,7 +167,8 @@ def teacher_page(request, usos_id):
             'subject': 'Wszystkie komentarze',
             'add_comment_form': add_comment_form,
             'managment_form': formset.management_form,
-            'survey': zip(que, formset.forms)
+            'survey': zip(que, formset.forms),
+            'general_rating': general_rating
         }
     )
 
@@ -267,17 +275,43 @@ def add_subject_survey(request):
     questions = len(SubjectSurveyQuestion.objects.all())
     factory = formset_factory(StarRatingForm, extra=questions)
     formset = factory(request.POST)
+    cookie_string = "ts-" + str(sbj.usos_id)
+    disable_cookie_string = cookie_string + "-dsb"
+    change_cookie_string = cookie_string + "-chg"
+    change_expiry_time = 10 * 60  # 10 minutes
+    disable_expiry_time = 365 * 24 * 60 * 60  # 1 year
+    set_cookies = False
+    change_ids = ""
+    change = change_cookie_string in request.COOKIES
 
-    for idx, form in zip(range(0, questions), formset):
-        with transaction.atomic():
-            if form.is_valid():
-                survey = TeacherSurveyAnswer()
-                survey.subject = sbj
-                survey.rating = form['rating'].value()
-                survey.question_id = request.POST["form-{}-question".format(idx)]
-                survey.save()
+    if change or disable_cookie_string not in request.COOKIES:
+        set_cookies = not change
+        if change:
+            i = 0
+            ids = request.COOKIES[change_cookie_string][1:].split("+")
+        print(request.POST)
+        for idx, form in zip(range(0, questions), formset):
+            with transaction.atomic():
+                if form.is_valid():
+                    if change:
+                        SubjectSurveyAnswer.objects.filter(pk=int(ids[i])).update(rating=form["rating"].value())
+                        i += 1
 
-    return redirect(request.GET['redirect'])
+                    else: #new entry
+                        survey = SubjectSurveyAnswer()
+                        survey.subject = sbj
+                        survey.rating = form['rating'].value()
+                        survey.question_id = request.POST["form-{}-question".format(idx)]
+                        survey.save()
+                        change_ids += "+" + str(survey.pk)
+
+    response = redirect(request.GET['redirect'])
+
+    if set_cookies:
+        response.set_cookie(key=change_cookie_string, value=change_ids, max_age=change_expiry_time)
+        response.set_cookie(key=disable_cookie_string, max_age=disable_expiry_time)
+
+    return response
 
 
 @require_POST

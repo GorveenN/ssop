@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load ssop_tags %}
+{% load mathfilters %}
 
 {% block title %}{{ teacher.fullname }}{% endblock %}
 
@@ -39,10 +40,15 @@
 
         <div class="flex-container">
             <div>
-                <h5 class="font-italic">Ogólna ocena: 5</h5>
-                <h5 class="font-italic">Szczegółowość tłumaczenia: 5</h5>
-                <h5 class="font-italic">Poziom wymagań: 5</h5>
-                <h5 class="font-italic">Angażowanie studentów w zajęcia: 5</h5>
+                {% for question, rating in general_rating %}
+                <h5 class="font-italic">{{ question }}:&nbsp&nbsp&nbsp&nbsp
+                    {% if not rating %}
+                    Nieocenione
+                    {% else %}
+                    <span class="stars-container stars-{{ rating|mul:20|floor }}">★★★★★</span>
+                    {% endif %}
+                </h5>
+                {% endfor %}
             </div>
 
             <div>
