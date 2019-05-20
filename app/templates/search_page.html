@@ -20,7 +20,9 @@
 
 
 {% block content %}
-    {% if queried_sub %}
+    {% if queried_sub == 'Empty' %}
+        <h1>Brak wyników, spróbuj jeszcze raz</h1>
+    {% elif queried_sub %}
         <h1>Wyniki wyszukiwania</h1>
         <table id="table_id" class="table table-striped table-bordered table-sm">
             <thead>
