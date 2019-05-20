@@ -158,20 +158,12 @@ footer {
     clear: both;
     line-height: 1.428571429;
     color: black;
-    width: 100%;
-    /*white-space: normal;*/
+    width: 10vw;
 }
 .multi-column-dropdown li a:hover {
     text-decoration: none;
     color: lemonchiffon;
     background-color: black;
-}
-
-@media (max-width: 767px) {
-    .dropdown-menu.multi-column {
-        min-width: 240px !important;
-        overflow-x: hidden;
-    }
 }
 
 .box1 {
