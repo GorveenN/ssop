@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import transaction
 from django.http import HttpResponse
 from django.contrib import messages
@@ -53,7 +55,14 @@ def ssop_home(request):
 def subject_page(request, usos_id): # TODO
     subject = get_object_or_404(Subject, usos_id=usos_id)
     comments = subject.subjectcomment_set.order_by('-add_date')
-    add_comment_form = AddSubjectCommentForm()
+
+    cookie_string = "sc-" + str(subject.usos_id)
+    edit_cookie_string = cookie_string + "-edit"
+    if edit_cookie_string in request.COOKIES:
+        comment_content = SubjectComment.objects.filter(pk=int(request.COOKIES[edit_cookie_string])).first().content
+        add_comment_form = AddSubjectCommentForm(initial={"content": comment_content})
+    else:
+        add_comment_form = AddSubjectCommentForm()
     survey_questions = SubjectSurveyQuestion.objects.all()
     factory = formset_factory(StarRatingForm, extra=len(survey_questions))
     formset = factory()
@@ -84,32 +93,32 @@ def subject_page(request, usos_id): # TODO
 def add_subject_comment(request):
     sbj = get_object_or_404(Subject, usos_id=request.POST['subject_id'])
     form = AddSubjectCommentForm(request.POST)
-    cookie_string = "sb-" + str(sbj.usos_id)
-    disable_cookie_string = cookie_string + "-dsb"
-    change_cookie_string = cookie_string + "-chg"
-    change_expiry_time = 10 * 60  # 10 minutes
+    cookie_string = "sc-" + str(sbj.usos_id)
+    edit_cookie_string = cookie_string + "-edit"
     disable_expiry_time = 365 * 24 * 60 * 60  # 1 year
-    set_cookies = False
     change_id = ""
-    change = change_cookie_string in request.COOKIES
+    change = edit_cookie_string in request.COOKIES
+    set_cookie = not change
 
-    if change or disable_cookie_string not in request.COOKIES:
-        set_cookies = not change
-        with transaction.atomic():
-            if form.is_valid():
-                if not change:
-                    comment = form.save(commit=False)
-                    comment.subject = sbj
-                    comment.save()
-                    change_id = str(comment.pk)
-                else:
-                    SubjectComment.objects.filter(pk=int(request.COOKIES[change_cookie_string])).update(content=form.save(commit=False).content)
+    with transaction.atomic():
+        if form.is_valid():
+            if not change:
+                comment = form.save(commit=False)
+                comment.subject = sbj
+                comment.save()
+                change_id = str(comment.pk)
+            else:
+                comment_to_edit = SubjectComment.objects.filter(pk=int(request.COOKIES[edit_cookie_string])).first()
+                comment_to_edit.content = form.save(commit=False).content
+                if (datetime.datetime.now().replace(tzinfo=None) - comment_to_edit.add_date.replace(tzinfo=None)) \
+                        > datetime.timedelta(minutes=2):
+                    comment_to_edit.edited = True
+                comment_to_edit.save()
 
     response = redirect(request.GET['redirect'])
 
-    if set_cookies:
-        response.set_cookie(key=change_cookie_string, value=change_id, max_age=change_expiry_time)
-        response.set_cookie(key=disable_cookie_string, max_age=disable_expiry_time)
+    if set_cookie:
+        response.set_cookie(key=edit_cookie_string, value=change_id, max_age=disable_expiry_time)
 
     return response
 
@@ -119,32 +128,34 @@ def add_comment(request):
     tcr = get_object_or_404(Teacher, usos_id=request.POST['teacher_id'])
     form = AddCommentForm(request.POST)
     cookie_string = "tc-" + str(tcr.usos_id) + "-" + str(sbj.usos_id)
-    disable_cookie_string = cookie_string + "-dsb"
-    change_cookie_string = cookie_string + "-chg"
-    change_expiry_time = 10 * 60  # 10 minutes
-    disable_expiry_time = 365 * 24 * 60 * 60  # 1 year
-    set_cookies = False
+    edit_cookie_string = cookie_string + "-edit"
+    edit_expiry_time = 365 * 24 * 60 * 60  # 1 year
+    set_cookie = False
     change_id = ""
-    change = change_cookie_string in request.COOKIES
+    edit = edit_cookie_string in request.COOKIES
 
-    if change or disable_cookie_string not in request.COOKIES:
-        set_cookies = not change
+    if edit or edit_cookie_string not in request.COOKIES:
+        set_cookie = not edit
         with transaction.atomic():
             if form.is_valid():
-                if not change:
+                if not edit:
                     comment = form.save(commit=False)
                     comment.teacher = tcr
                     comment.subject = sbj
                     comment.save()
                     change_id = str(comment.pk)
                 else:
-                    TeacherComment.objects.filter(pk=int(request.COOKIES[change_cookie_string])).update(content=form.save(commit=False).content)
+                    comment_to_edit = TeacherComment.objects.filter(pk=int(request.COOKIES[edit_cookie_string])).first()
+                    comment_to_edit.content = form.save(commit=False).content
+                    if (datetime.datetime.now().replace(tzinfo=None) - comment_to_edit.add_date.replace(tzinfo=None))\
+                            > datetime.timedelta(minutes=2):
+                        comment_to_edit.edited = True
+                    comment_to_edit.save()
 
     response = redirect(request.GET['redirect'])
 
-    if set_cookies:
-        response.set_cookie(key=change_cookie_string, value=change_id, max_age=change_expiry_time)
-        response.set_cookie(key=disable_cookie_string, max_age=disable_expiry_time)
+    if set_cookie:
+        response.set_cookie(key=edit_cookie_string, value=change_id, max_age=edit_expiry_time)
 
     return response
 
@@ -254,12 +265,20 @@ def teacher_comment_page(request, usos_id, subject):
     que = TeacherSurveyQuestion.objects.all()
     factory = formset_factory(StarRatingForm, extra=len(que))
     formset = factory()
+
     man_form = formset.management_form
     survey = zip(que, formset.forms)
 
     sbj = get_object_or_404(Subject, usos_id=subject)
     comments = tcr.teachercomment_set.filter(subject=sbj, visible=True).order_by('-add_date')
-    add_comment_form = AddCommentForm()
+
+    cookie_string = "tc-" + str(tcr.usos_id) + "-" + str(sbj.usos_id)
+    edit_cookie_string = cookie_string + "-edit"
+    if edit_cookie_string in request.COOKIES:
+        comment_content = TeacherComment.objects.filter(pk=int(request.COOKIES[edit_cookie_string])).first().content
+        add_comment_form = AddCommentForm(initial={'content': comment_content})
+    else:
+        add_comment_form = AddCommentForm()
 
     return render(
         request,
@@ -348,19 +367,17 @@ def add_subject_survey(request):
     factory = formset_factory(StarRatingForm, extra=questions)
     formset = factory(request.POST)
     cookie_string = "ss-" + str(sbj.usos_id)
-    disable_cookie_string = cookie_string + "-dsb"
-    change_cookie_string = cookie_string + "-chg"
-    change_expiry_time = 10 * 60  # 10 minutes
-    disable_expiry_time = 365 * 24 * 60 * 60  # 1 year
-    set_cookies = False
+    edit_cookie_string = cookie_string + "-edit"
+    edit_expiry_time = 365 * 24 * 60 * 60  # 1 year
+    set_cookie = False
     change_ids = ""
-    change = change_cookie_string in request.COOKIES
+    change = edit_cookie_string in request.COOKIES
 
-    if change or disable_cookie_string not in request.COOKIES:
-        set_cookies = not change
+    if change or edit_cookie_string not in request.COOKIES:
+        set_cookie = not change
         if change:
             i = 0
-            ids = request.COOKIES[change_cookie_string][1:].split("+")
+            ids = request.COOKIES[edit_cookie_string][1:].split("+")
         print(request.POST)
         for idx, form in zip(range(0, questions), formset):
             with transaction.atomic():
@@ -379,9 +396,8 @@ def add_subject_survey(request):
 
     response = redirect(request.GET['redirect'])
 
-    if set_cookies:
-        response.set_cookie(key=change_cookie_string, value=change_ids, max_age=change_expiry_time)
-        response.set_cookie(key=disable_cookie_string, max_age=disable_expiry_time)
+    if set_cookie:
+        response.set_cookie(key=edit_cookie_string, value=change_ids, max_age=edit_expiry_time)
 
     return response
 
@@ -394,19 +410,17 @@ def add_teacher_survey(request):
     factory = formset_factory(StarRatingForm, extra=questions)
     formset = factory(request.POST)
     cookie_string = "ts-" + str(tcr.usos_id) + "-" + str(sbj.usos_id)
-    disable_cookie_string = cookie_string + "-dsb"
-    change_cookie_string = cookie_string + "-chg"
-    change_expiry_time = 10 * 60  # 10 minutes
-    disable_expiry_time = 365 * 24 * 60 * 60  # 1 year
+    edit_cookie_string = cookie_string + "-edit"
+    edit_expiry_time = 365 * 24 * 60 * 60  # 1 year
     set_cookies = False
     change_ids = ""
-    change = change_cookie_string in request.COOKIES
+    change = edit_cookie_string in request.COOKIES
 
-    if change or disable_cookie_string not in request.COOKIES:
+    if change or edit_cookie_string not in request.COOKIES:
         set_cookies = not change
         if change:
             i = 0
-            ids = request.COOKIES[change_cookie_string][1:].split("+")
+            ids = request.COOKIES[edit_cookie_string][1:].split("+")
         print(request.POST)
         for idx, form in zip(range(0, questions), formset):
             with transaction.atomic():
@@ -427,8 +441,7 @@ def add_teacher_survey(request):
     response = redirect(request.GET['redirect'])
 
     if set_cookies:
-        response.set_cookie(key=change_cookie_string, value=change_ids, max_age=change_expiry_time)
-        response.set_cookie(key=disable_cookie_string, max_age=disable_expiry_time)
+        response.set_cookie(key=edit_cookie_string, value=change_ids, max_age=edit_expiry_time)
 
     return response
 

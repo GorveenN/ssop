@@ -154,10 +154,8 @@
                 {% endfor %}
             </div>
             {% with cookie_string="ss-"|add:subject.usos_id %}
-                {% if cookie_string|add:"-chg" in request.COOKIES %}
+                {% if cookie_string|add:"-edit" in request.COOKIES %}
                     <button class="btn btn-outline-info" type="submit">Zmień odpowiedź</button>
-                {% elif cookie_string|add:"-dsb" in request.COOKIES %}
-                    <button class="btn btn-outline-info" type="submit" disabled>Głos oddany</button>
                 {% else %}
                     <button class="btn btn-outline-info" type="submit">Zagłosuj</button>
                 {% endif %}
@@ -182,11 +180,9 @@
             </label>
             regulaminem.
             <br>
-            {% with cookie_string="sb-"|add:subject.usos_id %}
-                {% if cookie_string|add:"-chg" in request.COOKIES %}
+            {% with cookie_string="sc-"|add:subject.usos_id %}
+                {% if cookie_string|add:"-edit" in request.COOKIES %}
                     <button class="btn btn-default" type="submit">Nadpisz dodany komentarz</button>
-                {% elif cookie_string|add:"-dsb" in request.COOKIES %}
-                    <button class="btn btn-default" type="submit" disabled>Komentarz dodany</button>
                 {% else %}
                     <button class="btn btn-default" type="submit">Dodaj komentarz</button>
                 {% endif %}

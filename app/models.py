@@ -111,10 +111,12 @@ class Comment(models.Model):
     add_date      = models.DateTimeField(auto_now_add=True)
     up_votes   = models.IntegerField(default=0)
     down_votes = models.IntegerField(default=0)
+    edited = models.BooleanField(default=False)
 
     @property
     def add_date_pretty(self):
-        return self.add_date.astimezone(timezone('Poland')).strftime("%Y-%m-%d %H:%M:%S")
+        edited = " (edytowany)" if self.edited else ""
+        return self.add_date.astimezone(timezone('Poland')).strftime("%Y-%m-%d %H:%M:%S") + edited
 
     @property
     def votes_result(self):
