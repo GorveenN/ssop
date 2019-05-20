@@ -208,8 +208,10 @@ def teacher_comment_page(request, usos_id, subject):
         i = 0
         ids = request.COOKIES[survey_cookie_string][1:].split("+")
         for rating_id in ids:
-            answers[i] = SubjectSurveyAnswer.objects.filter(pk=int(rating_id)).first().rating
-            i += 1
+            filtered = SubjectSurveyAnswer.objects.filter(pk=int(rating_id))
+            if filtered:
+                answers[i] = filtered.first().rating
+                i += 1
 
     man_form = formset.management_form
     survey = zip(all_questions, formset.forms, answers)
