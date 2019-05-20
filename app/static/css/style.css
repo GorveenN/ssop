@@ -516,9 +516,6 @@ ul.topnav li a:hover {
 
 
 
-
-
-
 .starrating {
     float: right;
     display: flex;
@@ -560,4 +557,21 @@ ul.topnav li a:hover {
 .floatRight
 {
     float: right;
+}
+
+
+#all-time-top-container {
+    display: grid;
+    grid-template-areas:
+    "top-teachers top-courses";
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10%;
+}
+
+#all-time-top-courses {
+    grid-area: top-courses;
+}
+
+#all-time-top-teachers {
+    grid-area: top-teachers;
 }

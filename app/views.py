@@ -40,18 +40,25 @@ def group_by_letter(m):
 
 @require_GET
 def ssop_home(request):
+    def clearing_function(top_list):
+        return [element for element in top_list if element.average_rating() is not None and element.fullname != 'Ogólne']
+    top_teachers = clearing_function(Teacher.objects.annotate(num=Avg('teachersurveyanswer__rating')).order_by('-num')[:20])
+    top_courses = clearing_function(Subject.objects.annotate(num=Avg('subjectsurveyanswer__rating')).order_by('-num')[:20])
+
     return render(
         request,
         'ssop_home.html',
         {
             'all_subjects': group_by_letter(Subject),
             'all_teachers': group_by_letter(Teacher),
+            'top_teachers': top_teachers,
+            'top_courses': top_courses,
         }
     )
 
 
 @require_GET
-def subject_page(request, usos_id): # TODO
+def subject_page(request, usos_id):
     subject = get_object_or_404(Subject, usos_id=usos_id)
     comments = subject.subjectcomment_set.order_by('-add_date')
 
@@ -87,6 +94,7 @@ def subject_page(request, usos_id): # TODO
         }
     )
 
+
 @require_POST
 def add_vote(request):
     response = redirect(request.GET['redirect'])
@@ -119,6 +127,7 @@ def add_vote(request):
         comment.save()
 
     return response
+
 
 @require_POST
 def add_subject_vote(request):
@@ -184,6 +193,7 @@ def teacher_page(request, usos_id):
         }
     )
 
+
 @require_GET
 def teacher_comment_page(request, usos_id, subject):
     if subject == 'Wszystkie komentarze':
@@ -242,6 +252,7 @@ def rules_page(request):
         }
     )
 
+
 @require_POST
 @transaction.atomic
 def report_comment(request):
@@ -270,6 +281,7 @@ def report_comment(request):
         report.delete()
         messages.error(request, 'Nie udało się zgłosić komentarza, spróbuj ponownie!')
     return redirect(request.GET['redirect'])
+
 
 @transaction.atomic
 def report_handle(request, uuid):

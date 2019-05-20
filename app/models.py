@@ -51,13 +51,9 @@ class Teacher(models.Model):
 
     def average_rating(self):
         all_questions = TeacherSurveyQuestion.objects.all()
-
         rating = [TeacherSurveyAnswer.objects.filter(question=question, teacher=self)
                                .aggregate(models.Avg('rating'))['rating__avg'] for question in all_questions]
-        if rating[0] is None:
-            return "Brak ocen"
-        else:
-            return statistics.mean(rating)
+        return None if None in rating else statistics.mean(rating)
 
 
 class Subject(models.Model):
@@ -80,18 +76,18 @@ class Subject(models.Model):
         return USOS_SUBJ_TMPL + str(self.usos_id)
 
     @property
+    def fullname(self):
+        return f'{self.name}'
+
+    @property
     def teachers(self):
         return [entry.teacher for entry in self.class_set.all()]
 
-    @property
     def average_rating(self):
-        survey_answers = SubjectSurveyAnswer.objects.all().filter(subject=self)
-        if not len(survey_answers):
-            return '-'
-        sum = 0
-        for answer in survey_answers:
-            sum += answer.rating
-        return str(sum / len(survey_answers))
+        all_questions = SubjectSurveyQuestion.objects.all()
+        rating = [SubjectSurveyAnswer.objects.filter(question=question, subject=self)
+                      .aggregate(models.Avg('rating'))['rating__avg'] for question in all_questions]
+        return None if None in rating else statistics.mean(rating)
 
     def __str__(self):
         return f'{self.name}'

@@ -1,7 +1,40 @@
 {% extends 'base.html' %}
+{% load ssop_tags %}
+{% load mathfilters %}
 
 {% block title %}SSOP{% endblock %}
 
 {% block content %}
     <h1 align="center">S S O P</h1>
+
+    <div id="all-time-top-container">
+        <div id="all-time-top-teachers">
+            <h3 class="text-center">Najlepsi prowadzący</h3>
+            {% for teacher in top_teachers %}
+                  <a class="list-group-item" href="{% url 'teacher_page' usos_id=teacher.usos_id %}">
+                    <div>
+                        {{ teacher.fullname }}
+                    </div>
+                    <div>
+                        Średnia ocen:
+                        <span class="stars-container stars-{{ teacher.average_rating|mul:20|roundTo10 }}">★★★★★</span>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <div id="all-time-top-courses">
+        <h3 class="text-center">Najlepsze przedmioty</h3>
+            {% for course in top_courses %}
+                  <a class="list-group-item" href="{% url 'subject_page' usos_id=course.usos_id %}">
+                    <div>
+                        {{ course.name }}
+                    </div>
+                    <div>
+                        Średnia ocen:
+                        <span class="stars-container stars-{{ course.average_rating|mul:20|roundTo10 }}">★★★★★</span>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
