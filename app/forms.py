@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import TeacherComment, Teacher, TeacherSurveyAnswer, SubjectSurveyAnswer
+from .models import TeacherComment, Teacher, TeacherSurveyAnswer, SubjectSurveyAnswer, SubjectComment
 from .models import *
 from django_select2.forms import (
     HeavySelect2MultipleWidget, HeavySelect2Widget, ModelSelect2MultipleWidget,
@@ -30,6 +30,24 @@ class AddCommentForm(ModelForm):
             'style':'resize:none;'
         })
 
+class AddSubjectCommentForm(ModelForm):
+    class Meta:
+        model = SubjectComment
+        fields = ['content']
+        labels = {
+            'content': 'Treść komentarza',
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(AddSubjectCommentForm, self).__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+            'class': 'form-control',
+            })
+        self.fields['content'].required = False
+        self.fields['content'].widget.attrs.update({
+            'style':'resize:none;'
+        })
 
 class AddTeacherForm(ModelForm):
     class Meta:
