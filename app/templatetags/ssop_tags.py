@@ -24,8 +24,8 @@ def roundTo10(num):
     try:
         outcome = round(num / 10) * 10
     except TypeError:
-        return '0'
-        
+        return num
+
     return outcome
 
 @register.filter(name='rename_none')
