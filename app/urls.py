@@ -5,7 +5,7 @@ from django.views.decorators.cache import never_cache
 
 urlpatterns = [
     path('',                        views.ssop_home,    name='ssop_home'),
-    path('teachers/<int:usos_id>',  views.teacher_page, name='teacher_page'),
+    path('teachers/<int:usos_id>', never_cache(views.teacher_page), name='teacher_page'),
     path('teachers/add_vote',  views.add_vote, name='add_vote'),
     path('teachers/<int:usos_id>/<str:subject>', views.teacher_comment_page, name='teacher_comment_page'),
     path('subjects/add_subject_vote', views.add_subject_vote, name='add_subject_vote'),
