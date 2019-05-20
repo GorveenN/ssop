@@ -19,6 +19,14 @@ def floor(num):
 
     return outcome
 
+@register.filter(name='roundTo10')
+def roundTo10(num):
+    try:
+        outcome = round(num / 10) * 10
+    except TypeError:
+        return '0'
+        
+    return outcome
 
 @register.filter(name='rename_none')
 def rename_none(d):
