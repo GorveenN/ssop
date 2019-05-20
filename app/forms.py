@@ -16,7 +16,7 @@ class AddCommentForm(ModelForm):
         model = TeacherComment
         fields = ['content']
         labels = {
-            'content': 'Treść komentarza',
+            'content': 'Opcjonalny komentarz',
         }
 
     def __init__(self, *args, **kwargs):
@@ -35,7 +35,7 @@ class AddSubjectCommentForm(ModelForm):
         model = SubjectComment
         fields = ['content']
         labels = {
-            'content': 'Treść komentarza',
+            'content': 'Opcjonalny komentarz',
         }
 
     def __init__(self, *args, **kwargs):
