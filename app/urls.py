@@ -12,7 +12,7 @@ urlpatterns = [
     path('subjects/add_subject_vote', views.add_subject_vote, name='add_subject_vote'),
     path('subjects/<str:usos_id>', views.subject_page, name='subject_page'), # TODO problem: it shouldn't be a string, but
     # int obviously doesn't work and slug / uuid seems to fail as well :/
-    path('user_rules/',             views.rules_page,   name='rules_page'),
+    path('user_rules/', views.rules_page,   name='rules_page'),
     path('report/',       views.report_comment, name='report_comment'),
     path('report/<slug:uuid>',      views.report_handle, name='report_handle'),
     path('teachers/add_teacher_survey/', views.add_teacher_survey, name='add_teacher_survey'),

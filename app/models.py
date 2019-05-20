@@ -51,8 +51,7 @@ class Teacher(models.Model):
 
     def average_rating(self):
         all_questions = TeacherSurveyQuestion.objects.all()
-        print([TeacherSurveyAnswer.objects.filter(question=question, teacher=self)
-                               .aggregate(models.Avg('rating'))['rating__avg'] for question in all_questions])
+
         rating = [TeacherSurveyAnswer.objects.filter(question=question, teacher=self)
                                .aggregate(models.Avg('rating'))['rating__avg'] for question in all_questions]
         if rating[0] is None:

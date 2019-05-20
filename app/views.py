@@ -303,6 +303,7 @@ def rules_page(request):
             'all_subjects': group_by_letter(Subject),
             'all_teachers': group_by_letter(Teacher),
             'teacher_id': request.GET['teacher']
+            # 'previous_page': request.GET['previous_page']
         }
     )
 

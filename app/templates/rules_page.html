@@ -27,6 +27,11 @@
         <li>Administratorzy i moderatorzy mogą zamykać wątki, usuwać, edytować komentarze, jeśli naruszają regulamin serwisu.</li>
         <li>Administratorzy i moderatorzy mogą przenosić komentarze, na bardziej odpowiadające im podstrony.</li>
     </ul>
-    <input type="button" class="btn btn-default" value="OK" onclick="location.href = '{% url 'teacher_page' teacher_id %}';">
+    
+    <form action="{% url 'teacher_page' teacher_id %}">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-default" value="OK">
+    </form>
+    
     <br><br>
 {% endblock %}
