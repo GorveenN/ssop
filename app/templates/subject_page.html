@@ -46,7 +46,7 @@
                     </div>
                     <div>
                         Średnia ocen: 
-                        {% if teacher.average_rating != "Brak oceny" %}
+                        {% if teacher.average_rating != "Brak ocen" %}
                         <span class="stars-container stars-{{ teacher.average_rating|mul:20|roundTo10 }}">★★★★★</span>
                         {% else %}
                         {{ teacher.average_rating }}
