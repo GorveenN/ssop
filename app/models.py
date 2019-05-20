@@ -91,7 +91,7 @@ class Subject(models.Model):
         sum = 0
         for answer in survey_answers:
             sum += answer.rating
-        return str(sum / len(answer))
+        return str(sum / len(survey_answers))
 
     def __str__(self):
         return f'{self.name}'
