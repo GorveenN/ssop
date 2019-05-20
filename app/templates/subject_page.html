@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load ssop_tags %}
+{% load mathfilters %}
 
 {% block title %}{{ subject.name }}{% endblock %}
 
@@ -6,18 +8,29 @@
     <h1>{{subject.name}}</h1>
 
     {% block info %}
-
-        <div class="flex-container">
-            <div>
-                {% if subject.ects %} <h5 class="font-italic">ECTS: {{ subject.ects }}</h5> {% endif %}
-                {% if subject.language %}<h5 class="font-italic">Język: {{ subject.language }}</h5>{% endif %}
-                {% if subject.period %}<h5 class="font-italic">Semestr: {{ subject.period }}</h5>{% endif %}
-                <h5 class="font-italic">USOSWeb: <a href="{{ subject.usos_link|default_if_none:'' }}">link</a></h5>
-                {% if subject.type_of_course %}<h5 class="font-italic">Rodzaj: {{ subject.type_of_course }}</h5>{% endif %}
-                {% if subject.groups_of_courses %}<h5 class="font-italic">Grupa przedmiotów: {{ subject.groups_of_courses|join:", " }}</h5>{% endif %}
-                {% if subject.types_of_classes %}<h5 class="font-italic">Zajęcia: {{ subject.types_of_classes|join:", " }}</h5>{% endif %}
-            </div>
+    <div class="flex-container">
+        <div>
+            {% for question, rating in general_rating %}
+            <h5 class="font-italic">{{ question }}:&nbsp&nbsp&nbsp&nbsp
+                {% if not rating %}
+                <span class="floatRight">Nieocenione</span>
+                {% else %}
+                <span class="stars-container stars-{{ rating|mul:20|roundTo10 }} floatRight">★★★★★</span>
+                {% endif %}
+            </h5>
+            {% endfor %}
         </div>
+
+        <div>
+            {% if subject.ects %} <h5 class="font-italic">ECTS: {{ subject.ects }}</h5> {% endif %}
+            {% if subject.language %}<h5 class="font-italic">Język: {{ subject.language }}</h5>{% endif %}
+            {% if subject.period %}<h5 class="font-italic">Semestr: {{ subject.period }}</h5>{% endif %}
+            <h5 class="font-italic">USOSWeb: <a href="{{ subject.usos_link|default_if_none:'' }}">link</a></h5>
+            {% if subject.type_of_course %}<h5 class="font-italic">Rodzaj: {{ subject.type_of_course }}</h5>{% endif %}
+            {% if subject.groups_of_courses %}<h5 class="font-italic">Grupa przedmiotów: {{ subject.groups_of_courses|join:", " }}</h5>{% endif %}
+            {% if subject.types_of_classes %}<h5 class="font-italic">Zajęcia: {{ subject.types_of_classes|join:", " }}</h5>{% endif %}
+        </div>
+    </div>
 
         <h3>Tegoroczni prowadzący</h3>
         <div class="list-group">

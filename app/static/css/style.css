@@ -556,3 +556,8 @@ ul.topnav li a:hover {
 .starrating > input:checked ~ label {
     color: #ffca08;
 }
+
+.floatRight
+{
+    float: right;
+}

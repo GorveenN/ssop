@@ -57,6 +57,11 @@ def subject_page(request, usos_id): # TODO
     survey_questions = SubjectSurveyQuestion.objects.all()
     factory = formset_factory(StarRatingForm, extra=len(survey_questions))
     formset = factory()
+    que = SubjectSurveyQuestion.objects.all()
+    general_rating = [
+        (question,
+            SubjectSurveyAnswer.objects.filter(question=question, subject=subject.usos_id).aggregate(Avg('rating'))['rating__avg'])
+        for question in que]
 
     return render(
         request,
@@ -70,6 +75,7 @@ def subject_page(request, usos_id): # TODO
             'add_comment_form': add_comment_form,
             'managment_form': formset.management_form,
             'survey': zip(survey_questions, formset.forms),
+            'general_rating': general_rating
         }
     )
 

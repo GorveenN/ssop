@@ -43,9 +43,9 @@
                 {% for question, rating in general_rating %}
                 <h5 class="font-italic">{{ question }}:&nbsp&nbsp&nbsp&nbsp
                     {% if not rating %}
-                    Nieocenione
+                    <span class="floatRight">Nieocenione</span>
                     {% else %}
-                    <span class="stars-container stars-{{ rating|mul:20|floor }}">★★★★★</span>
+                    <span class="stars-container stars-{{ rating|mul:20|roundTo10 }} floatRight">★★★★★</span>
                     {% endif %}
                 </h5>
                 {% endfor %}
