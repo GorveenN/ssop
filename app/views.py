@@ -40,10 +40,12 @@ def group_by_letter(m):
 
 @require_GET
 def ssop_home(request):
+    def top_list_len():
+        return 10
     def clearing_function(top_list):
         return [element for element in top_list if element.average_rating() is not None and element.fullname != 'Ogólne']
-    top_teachers = clearing_function(Teacher.objects.annotate(num=Avg('teachersurveyanswer__rating')).order_by('-num')[:20])
-    top_courses = clearing_function(Subject.objects.annotate(num=Avg('subjectsurveyanswer__rating')).order_by('-num')[:20])
+    top_teachers = clearing_function(Teacher.objects.annotate(num=Avg('teachersurveyanswer__rating')).order_by('-num')[:top_list_len()])
+    top_courses = clearing_function(Subject.objects.annotate(num=Avg('subjectsurveyanswer__rating')).order_by('-num')[:top_list_len()])
 
     return render(
         request,

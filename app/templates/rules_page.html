@@ -8,30 +8,43 @@
         <li>Serwis jest dostępny dla wszystkich użytkowników.</li>
         <li>Prosimy aby poruszane w komentarzach tematy związane były z tematyką strony.</li>
         <li>Prosimy o przestrzeganie etykiety i kulturalną wymianę poglądów. Pamiętaj o przestrzeganiu poniższych zasad:
-        <ul>
-            <li>Zabronione jest używanie określeń wulgarnych, godzących w czyjeś poglądy, przekonania.</li>
-            <li>Nie naruszaj dóbr osobistych osób trzecich (nie obrażaj i nie gróź nikomu).</li>
-            <li>Wypowiedzi konstruuj w sposób przemyślany i rzeczowy.</li>
-            <li>Nie publikuj żadnych prywatnych danych osobowych (prywatnego numeru telefonu, czy maila).</li>
-            <li>Nie ujawniaj treści prywatnej korespondencji.</li>
-            <li>Nie krzycz - nie używaj WIELKICH LITER.</li>
-            <li>Nie zamieszczaj żadnych ogłoszeń kupna, reklam.</li>
-            <li>Nie prowokuj kłótni.</li>
-            <li>W serwisie panuje absolutny zakaz zamieszczania odnośników do pirackich gier, filmików, aplikacji ułatwiających nielegalny dostęp.</li>
-            <li>Jeśli widzisz komentarz, który łamie regulamin, wskazane jest zgłoszenie go administratorom lub moderatorom.</li>
-            <li>Przy pisaniu komentarzy nie używaj znaczników &lt;html&gt; lub formatowania tekstu (pogrubienie, kursywa).</li>
-        </ul></li>
-        <li>W serwisie panuje system like’ów. Jeżeli informacja okazała się przydatna, zamiast pisać komentarz, daj jej like’a. Jeżeli natomiast informacja wprowadza w błąd daj dislike’a.</li>
-        <li>Nie powtarzaj komentarzy. Zbyt duża liczba, wprowadzi nieczytelność w serwisie. Zamiast tego daj like’a komentarzowi z którym się zgadzasz.</li>
+            <ul>
+                <li>Zabronione jest używanie określeń wulgarnych, godzących w czyjeś poglądy, przekonania.</li>
+                <li>Nie naruszaj dóbr osobistych osób trzecich (nie obrażaj i nie gróź nikomu).</li>
+                <li>Wypowiedzi konstruuj w sposób przemyślany i rzeczowy.</li>
+                <li>Nie publikuj żadnych prywatnych danych osobowych (prywatnego numeru telefonu, czy maila).</li>
+                <li>Nie ujawniaj treści prywatnej korespondencji.</li>
+                <li>Nie krzycz - nie używaj WIELKICH LITER.</li>
+                <li>Nie zamieszczaj żadnych ogłoszeń kupna, reklam.</li>
+                <li>Nie prowokuj kłótni.</li>
+                <li>W serwisie panuje absolutny zakaz zamieszczania odnośników do pirackich gier, filmików, aplikacji
+                    ułatwiających nielegalny dostęp.
+                </li>
+                <li>Jeśli widzisz komentarz, który łamie regulamin, wskazane jest zgłoszenie go administratorom lub
+                    moderatorom.
+                </li>
+                <li>Przy pisaniu komentarzy nie używaj znaczników &lt;html&gt; lub formatowania tekstu (pogrubienie,
+                    kursywa).
+                </li>
+            </ul>
+        </li>
+        <li>W serwisie panuje system like’ów. Jeżeli informacja okazała się przydatna, zamiast pisać komentarz, daj jej
+            like’a. Jeżeli natomiast informacja wprowadza w błąd daj dislike’a.
+        </li>
+        <li>Nie powtarzaj komentarzy. Zbyt duża liczba, wprowadzi nieczytelność w serwisie. Zamiast tego daj like’a
+            komentarzowi z którym się zgadzasz.
+        </li>
         <li>Administratorzy i moderatorzy będą usuwali, edytowali komentarze niezgodne z prawem polskim.</li>
-        <li>Administratorzy i moderatorzy mogą zamykać wątki, usuwać, edytować komentarze, jeśli naruszają regulamin serwisu.</li>
+        <li>Administratorzy i moderatorzy mogą zamykać wątki, usuwać, edytować komentarze, jeśli naruszają regulamin
+            serwisu.
+        </li>
         <li>Administratorzy i moderatorzy mogą przenosić komentarze, na bardziej odpowiadające im podstrony.</li>
     </ul>
-    
+
     <form action="{% url 'teacher_page' teacher_id %}">
         {% csrf_token %}
         <input type="submit" class="btn btn-default" value="OK">
     </form>
-    
+
     <br><br>
 {% endblock %}

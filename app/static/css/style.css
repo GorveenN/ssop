@@ -491,7 +491,7 @@ ul.topnav li a:hover {
     content: '\2605\2605\2605\2605\2605';
     color:gray;
 }
-   
+
 .stars-container:after {
     position: absolute;
     top: 0;
@@ -512,7 +512,7 @@ ul.topnav li a:hover {
 .stars-80:after { width: 80%; }
 .stars-90:after { width: 90%; }
 .stars-100:after { width: 100%;}
-   
+
 
 
 

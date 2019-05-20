@@ -25,11 +25,13 @@
                 {% if subject.ects %} <h5 class="font-italic"><b>ECTS: </b>{{ subject.ects }}</h5> {% endif %}
                 {% if subject.language %}<h5 class="font-italic"><b>Język: </b>{{ subject.language }}</h5>{% endif %}
                 {% if subject.period %}<h5 class="font-italic"><b>Semestr: </b>{{ subject.period }}</h5>{% endif %}
-                <h5 class="font-italic"><b>USOSWeb: </b><a href="{{ subject.usos_link|default_if_none:'' }}">link</a></h5>
+                <h5 class="font-italic"><b>USOSWeb: </b><a href="{{ subject.usos_link|default_if_none:'' }}">link</a>
+                </h5>
                 {% if subject.type_of_course %}
                     <h5 class="font-italic"><b>Rodzaj: </b>{{ subject.type_of_course }}</h5>{% endif %}
                 {% if subject.groups_of_courses %}
-                    <h5 class="font-italic"><b>Grupa przedmiotów: </b>{{ subject.groups_of_courses|join:", " }}</h5>{% endif %}
+                    <h5 class="font-italic"><b>Grupa przedmiotów: </b>{{ subject.groups_of_courses|join:", " }}
+                    </h5>{% endif %}
                 {% if subject.types_of_classes %}
                     <h5 class="font-italic"><b>Zajęcia: </b>{{ subject.types_of_classes|join:", " }}</h5>{% endif %}
             </div>
@@ -45,7 +47,7 @@
                         {{ teacher.fullname }}
                     </div>
                     <div>
-                        Średnia ocen: 
+                        Średnia ocen:
                         {% if teacher.average_rating != None %}
                             <span class="stars-container stars-{{ teacher.average_rating|mul:20|roundTo10 }}">★★★★★</span>
                         {% else %}
@@ -164,9 +166,9 @@
                                            name="{{ field.html_name }}"
                                            value="{{ item.data.value }}"
                                            required
-                                           {% if item.data.value == answer %}
-                                                checked="true"
-                                           {% endif %}
+                                            {% if item.data.value == answer %}
+                                           checked="true"
+                                            {% endif %}
                                     />
                                     <label for="{{ item.id_for_label }}"></label>
                                 {% endfor %}

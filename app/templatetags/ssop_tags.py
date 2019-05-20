@@ -6,9 +6,11 @@ from django.utils.safestring import mark_safe
 
 register = template.Library()
 
+
 @register.filter
 def get_item(d, k):
     return d.get(k)
+
 
 @register.filter(name='floor')
 def floor(num):
@@ -19,6 +21,7 @@ def floor(num):
 
     return outcome
 
+
 @register.filter(name='roundTo10')
 def roundTo10(num):
     try:
@@ -28,8 +31,14 @@ def roundTo10(num):
 
     return outcome
 
+
 @register.filter(name='rename_none')
 def rename_none(d):
     if d is None:
         return '-'
     return d
+
+
+@register.filter(name='subject_comments')
+def subject_comments(all_comments, subject):
+    return [comment for comment in all_comments if comment.subject == subject]

@@ -1,7 +1,7 @@
 {% if messages %}
     {% for msg in messages %}
-        <div class="alert alert-{{msg.tags}} d-flex justify-content-center mb-0">
-            <span class="text-center mx-auto">{{msg}}</span>
+        <div class="alert alert-{{ msg.tags }} d-flex justify-content-center mb-0">
+            <span class="text-center mx-auto">{{ msg }}</span>
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         </div>
     {% endfor %}
