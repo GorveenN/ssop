@@ -56,7 +56,7 @@ class Teacher(models.Model):
         rating = [TeacherSurveyAnswer.objects.filter(question=question, teacher=self)
                                .aggregate(models.Avg('rating'))['rating__avg'] for question in all_questions]
         if rating[0] is None:
-            return "Brak oceny"
+            return "Brak ocen"
         else:
             return statistics.mean(rating)
 

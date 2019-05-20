@@ -32,8 +32,9 @@
         </div>
     </div>
 
-        <h3>Tegoroczni prowadzący</h3>
-        <div class="list-group">
+        <h3 href="#teachers" data-toggle="collapse">Tegoroczni prowadzący: ► </h3>
+
+        <div id="teachers" class="list-group collapse">
             {% for teacher in subject.teachers %}
                 <a class="list-group-item" href="{% url 'teacher_comment_page' usos_id=teacher.usos_id subject=subject.usos_id %}">
                     <div>
@@ -46,91 +47,93 @@
             {% endfor %}
         </div>
 
-        <h3>Wszystkie komentarze:</h3>
+        <h3 href="#comments" data-toggle="collapse">Wszystkie komentarze: ► </h3>
     {% endblock %}
 
 
     <!--TODO: add comments display and form for adding comments and all that remaining stuff from trello -->
     <!--TODO: cookies?? (do they work as we wish?) -->
-    {% for comment in comments %}
-        <div class="well well-sm">
-            <p class="date">{{ comment.add_date_pretty }}</p>
-            {% block subject_name_in_comment %}{% endblock %}
-            <p class="comment-content">{{ comment.content }}</p>
-            {% with c_id=comment.id|stringformat:"s" %}
-                {% with cookie_val='sb-'|add:c_id %}
-                    <div class="d-flex">
-                    <form class="vote" action="{% url 'add_subject_vote' %}?redirect={{ request.get_full_path | urlencode }}"
-                          method="post">
-                        {% csrf_token %}
-                        <input type="hidden" value="{{ comment.id }}" name="comment_id">
-                        <input type="hidden" value="{{ subject.usos_id }}" name="subject_id">
-                        {% if not cookie_val in request.COOKIES %}
+    <div id="comments" class="collapse">
+        {% for comment in comments %}
+            <div class="well well-sm">
+                <p class="date">{{ comment.add_date_pretty }}</p>
+                {% block subject_name_in_comment %}{% endblock %}
+                <p class="comment-content">{{ comment.content }}</p>
+                {% with c_id=comment.id|stringformat:"s" %}
+                    {% with cookie_val='sb-'|add:c_id %}
+                        <div class="d-flex">
+                        <form class="vote" action="{% url 'add_subject_vote' %}?redirect={{ request.get_full_path | urlencode }}"
+                              method="post">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ comment.id }}" name="comment_id">
+                            <input type="hidden" value="{{ subject.usos_id }}" name="subject_id">
+                            {% if not cookie_val in request.COOKIES %}
 
-                            <button type="submit" name="vote" value="+" class="vote-button">
-                                <span class="glyphicon glyphicon-plus-sign up-vote" aria-hidden="true"></span>
-                            </button>
-                            <span class="up-vote">{{ comment.up_votes }}</span>
+                                <button type="submit" name="vote" value="+" class="vote-button">
+                                    <span class="glyphicon glyphicon-plus-sign up-vote" aria-hidden="true"></span>
+                                </button>
+                                <span class="up-vote">{{ comment.up_votes }}</span>
 
-                            <span class="down-vote">{{ comment.down_votes }}</span>
-                            <button type="submit" name="vote" value="-" class="vote-button">
-                                <span class="glyphicon glyphicon-minus-sign down-vote" aria-hidden="true"></span>
-                            </button>
-                        {% elif request.COOKIES|get_item:cookie_val == '+' %}
-                            <button type="submit" name="vote" value="+" class="vote-button selected-vote">
-                                <span class="glyphicon glyphicon-plus-sign up-vote" aria-hidden="true"></span>
-                            </button>
-                            <span class="up-vote">{{ comment.up_votes }}</span>
+                                <span class="down-vote">{{ comment.down_votes }}</span>
+                                <button type="submit" name="vote" value="-" class="vote-button">
+                                    <span class="glyphicon glyphicon-minus-sign down-vote" aria-hidden="true"></span>
+                                </button>
+                            {% elif request.COOKIES|get_item:cookie_val == '+' %}
+                                <button type="submit" name="vote" value="+" class="vote-button selected-vote">
+                                    <span class="glyphicon glyphicon-plus-sign up-vote" aria-hidden="true"></span>
+                                </button>
+                                <span class="up-vote">{{ comment.up_votes }}</span>
 
-                            <span class="down-vote">{{ comment.down_votes }}</span>
-                            <button type="submit" name="vote" value="-" class="vote-button mute-vote">
-                                <span class="glyphicon glyphicon-minus-sign down-vote" aria-hidden="true"></span>
-                            </button>
-                        {% elif request.COOKIES|get_item:cookie_val == '-' %}
-                            <button type="submit" name="vote" value="+" class="vote-button mute-vote">
-                                <span class="glyphicon glyphicon-plus-sign up-vote" aria-hidden="true"></span>
-                            </button>
-                            <span class="up-vote">{{ comment.up_votes }}</span>
+                                <span class="down-vote">{{ comment.down_votes }}</span>
+                                <button type="submit" name="vote" value="-" class="vote-button mute-vote">
+                                    <span class="glyphicon glyphicon-minus-sign down-vote" aria-hidden="true"></span>
+                                </button>
+                            {% elif request.COOKIES|get_item:cookie_val == '-' %}
+                                <button type="submit" name="vote" value="+" class="vote-button mute-vote">
+                                    <span class="glyphicon glyphicon-plus-sign up-vote" aria-hidden="true"></span>
+                                </button>
+                                <span class="up-vote">{{ comment.up_votes }}</span>
 
-                            <span class="down-vote">{{ comment.down_votes }}</span>
-                            <button type="submit" name="vote" value="-" class="vote-button selected-vote">
-                                <span class="glyphicon glyphicon-minus-sign down-vote" aria-hidden="true"></span>
-                            </button>
-                        {% endif %}
-                    </form>
+                                <span class="down-vote">{{ comment.down_votes }}</span>
+                                <button type="submit" name="vote" value="-" class="vote-button selected-vote">
+                                    <span class="glyphicon glyphicon-minus-sign down-vote" aria-hidden="true"></span>
+                                </button>
+                            {% endif %}
+                        </form>
+                    {% endwith %}
                 {% endwith %}
-            {% endwith %}
 
-            <!-- <button onclick="showHideElement('report_comment_{{ comment.id }}')" class="btn btn-warning btn-sm ml-auto"
-                    style="float:right;border-radius:24px;padding:1px 8px;font-weight:bolder;">Zgłoś nadużycie
-            </button>
-            </div>
-            <form id="report_comment_{{ comment.id }}"
-                  action="{% url 'report_comment' %}?redirect={{ request.get_full_path | urlencode }}" method="post"
-                  style="display:none">
-                {% csrf_token %}
-                <br>
-                <div class="form-group">
-                    <label>Powód zgłoszenia komentarza:</label>
-                    <input type="hidden" value="{{ comment.id }}" name="comment_id">
-                    <input type="hidden" value="{{ request.get_full_path | urlencode }}" name="redirect">
-                    <textarea class="form-control" name="content" cols="30" rows="3" style="resize:none;"
-                              required></textarea>
-                </div>
-                <button class="btn btn-danger btn-sm" type="submit"
-                        style="border-radius:24px;padding:1px 8px;font-weight:bolder;">Wyślij
+                <!-- <button onclick="showHideElement('report_comment_{{ comment.id }}')" class="btn btn-warning btn-sm ml-auto"
+                        style="float:right;border-radius:24px;padding:1px 8px;font-weight:bolder;">Zgłoś nadużycie
                 </button>
-            </form>-->
+                </div>
+                <form id="report_comment_{{ comment.id }}"
+                      action="{% url 'report_comment' %}?redirect={{ request.get_full_path | urlencode }}" method="post"
+                      style="display:none">
+                    {% csrf_token %}
+                    <br>
+                    <div class="form-group">
+                        <label>Powód zgłoszenia komentarza:</label>
+                        <input type="hidden" value="{{ comment.id }}" name="comment_id">
+                        <input type="hidden" value="{{ request.get_full_path | urlencode }}" name="redirect">
+                        <textarea class="form-control" name="content" cols="30" rows="3" style="resize:none;"
+                                  required></textarea>
+                    </div>
+                    <button class="btn btn-danger btn-sm" type="submit"
+                            style="border-radius:24px;padding:1px 8px;font-weight:bolder;">Wyślij
+                    </button>
+                </form>-->
+                </div>
             </div>
-        </div>
-    {% empty %}
-        <div class="well well-sm">
-            <p>Nie ma tu jeszcze żadnego komentarza. Może czas to zmienić? :)</p>
-        </div>
-    {% endfor %}
+        {% empty %}
+            <div class="well well-sm">
+                <p>Nie ma tu jeszcze żadnego komentarza. Może czas to zmienić? :)</p>
+            </div>
+        {% endfor %}
+    </div>
     
     {% if subject != 'Wszystkie komentarze' %}
-        <h4>Wypelnij ankiete:</h4>
+        <h4 style="margin-top: 25px">Wypełnij ankiete:</h4>
         <form class="add_comment_form"
               action="{% url 'add_subject_survey' %}?redirect={{ request.get_full_path | urlencode }}"
               method="post">
