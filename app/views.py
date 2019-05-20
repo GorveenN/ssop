@@ -53,7 +53,7 @@ def subject_page(request, usos_id): # TODO
 
     subject = get_object_or_404(Subject, usos_id=usos_id)
     comments = subject.subjectcomment_set.order_by('-add_date')
-    add_comment_form = AddCommentForm()
+    add_comment_form = AddSubjectCommentForm()
     survey_questions = SubjectSurveyQuestion.objects.all()
     factory = formset_factory(StarRatingForm, extra=len(survey_questions))
     formset = factory()
@@ -78,6 +78,39 @@ def subject_page(request, usos_id): # TODO
             'general_rating': general_rating
         }
     )
+
+@require_POST
+def add_subject_comment(request):
+    sbj = get_object_or_404(Subject, usos_id=request.POST['subject_id'])
+    form = AddSubjectCommentForm(request.POST)
+    cookie_string = "sb-" + str(sbj.usos_id)
+    disable_cookie_string = cookie_string + "-dsb"
+    change_cookie_string = cookie_string + "-chg"
+    change_expiry_time = 10 * 60  # 10 minutes
+    disable_expiry_time = 365 * 24 * 60 * 60  # 1 year
+    set_cookies = False
+    change_id = ""
+    change = change_cookie_string in request.COOKIES
+
+    if change or disable_cookie_string not in request.COOKIES:
+        set_cookies = not change
+        with transaction.atomic():
+            if form.is_valid():
+                if not change:
+                    comment = form.save(commit=False)
+                    comment.subject = sbj
+                    comment.save()
+                    change_id = str(comment.pk)
+                else:
+                    SubjectComment.objects.filter(pk=int(request.COOKIES[change_cookie_string])).update(content=form.save(commit=False).content)
+
+    response = redirect(request.GET['redirect'])
+
+    if set_cookies:
+        response.set_cookie(key=change_cookie_string, value=change_id, max_age=change_expiry_time)
+        response.set_cookie(key=disable_cookie_string, max_age=disable_expiry_time)
+
+    return response
 
 @require_POST
 def add_comment(request):
@@ -141,6 +174,39 @@ def add_vote(request):
                         comment.up_votes -= 1
                     comment.down_votes += 1
                     response.set_cookie(f'tc-{comment.id}', '-')
+        else:
+            return HttpResponse("Unknown action", status=400)
+        comment.save()
+
+    return response
+
+@require_POST
+def add_subject_vote(request):
+    response = redirect(request.GET['redirect'])
+
+    with transaction.atomic():
+        comment = get_object_or_404(SubjectComment, id=request.POST['comment_id'])
+        if 'vote' in request.POST and request.POST['vote'] in ['+', '-']:
+            new_vote = request.POST['vote']
+            old_vote = request.COOKIES.get(f'sb-{comment.id}')
+
+            if new_vote == old_vote:
+                response.delete_cookie(f'sb-{comment.id}')
+                if new_vote == '+':
+                    comment.up_votes -= 1
+                else:
+                    comment.down_votes -= 1
+            else:
+                if request.POST['vote'] == '+':
+                    comment.up_votes += 1
+                    if old_vote is not None:
+                        comment.down_votes -= 1
+                    response.set_cookie(f'sb-{comment.id}', '+')
+                else:
+                    if old_vote is not None:
+                        comment.up_votes -= 1
+                    comment.down_votes += 1
+                    response.set_cookie(f'sb-{comment.id}', '-')
         else:
             return HttpResponse("Unknown action", status=400)
         comment.save()
@@ -221,7 +287,6 @@ def rules_page(request):
         }
     )
 
-
 @require_POST
 @transaction.atomic
 def report_comment(request):
@@ -281,7 +346,7 @@ def add_subject_survey(request):
     questions = len(SubjectSurveyQuestion.objects.all())
     factory = formset_factory(StarRatingForm, extra=questions)
     formset = factory(request.POST)
-    cookie_string = "ts-" + str(sbj.usos_id)
+    cookie_string = "ss-" + str(sbj.usos_id)
     disable_cookie_string = cookie_string + "-dsb"
     change_cookie_string = cookie_string + "-chg"
     change_expiry_time = 10 * 60  # 10 minutes
