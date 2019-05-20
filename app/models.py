@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 from jsonfield import JSONField
 from pytz import timezone
+import statistics
 
 USOS_TEACHER_TMPL = "https://usosweb.mimuw.edu.pl/kontroler.php?_action=actionx:katalog2/osoby/pokazOsobe%28os_id:"
 USOS_SUBJ_TMPL = "https://usosweb.mimuw.edu.pl/kontroler.php?_action=katalog2/przedmioty/pokazPrzedmiot&kod="
@@ -48,6 +49,17 @@ class Teacher(models.Model):
             'usos_id': self.usos_id
         }
 
+    def average_rating(self):
+        all_questions = TeacherSurveyQuestion.objects.all()
+        print([TeacherSurveyAnswer.objects.filter(question=question, teacher=self)
+                               .aggregate(models.Avg('rating'))['rating__avg'] for question in all_questions])
+        rating = [TeacherSurveyAnswer.objects.filter(question=question, teacher=self)
+                               .aggregate(models.Avg('rating'))['rating__avg'] for question in all_questions]
+        if rating[0] is None:
+            return "Brak oceny"
+        else:
+            return statistics.mean(rating)
+
 
 class Subject(models.Model):
     class Meta:
@@ -81,7 +93,6 @@ class Subject(models.Model):
         for answer in survey_answers:
             sum += answer.rating
         return str(sum / len(answer))
-
 
     def __str__(self):
         return f'{self.name}'

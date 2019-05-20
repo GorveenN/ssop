@@ -9,7 +9,6 @@ from utils.management.commands.download_teacher import download_teacher_info
 from django.core.exceptions import PermissionDenied
 from django.forms import formset_factory
 from django.db.models import Q
-import json
 from django.db.models import Avg
 
 from app.forms import *
@@ -57,11 +56,11 @@ def subject_page(request, usos_id): # TODO
     survey_questions = SubjectSurveyQuestion.objects.all()
     factory = formset_factory(StarRatingForm, extra=len(survey_questions))
     formset = factory()
-    que = SubjectSurveyQuestion.objects.all()
+    all_questions = SubjectSurveyQuestion.objects.all()
     general_rating = [
         (question,
             SubjectSurveyAnswer.objects.filter(question=question, subject=subject.usos_id).aggregate(Avg('rating'))['rating__avg'])
-        for question in que]
+        for question in all_questions]
 
     return render(
         request,
@@ -155,13 +154,13 @@ def teacher_page(request, usos_id):
     comments = tcr.teachercomment_set.filter(visible=True).order_by('-add_date')
     add_comment_form = AddCommentForm()
 
-    que = TeacherSurveyQuestion.objects.all()
-    factory = formset_factory(StarRatingForm, extra=len(que))
+    all_questions = TeacherSurveyQuestion.objects.all()
+    factory = formset_factory(StarRatingForm, extra=len(all_questions))
     formset = factory()
     general_rating = [
         (question,
             TeacherSurveyAnswer.objects.filter(question=question, teacher=tcr).aggregate(Avg('rating'))['rating__avg'])
-        for question in que]
+        for question in all_questions]
 
     return render(
         request,
@@ -174,7 +173,7 @@ def teacher_page(request, usos_id):
             'subject': 'Wszystkie komentarze',
             'add_comment_form': add_comment_form,
             'managment_form': formset.management_form,
-            'survey': zip(que, formset.forms),
+            'survey': zip(all_questions, formset.forms),
             'general_rating': general_rating
         }
     )
@@ -185,11 +184,11 @@ def teacher_comment_page(request, usos_id, subject):
         return redirect('teacher_page', usos_id=usos_id)
 
     tcr = get_object_or_404(Teacher, usos_id=usos_id)
-    que = TeacherSurveyQuestion.objects.all()
-    factory = formset_factory(StarRatingForm, extra=len(que))
+    all_questions = TeacherSurveyQuestion.objects.all()
+    factory = formset_factory(StarRatingForm, extra=len(all_questions))
     formset = factory()
     man_form = formset.management_form
-    survey = zip(que, formset.forms)
+    survey = zip(all_questions, formset.forms)
 
     sbj = get_object_or_404(Subject, usos_id=subject)
     comments = tcr.teachercomment_set.filter(subject=sbj, visible=True).order_by('-add_date')

@@ -36,7 +36,12 @@
         <div class="list-group">
             {% for teacher in subject.teachers %}
                 <a class="list-group-item" href="{% url 'teacher_comment_page' usos_id=teacher.usos_id subject=subject.usos_id %}">
-                    <h5 class="list-group-item-heading"> {{ teacher.fullname }} </h5>
+                    <div>
+                        {{ teacher.fullname }}
+                    </div>
+                    <div>
+                        Średnia ocen: {{ teacher.average_rating }}
+                    </div>
                 </a>
             {% endfor %}
         </div>
