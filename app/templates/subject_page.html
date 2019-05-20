@@ -11,7 +11,7 @@
         <div class="flex-container">
             <div>
                 {% for question, rating in general_rating %}
-                    <h5 class="font-italic">{{ question }}:&nbsp&nbsp&nbsp&nbsp
+                    <h5 class="font-italic"><b>{{ question }}</b>:&nbsp&nbsp&nbsp&nbsp
                         {% if not rating %}
                             <span class="floatRight">Nieocenione</span>
                         {% else %}
