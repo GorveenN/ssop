@@ -271,6 +271,11 @@ def teacher_comment_page(request, usos_id, subject):
     sbj = get_object_or_404(Subject, usos_id=subject)
     comments = tcr.teachercomment_set.filter(subject=sbj, visible=True).order_by('-add_date')
 
+    general_rating = [
+        (question,
+            TeacherSurveyAnswer.objects.filter(question=question, teacher=tcr, subject=sbj).aggregate(Avg('rating'))['rating__avg'])
+        for question in all_questions]
+
     cookie_string = "tc-" + str(tcr.usos_id) + "-" + str(sbj.usos_id)
     edit_cookie_string = cookie_string + "-edit"
     if edit_cookie_string in request.COOKIES:
@@ -290,7 +295,8 @@ def teacher_comment_page(request, usos_id, subject):
             'subject': sbj,
             'add_comment_form': add_comment_form,
             'managment_form': man_form,
-            'survey': survey
+            'survey': survey,
+            'general_rating': general_rating
         }
     )
 
