@@ -7,9 +7,7 @@ urlpatterns = [
     path('',                        views.ssop_home,    name='ssop_home'),
     path('teachers/<int:usos_id>',  views.teacher_page, name='teacher_page'),
     path('teachers/add_vote',  views.add_vote, name='add_vote'),
-    path('teachers/add_comment',  views.add_comment, name='add_comment'),
     path('teachers/<int:usos_id>/<str:subject>', views.teacher_comment_page, name='teacher_comment_page'),
-    path('subjects/add_subject_comment', views.add_subject_comment, name='add_subject_comment'),
     path('subjects/add_subject_vote', views.add_subject_vote, name='add_subject_vote'),
     path('subjects/<str:usos_id>', never_cache(views.subject_page), name='subject_page'), # TODO problem: it shouldn't be a string, but
     # int obviously doesn't work and slug / uuid seems to fail as well :/

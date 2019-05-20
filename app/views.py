@@ -87,77 +87,6 @@ def subject_page(request, usos_id): # TODO
         }
     )
 
-
-@require_POST
-def add_subject_comment(request):
-    sbj = get_object_or_404(Subject, usos_id=request.POST['subject_id'])
-    form = AddSubjectCommentForm(request.POST)
-    cookie_string = "sc-" + str(sbj.usos_id)
-    edit_cookie_string = cookie_string + "-edit"
-    disable_expiry_time = 365 * 24 * 60 * 60  # 1 year
-    change_id = ""
-    change = edit_cookie_string in request.COOKIES
-    set_cookie = not change
-
-    with transaction.atomic():
-        if form.is_valid():
-            if not change:
-                comment = form.save(commit=False)
-                comment.subject = sbj
-                comment.save()
-                change_id = str(comment.pk)
-            else:
-                comment_to_edit = SubjectComment.objects.filter(pk=int(request.COOKIES[edit_cookie_string])).first()
-                comment_to_edit.content = form.save(commit=False).content
-                if (datetime.datetime.now().replace(tzinfo=None) - comment_to_edit.add_date.replace(tzinfo=None)) \
-                        > datetime.timedelta(minutes=2):
-                    comment_to_edit.edited = True
-                comment_to_edit.save()
-
-    response = redirect(request.GET['redirect'])
-
-    if set_cookie:
-        response.set_cookie(key=edit_cookie_string, value=change_id, max_age=disable_expiry_time)
-
-    return response
-
-@require_POST
-def add_comment(request):
-    sbj = get_object_or_404(Subject, usos_id=request.POST['subject_id'])
-    tcr = get_object_or_404(Teacher, usos_id=request.POST['teacher_id'])
-    form = AddCommentForm(request.POST)
-    cookie_string = "tc-" + str(tcr.usos_id) + "-" + str(sbj.usos_id)
-    edit_cookie_string = cookie_string + "-edit"
-    edit_expiry_time = 365 * 24 * 60 * 60  # 1 year
-    set_cookie = False
-    change_id = ""
-    edit = edit_cookie_string in request.COOKIES
-
-    if edit or edit_cookie_string not in request.COOKIES:
-        set_cookie = not edit
-        with transaction.atomic():
-            if form.is_valid():
-                if not edit:
-                    comment = form.save(commit=False)
-                    comment.teacher = tcr
-                    comment.subject = sbj
-                    comment.save()
-                    change_id = str(comment.pk)
-                else:
-                    comment_to_edit = TeacherComment.objects.filter(pk=int(request.COOKIES[edit_cookie_string])).first()
-                    comment_to_edit.content = form.save(commit=False).content
-                    if (datetime.datetime.now().replace(tzinfo=None) - comment_to_edit.add_date.replace(tzinfo=None))\
-                            > datetime.timedelta(minutes=2):
-                        comment_to_edit.edited = True
-                    comment_to_edit.save()
-
-    response = redirect(request.GET['redirect'])
-
-    if set_cookie:
-        response.set_cookie(key=edit_cookie_string, value=change_id, max_age=edit_expiry_time)
-
-    return response
-
 @require_POST
 def add_vote(request):
     response = redirect(request.GET['redirect'])
@@ -373,47 +302,58 @@ def add_subject_survey(request):
     factory = formset_factory(StarRatingForm, extra=questions)
     formset = factory(request.POST)
     comment_form = AddSubjectCommentForm(request.POST)
-    cookie_string = "ss-" + str(sbj.usos_id)
-    edit_cookie_string = cookie_string + "-edit"
+    survey_cookie_string = "ss-" + str(sbj.usos_id) + "-edit"
+    comment_cookie_string = "sc-" + str(sbj.usos_id) + "-edit"
     edit_expiry_time = 365 * 24 * 60 * 60  # 1 year
-    set_cookie = False
-    change_ids = ""
-    change = edit_cookie_string in request.COOKIES
+    set_survey_cookie = False
+    set_comment_cookie = False
+    survey_ids = ""
 
-    # cookies
-    if comment_form.is_valid():
-        comment = comment_form.save(commit=False)
-        comment.subject = sbj
-        comment.save()
+    with transaction.atomic():
+        if comment_form.is_valid():
+            if comment_cookie_string not in request.COOKIES:
+                comment = comment_form.save(commit=False)
+                comment.subject = sbj
+                if comment.content:
+                    comment.save()
+                    comment_id = str(comment.pk)
+                    set_comment_cookie = True
+            else:
+                comment_to_edit = SubjectComment.objects.filter(pk=int(request.COOKIES[comment_cookie_string])).first()
+                comment_to_edit.content = comment_form.save(commit=False).content
+                if (datetime.datetime.now().replace(tzinfo=None) - comment_to_edit.add_date.replace(tzinfo=None)) \
+                        > datetime.timedelta(minutes=2):
+                    comment_to_edit.edited = True
+                comment_to_edit.save()
 
-    if change or edit_cookie_string not in request.COOKIES:
-        set_cookie = not change
-        if change:
-            i = 0
-            ids = request.COOKIES[edit_cookie_string][1:].split("+")
-        print(request.POST)
-        for idx, form in zip(range(0, questions), formset):
-            with transaction.atomic():
-                if form.is_valid():
-                    if change:
-                        SubjectSurveyAnswer.objects.filter(pk=int(ids[i])).update(rating=form["rating"].value())
-                        i += 1
+    if survey_cookie_string in request.COOKIES:
+        i = 0
+        ids = request.COOKIES[survey_cookie_string][1:].split("+")
 
-                    else: #new entry
-                        survey = SubjectSurveyAnswer()
-                        survey.subject = sbj
-                        survey.rating = form['rating'].value()
-                        survey.question_id = request.POST["form-{}-question".format(idx)]
-                        survey.save()
-                        change_ids += "+" + str(survey.pk)
+    for idx, form in zip(range(0, questions), formset):
+        with transaction.atomic():
+            if form.is_valid():
+                if survey_cookie_string in request.COOKIES:
+                    SubjectSurveyAnswer.objects.filter(pk=int(ids[i])).update(rating=form["rating"].value())
+                    i += 1
+                else: #new entry
+                    set_survey_cookie = True
+                    survey = SubjectSurveyAnswer()
+                    survey.subject = sbj
+                    survey.rating = form['rating'].value()
+                    survey.question_id = request.POST["form-{}-question".format(idx)]
+                    survey.save()
+                    survey_ids += "+" + str(survey.pk)
 
     response = redirect(request.GET['redirect'])
 
-    if set_cookie:
-        response.set_cookie(key=edit_cookie_string, value=change_ids, max_age=edit_expiry_time)
+    if set_survey_cookie:
+        response.set_cookie(key=survey_cookie_string, value=survey_ids, max_age=edit_expiry_time)
+
+    if set_comment_cookie:
+        response.set_cookie(key=comment_cookie_string, value=comment_id, max_age=edit_expiry_time)
 
     return response
-
 
 @require_POST
 def add_teacher_survey(request):
@@ -423,46 +363,59 @@ def add_teacher_survey(request):
     factory = formset_factory(StarRatingForm, extra=questions)
     formset = factory(request.POST)
     comment_form = AddCommentForm(request.POST)
-    cookie_string = "ts-" + str(tcr.usos_id) + "-" + str(sbj.usos_id)
-    edit_cookie_string = cookie_string + "-edit"
+    survey_cookie_string = "ts-" + str(tcr.usos_id) + "-" + str(sbj.usos_id) + "-edit"
+    comment_cookie_string = "tc-" + str(tcr.usos_id) + "-" + str(sbj.usos_id) + "-edit"
     edit_expiry_time = 365 * 24 * 60 * 60  # 1 year
-    set_cookies = False
-    change_ids = ""
-    change = edit_cookie_string in request.COOKIES
+    set_survey_cookie = False
+    set_comment_cookie = False
+    survey_ids = ""
 
     with transaction.atomic():
         if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
-            comment.teacher = tcr
-            comment.subject = sbj
-            comment.save()
+            if comment_cookie_string not in request.COOKIES:
+                comment = comment_form.save(commit=False)
+                comment.teacher = tcr
+                comment.subject = sbj
+                if comment.content:
+                    comment.save()
+                    comment_id = str(comment.pk)
+                    set_comment_cookie = True
+            else:
+                comment_to_edit = TeacherComment.objects.filter(pk=int(request.COOKIES[comment_cookie_string])).first()
+                comment_to_edit.content = comment_form.save(commit=False).content
+                if (datetime.datetime.now().replace(tzinfo=None) - comment_to_edit.add_date.replace(tzinfo=None))\
+                        > datetime.timedelta(minutes=2):
+                    comment_to_edit.edited = True
+                comment_to_edit.save()
 
-    if change or edit_cookie_string not in request.COOKIES:
-        set_cookies = not change
-        if change:
-            i = 0
-            ids = request.COOKIES[edit_cookie_string][1:].split("+")
-        print(request.POST)
-        for idx, form in zip(range(0, questions), formset):
-            with transaction.atomic():
-                if form.is_valid():
-                    if change:
-                        TeacherSurveyAnswer.objects.filter(pk=int(ids[i])).update(rating=form["rating"].value())
-                        i += 1
+    if survey_cookie_string in request.COOKIES:
+        i = 0
+        ids = request.COOKIES[survey_cookie_string][1:].split("+")
 
-                    else: #new entry
-                        survey = TeacherSurveyAnswer()
-                        survey.teacher = tcr
-                        survey.subject = sbj
-                        survey.rating = form['rating'].value()
-                        survey.question_id = request.POST["form-{}-question".format(idx)]
-                        survey.save()
-                        change_ids += "+" + str(survey.pk)
+    for idx, form in zip(range(0, questions), formset):
+        with transaction.atomic():
+            if form.is_valid():
+                if survey_cookie_string in request.COOKIES:
+                    TeacherSurveyAnswer.objects.filter(pk=int(ids[i])).update(rating=form["rating"].value())
+                    i += 1
+
+                else: #new entry
+                    set_survey_cookie = True
+                    survey = TeacherSurveyAnswer()
+                    survey.teacher = tcr
+                    survey.subject = sbj
+                    survey.rating = form['rating'].value()
+                    survey.question_id = request.POST["form-{}-question".format(idx)]
+                    survey.save()
+                    survey_ids += "+" + str(survey.pk)
 
     response = redirect(request.GET['redirect'])
 
-    if set_cookies:
-        response.set_cookie(key=edit_cookie_string, value=change_ids, max_age=edit_expiry_time)
+    if set_survey_cookie:
+        response.set_cookie(key=survey_cookie_string, value=survey_ids, max_age=edit_expiry_time)
+
+    if set_comment_cookie:
+        response.set_cookie(key=comment_cookie_string, value=comment_id, max_age=edit_expiry_time)
 
     return response
 
