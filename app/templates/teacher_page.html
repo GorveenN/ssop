@@ -73,10 +73,10 @@
         </div>
 
 
-        <h3 href="#comments" data-toggle="collapse">Wszystkie komentarze: ► </h3>
+    <h3 href="#comments" data-toggle="collapse">Wszystkie komentarze: ► </h3>
     {% endblock %}
 
-    <div id="comments" class="collapse">
+    <div id="comments" class="collapse.show">
         {% for comment in comments %}
             <div class="well well-sm">
                 {% if comment.wikispaces %}
