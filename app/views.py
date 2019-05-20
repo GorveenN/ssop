@@ -504,10 +504,12 @@ def search(request):
         for key, value in Qs.items():
             masterQ &= value
         subjects = Subject.objects.all().filter(masterQ)
-
         print(masterQ)
         print(subjects)
+
         html_data['queried_sub'] = subjects
+        if len(subjects) == 0:
+            html_data['queried_sub'] = 'Empty'
         html_data['form'] = SearchSubjectForm()
         return render(request, 'search_page.html', html_data)
 
