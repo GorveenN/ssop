@@ -69,6 +69,10 @@ class Subject(models.Model):
         return USOS_SUBJ_TMPL + str(self.usos_id)
 
     @property
+    def teachers(self):
+        return [entry.teacher for entry in self.class_set.all()]
+
+    @property
     def average_rating(self):
         survey_answers = SubjectSurveyAnswer.objects.all().filter(subject=self)
         if not len(survey_answers):
@@ -94,6 +98,7 @@ class Class(models.Model):
 
     def __str__(self):
         return f'{self.teacher} - {self.subject}'
+
 
 class Comment(models.Model):
     class Meta:

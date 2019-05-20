@@ -48,9 +48,9 @@ def ssop_home(request):
         }
     )
 
+
 @require_GET
 def subject_page(request, usos_id): # TODO
-
     subject = get_object_or_404(Subject, usos_id=usos_id)
     comments = subject.subjectcomment_set.order_by('-add_date')
     add_comment_form = AddCommentForm()
@@ -69,9 +69,10 @@ def subject_page(request, usos_id): # TODO
             'comments': comments,
             'add_comment_form': add_comment_form,
             'managment_form': formset.management_form,
-            'survey': zip(survey_questions, formset.forms)
+            'survey': zip(survey_questions, formset.forms),
         }
     )
+
 
 @require_POST
 def add_comment(request):
