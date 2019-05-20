@@ -32,8 +32,18 @@
         </div>
     </div>
 
-    <h3>Wszystkie komentarze:</h3>
+        <h3>Tegoroczni prowadzący</h3>
+        <div class="list-group">
+            {% for teacher in subject.teachers %}
+                <a class="list-group-item" href="{% url 'teacher_comment_page' usos_id=teacher.usos_id subject=subject.usos_id %}">
+                    <h5 class="list-group-item-heading"> {{ teacher.fullname }} </h5>
+                </a>
+            {% endfor %}
+        </div>
+
+        <h3>Wszystkie komentarze:</h3>
     {% endblock %}
+
 
     <!--TODO: add comments display and form for adding comments and all that remaining stuff from trello -->
     <!--TODO: cookies?? (do they work as we wish?) -->
