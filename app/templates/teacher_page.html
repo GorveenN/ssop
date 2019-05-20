@@ -52,13 +52,19 @@
         </div>
 
         <div>
-            <h5 class="font-italic"><b>Strona:</b> <a
-                    href="{{ teacher.website|default_if_none:'' }}">{{ teacher.website|default_if_none:'' }}</a>
-            </h5>
-            <h5 class="font-italic"><b>USOSWeb:</b> <a href="{{ teacher.usos_link|default_if_none:'' }}">link</a></h5>
-            <h5 class="font-italic"><b>Mail:</b> <a
-                    href="mailto:{{ teacher.email|default_if_none:'' }}">{{ teacher.email|default_if_none:'' }}</a>
-            </h5>
+            {% if teacher.website %}
+                <h5 class="font-italic"><b>Strona:</b> <a
+                        href="{{ teacher.website|default_if_none:'' }}">{{ teacher.website|default_if_none:'Nieznane' }}</a>
+                </h5>
+            {% endif %}
+            <h5 class="font-italic"><b>USOSWeb:</b> <a
+                    href="{{ teacher.usos_link|default_if_none:'Nieznane' }}">link</a></h5>
+            {% if teacher.email %}
+                <h5 class="font-italic"><b>Mail:</b>
+                    <a href="mailto:{{ teacher.email|default_if_none:'' }}">{{ teacher.email|default_if_none:'Nieznane' }}</a>
+                </h5>
+            {% endif %}
+
         </div>
     </div>
     {% block info %}
@@ -164,7 +170,7 @@
         {% endfor %}
     </div>
     <div id="survey">
-     {% if subject != 'Wszystkie komentarze' %}
+        {% if subject != 'Wszystkie komentarze' %}
             <h4>Wypełnij ankiete:</h4>
             <form class="add_comment_form"
                   action="{% url 'add_teacher_survey' %}?redirect={{ request.get_full_path | urlencode }}"
@@ -175,7 +181,7 @@
                 <input type="hidden" value="{{ teacher.usos_id }}" name="teacher_id">
 
                 <div id="pytaniaAnkiet" class="list-group">
-                    {% for que, form in survey %}
+                    {% for que, form, answer in survey %}
                         <div class="list-group-item">
                             <span>{{ que }}</span>
                             <span class="starrating">
@@ -186,7 +192,11 @@
                                         <input type="radio" id="{{ item.id_for_label }}"
                                                name="{{ field.html_name }}"
                                                value="{{ item.data.value }}"
-                                               required/>
+                                               required
+                                                {% if item.data.value == answer %}
+                                               checked="true"
+                                                {% endif %}
+                                        />
                                         <label for="{{ item.id_for_label }}"></label>
                                     {% endfor %}
                                 {% endfor %}
@@ -219,36 +229,36 @@
                 {% endwith %}
             </form>
 
-{#                        <h4>Dodaj komentarz:</h4>#}
-{#                        <form class="add_comment_form"#}
-{#                              action="{% url 'add_comment' %}?redirect={{ request.get_full_path | urlencode }}"#}
-{#                              method="post">#}
-{#                            {% csrf_token %}#}
-{#                            <input type="hidden" value="{{ subject.usos_id }}" name="subject_id">#}
-{#                            <input type="hidden" value="{{ teacher.usos_id }}" name="teacher_id">#}
-{##}
-{#                            {% for field in add_comment_form %}#}
-{#                                <div class="form-group">#}
-{#                                    {{ field.label_tag }}#}
-{#                                    {{ field }}#}
-{#                                </div>#}
-{#                            {% endfor %}#}
-{#                            <label>#}
-{#                                <input type="checkbox" required>#}
-{#                                Potwierdzam, że zapoznałem się z#}
-{#                            </label>#}
-{#                            <a href="{% url 'rules_page' %}?teacher={{ teacher.usos_id }}">regulaminem</a>.#}
-{#                            <br>#}
-{#                            {% with teacher_id=teacher.usos_id|stringformat:"i" %}#}
-{#                                {% with cookie_string="tc-"|add:teacher_id|add:"-"|add:subject.usos_id %}#}
-{#                                    {% if cookie_string|add:"-edit" in request.COOKIES %}#}
-{#                                        <button class="btn btn-default" type="submit">Nadpisz dodany komentarz</button>#}
-{#                                    {% else %}#}
-{#                                        <button class="btn btn-default" type="submit">Dodaj komentarz</button>#}
-{#                                    {% endif %}#}
-{#                                {% endwith %}#}
-{#                            {% endwith %}#}
-{#                        </form>#}
+            {#            <h4>Dodaj komentarz:</h4>#}
+            {#            <form class="add_comment_form"#}
+            {#                  action="{% url 'add_comment' %}?redirect={{ request.get_full_path | urlencode }}"#}
+            {#                  method="post">#}
+            {#                {% csrf_token %}#}
+            {#                <input type="hidden" value="{{ subject.usos_id }}" name="subject_id">#}
+            {#                <input type="hidden" value="{{ teacher.usos_id }}" name="teacher_id">#}
+            {##}
+            {#                {% for field in add_comment_form %}#}
+            {#                    <div class="form-group">#}
+            {#                        {{ field.label_tag }}#}
+            {#                        {{ field }}#}
+            {#                    </div>#}
+            {#                {% endfor %}#}
+            {#                <label>#}
+            {#                    <input type="checkbox" required>#}
+            {#                    Potwierdzam, że zapoznałem się z#}
+            {#                </label>#}
+            {#                <a href="{% url 'rules_page' %}?teacher={{ teacher.usos_id }}">regulaminem</a>.#}
+            {#                <br>#}
+            {#                {% with teacher_id=teacher.usos_id|stringformat:"i" %}#}
+            {#                    {% with cookie_string="tc-"|add:teacher_id|add:"-"|add:subject.usos_id %}#}
+            {#                        {% if cookie_string|add:"-edit" in request.COOKIES %}#}
+            {#                            <button class="btn btn-default" type="submit">Nadpisz dodany komentarz</button>#}
+            {#                        {% else %}#}
+            {#                            <button class="btn btn-default" type="submit">Dodaj komentarz</button>#}
+            {#                        {% endif %}#}
+            {#                    {% endwith %}#}
+            {#                {% endwith %}#}
+            {#            </form>#}
         {% endif %}
     </div>
 {% endblock %}

@@ -152,7 +152,7 @@
             <input type="hidden" value="{{ subject.usos_id }}" name="subject_id">
 
             <div id="pytaniaAnkiet" class="list-group">
-                {% for que, form in survey %}
+                {% for que, form, answer in survey %}
                     <div class="list-group-item">
                         <span>{{ que }}</span>
                         <span class="starrating">
@@ -163,7 +163,11 @@
                                     <input type="radio" id="{{ item.id_for_label }}"
                                            name="{{ field.html_name }}"
                                            value="{{ item.data.value }}"
-                                           required/>
+                                           required
+                                           {% if item.data.value == answer %}
+                                                checked="true"
+                                           {% endif %}
+                                    />
                                     <label for="{{ item.id_for_label }}"></label>
                                 {% endfor %}
                             {% endfor %}

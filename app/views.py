@@ -62,16 +62,26 @@ def subject_page(request, usos_id):
     subject = get_object_or_404(Subject, usos_id=usos_id)
     comments = subject.subjectcomment_set.order_by('-add_date')
 
-    cookie_string = "sc-" + str(subject.usos_id)
-    edit_cookie_string = cookie_string + "-edit"
-    if edit_cookie_string in request.COOKIES:
-        comment_content = SubjectComment.objects.filter(pk=int(request.COOKIES[edit_cookie_string])).first().content
+    comment_cookie_string = "sc-" + str(subject.usos_id) + "-edit"
+    survey_cookie_string = "ss-" + str(subject.usos_id) + "-edit"
+    if comment_cookie_string in request.COOKIES:
+        comment_content = SubjectComment.objects.filter(pk=int(request.COOKIES[comment_cookie_string])).first().content
         add_comment_form = AddSubjectCommentForm(initial={"content": comment_content})
     else:
         add_comment_form = AddSubjectCommentForm()
     survey_questions = SubjectSurveyQuestion.objects.all()
     factory = formset_factory(StarRatingForm, extra=len(survey_questions))
     formset = factory()
+    answers = [6] * len(formset.forms)
+    if survey_cookie_string in request.COOKIES:
+        i = 0
+        ids = request.COOKIES[survey_cookie_string][1:].split("+")
+        for rating_id in ids:
+            filtered = SubjectSurveyAnswer.objects.filter(pk=int(rating_id))
+            if filtered:
+                answers[i] = filtered.first().rating
+                i += 1
+
     all_questions = SubjectSurveyQuestion.objects.all()
     general_rating = [
         (question,
@@ -89,7 +99,7 @@ def subject_page(request, usos_id):
             'comments': comments,
             'add_comment_form': add_comment_form,
             'managment_form': formset.management_form,
-            'survey': zip(survey_questions, formset.forms),
+            'survey': zip(survey_questions, formset.forms, answers),
             'general_rating': general_rating
         }
     )
@@ -200,12 +210,22 @@ def teacher_comment_page(request, usos_id, subject):
         return redirect('teacher_page', usos_id=usos_id)
 
     tcr = get_object_or_404(Teacher, usos_id=usos_id)
+    comment_cookie_string = "tc-" + str(tcr.usos_id) + "-" + subject + "-edit"
+    survey_cookie_string = "ts-" + str(tcr.usos_id) + "-" + subject + "-edit"
     all_questions = TeacherSurveyQuestion.objects.all()
     factory = formset_factory(StarRatingForm, extra=len(all_questions))
     formset = factory()
-
+    answers = [6] * len(formset.forms)
+    if survey_cookie_string in request.COOKIES:
+        i = 0
+        ids = request.COOKIES[survey_cookie_string][1:].split("+")
+        for rating_id in ids:
+            filtered = TeacherSurveyAnswer.objects.filter(id=int(rating_id))
+            if filtered:
+                answers[i] = filtered.first().rating
+                i += 1
     man_form = formset.management_form
-    survey = zip(all_questions, formset.forms)
+    survey = zip(all_questions, formset.forms, answers)
 
     sbj = get_object_or_404(Subject, usos_id=subject)
     comments = tcr.teachercomment_set.filter(subject=sbj, visible=True).order_by('-add_date')
@@ -215,10 +235,8 @@ def teacher_comment_page(request, usos_id, subject):
             TeacherSurveyAnswer.objects.filter(question=question, teacher=tcr, subject=sbj).aggregate(Avg('rating'))['rating__avg'])
         for question in all_questions]
 
-    cookie_string = "tc-" + str(tcr.usos_id) + "-" + str(sbj.usos_id)
-    edit_cookie_string = cookie_string + "-edit"
-    if edit_cookie_string in request.COOKIES:
-        comment_content = TeacherComment.objects.filter(pk=int(request.COOKIES[edit_cookie_string])).first().content
+    if comment_cookie_string in request.COOKIES:
+        comment_content = TeacherComment.objects.filter(pk=int(request.COOKIES[comment_cookie_string])).first().content
         add_comment_form = AddCommentForm(initial={'content': comment_content})
     else:
         add_comment_form = AddCommentForm()
