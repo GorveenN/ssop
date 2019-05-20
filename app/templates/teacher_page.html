@@ -77,7 +77,7 @@
         <h3 href="#comments" data-toggle="collapse">Wszystkie komentarze: ► </h3>
     {% endblock %}
 
-    <div id="comments" class="collapse in">
+    <div id="comments" class="collapse">
         {% for comment in comments %}
             <div class="well well-sm">
                 {% if comment.wikispaces %}
@@ -162,8 +162,10 @@
                 <p>Nie ma tu jeszcze żadnego komentarza. Może czas to zmienić? :)</p>
             </div>
         {% endfor %}
-        {% if subject != 'Wszystkie komentarze' %}
-            <h4>Wypelnij ankiete:</h4>
+    </div>
+    <div id="survey">
+     {% if subject != 'Wszystkie komentarze' %}
+            <h4>Wypełnij ankiete:</h4>
             <form class="add_comment_form"
                   action="{% url 'add_teacher_survey' %}?redirect={{ request.get_full_path | urlencode }}"
                   method="post">
