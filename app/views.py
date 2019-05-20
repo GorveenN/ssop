@@ -366,12 +366,19 @@ def add_subject_survey(request):
     questions = len(SubjectSurveyQuestion.objects.all())
     factory = formset_factory(StarRatingForm, extra=questions)
     formset = factory(request.POST)
+    comment_form = AddSubjectCommentForm(request.POST)
     cookie_string = "ss-" + str(sbj.usos_id)
     edit_cookie_string = cookie_string + "-edit"
     edit_expiry_time = 365 * 24 * 60 * 60  # 1 year
     set_cookie = False
     change_ids = ""
     change = edit_cookie_string in request.COOKIES
+
+    # cookies
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        comment.subject = sbj
+        comment.save()
 
     if change or edit_cookie_string not in request.COOKIES:
         set_cookie = not change
@@ -409,12 +416,20 @@ def add_teacher_survey(request):
     questions = len(TeacherSurveyQuestion.objects.all())
     factory = formset_factory(StarRatingForm, extra=questions)
     formset = factory(request.POST)
+    comment_form = AddCommentForm(request.POST)
     cookie_string = "ts-" + str(tcr.usos_id) + "-" + str(sbj.usos_id)
     edit_cookie_string = cookie_string + "-edit"
     edit_expiry_time = 365 * 24 * 60 * 60  # 1 year
     set_cookies = False
     change_ids = ""
     change = edit_cookie_string in request.COOKIES
+
+    with transaction.atomic():
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.teacher = tcr
+            comment.subject = sbj
+            comment.save()
 
     if change or edit_cookie_string not in request.COOKIES:
         set_cookies = not change
