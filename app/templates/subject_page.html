@@ -13,7 +13,7 @@
                 {% for question, rating in general_rating %}
                     <h5 class="font-italic"><b>{{ question }}</b>:&nbsp&nbsp&nbsp&nbsp
                         {% if not rating %}
-                            <span class="floatRight">Nieocenione</span>
+                            <span class="floatRight">Brak ocen</span>
                         {% else %}
                             <span class="stars-container stars-{{ rating|mul:20|roundTo10 }} floatRight">★★★★★</span>
                         {% endif %}
@@ -46,10 +46,10 @@
                     </div>
                     <div>
                         Średnia ocen: 
-                        {% if teacher.average_rating != "Brak ocen" %}
-                        <span class="stars-container stars-{{ teacher.average_rating|mul:20|roundTo10 }}">★★★★★</span>
+                        {% if teacher.average_rating != None %}
+                            <span class="stars-container stars-{{ teacher.average_rating|mul:20|roundTo10 }}">★★★★★</span>
                         {% else %}
-                        {{ teacher.average_rating }}
+                            Brak ocen
                         {% endif %}
                     </div>
                 </a>
