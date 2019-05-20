@@ -11,9 +11,9 @@
                     class="sr-only">(current)</span></a>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% block subject_name %}Wszystkie
-                komentarze{% endblock %} <b
-                    class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                {% block subject_name %}Wszystkie komentarze{% endblock %}
+                <b class="caret"></b></a>
             <ul class="dropdown-menu multi-column scrollable-menu columns-1" role="menu">
                 <div class="row">
                     <ul class="multi-column-dropdown one-col">
@@ -37,6 +37,7 @@
 
 {% block content %}
     <h1><a href="{% url 'teacher_page' usos_id=teacher.usos_id %}">{{ teacher.fullname }}</a></h1>
+    {% block subject_name_comment %} {% endblock %}
 
     <div class="flex-container">
         <div>
@@ -171,7 +172,7 @@
     </div>
     <div id="survey">
         {% if subject != 'Wszystkie komentarze' %}
-            <h4>Wypełnij ankiete:</h4>
+            <h3>Wypełnij ankiete:</h3>
             <form class="add_comment_form"
                   action="{% url 'add_teacher_survey' %}?redirect={{ request.get_full_path | urlencode }}"
                   method="post">
@@ -228,37 +229,6 @@
                     {% endwith %}
                 {% endwith %}
             </form>
-
-            {#            <h4>Dodaj komentarz:</h4>#}
-            {#            <form class="add_comment_form"#}
-            {#                  action="{% url 'add_comment' %}?redirect={{ request.get_full_path | urlencode }}"#}
-            {#                  method="post">#}
-            {#                {% csrf_token %}#}
-            {#                <input type="hidden" value="{{ subject.usos_id }}" name="subject_id">#}
-            {#                <input type="hidden" value="{{ teacher.usos_id }}" name="teacher_id">#}
-            {##}
-            {#                {% for field in add_comment_form %}#}
-            {#                    <div class="form-group">#}
-            {#                        {{ field.label_tag }}#}
-            {#                        {{ field }}#}
-            {#                    </div>#}
-            {#                {% endfor %}#}
-            {#                <label>#}
-            {#                    <input type="checkbox" required>#}
-            {#                    Potwierdzam, że zapoznałem się z#}
-            {#                </label>#}
-            {#                <a href="{% url 'rules_page' %}?teacher={{ teacher.usos_id }}">regulaminem</a>.#}
-            {#                <br>#}
-            {#                {% with teacher_id=teacher.usos_id|stringformat:"i" %}#}
-            {#                    {% with cookie_string="tc-"|add:teacher_id|add:"-"|add:subject.usos_id %}#}
-            {#                        {% if cookie_string|add:"-edit" in request.COOKIES %}#}
-            {#                            <button class="btn btn-default" type="submit">Nadpisz dodany komentarz</button>#}
-            {#                        {% else %}#}
-            {#                            <button class="btn btn-default" type="submit">Dodaj komentarz</button>#}
-            {#                        {% endif %}#}
-            {#                    {% endwith %}#}
-            {#                {% endwith %}#}
-            {#            </form>#}
         {% endif %}
     </div>
 {% endblock %}
