@@ -481,8 +481,8 @@ def search(request):
         }
 
         if request.POST['name'] != '':
-            Qs['name'] |= Q(name__contains=escape_string(request.POST['name']))
-            Qs['name'] |= Q(usos_id__contains=escape_string(request.POST['name']))
+            Qs['name'] |= Q(name__contains=request.POST['name'])
+            Qs['name'] |= Q(usos_id__contains=request.POST['name'])
 
         if request.POST['max_ects'] != '':
             Qs['ects'] &= Q(ects__lt=float(request.POST['max_ects']))
