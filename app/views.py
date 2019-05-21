@@ -67,10 +67,13 @@ def subject_page(request, usos_id):
     comment_cookie_string = "sc-" + str(subject.usos_id) + "-edit"
     survey_cookie_string = "ss-" + str(subject.usos_id) + "-edit"
     if comment_cookie_string in request.COOKIES:
-        comment_content = SubjectComment.objects.filter(pk=int(request.COOKIES[comment_cookie_string])).first().content
-        add_comment_form = AddSubjectCommentForm(initial={"content": comment_content})
-    else:
-        add_comment_form = AddSubjectCommentForm()
+        filtered = SubjectComment.objects.filter(pk=int(request.COOKIES[comment_cookie_string]))
+        if filtered:
+            comment_content = filtered.first().content
+            add_comment_form = AddSubjectCommentForm(initial={"content": comment_content})
+        else:
+            add_comment_form = AddSubjectCommentForm()
+
     survey_questions = SubjectSurveyQuestion.objects.all()
     factory = formset_factory(StarRatingForm, extra=len(survey_questions))
     formset = factory()
@@ -238,10 +241,12 @@ def teacher_comment_page(request, usos_id, subject):
         for question in all_questions]
 
     if comment_cookie_string in request.COOKIES:
-        comment_content = TeacherComment.objects.filter(pk=int(request.COOKIES[comment_cookie_string])).first().content
-        add_comment_form = AddCommentForm(initial={'content': comment_content})
-    else:
-        add_comment_form = AddCommentForm()
+        filtered = TeacherComment.objects.filter(pk=int(request.COOKIES[comment_cookie_string]))
+        if filtered:
+            comment_content = filtered.first().content
+            add_comment_form = AddCommentForm(initial={'content': comment_content})
+        else:
+            add_comment_form = AddCommentForm()
 
     return render(
         request,
@@ -343,20 +348,23 @@ def add_subject_survey(request):
 
     with transaction.atomic():
         if comment_form.is_valid():
-            if comment_cookie_string not in request.COOKIES:
-                comment = comment_form.save(commit=False)
-                comment.subject = sbj
-                if comment.content:
-                    comment.save()
-                    comment_id = str(comment.pk)
-                    set_comment_cookie = True
-            else:
-                comment_to_edit = SubjectComment.objects.filter(pk=int(request.COOKIES[comment_cookie_string])).first()
-                comment_to_edit.content = comment_form.save(commit=False).content
-                if (datetime.datetime.now().replace(tzinfo=None) - comment_to_edit.add_date.replace(tzinfo=None)) \
-                        > datetime.timedelta(minutes=2):
-                    comment_to_edit.edited = True
-                comment_to_edit.save()
+            if comment_cookie_string in request.COOKIES:
+                filtered = SubjectComment.objects.filter(pk=int(request.COOKIES[comment_cookie_string]))
+                if filtered:
+                    comment_to_edit = filtered.first()
+                    comment_to_edit.content = comment_form.save(commit=False).content
+                    if (datetime.datetime.now().replace(tzinfo=None) - comment_to_edit.add_date.replace(tzinfo=None)) \
+                            > datetime.timedelta(minutes=2):
+                        comment_to_edit.edited = True
+                    comment_to_edit.save()
+
+                else:
+                    comment = comment_form.save(commit=False)
+                    comment.subject = sbj
+                    if comment.content:
+                        comment.save()
+                        comment_id = str(comment.pk)
+                        set_comment_cookie = True
 
     if survey_cookie_string in request.COOKIES:
         i = 0
@@ -404,21 +412,23 @@ def add_teacher_survey(request):
 
     with transaction.atomic():
         if comment_form.is_valid():
-            if comment_cookie_string not in request.COOKIES:
-                comment = comment_form.save(commit=False)
-                comment.teacher = tcr
-                comment.subject = sbj
-                if comment.content:
-                    comment.save()
-                    comment_id = str(comment.pk)
-                    set_comment_cookie = True
-            else:
-                comment_to_edit = TeacherComment.objects.filter(pk=int(request.COOKIES[comment_cookie_string])).first()
-                comment_to_edit.content = comment_form.save(commit=False).content
-                if (datetime.datetime.now().replace(tzinfo=None) - comment_to_edit.add_date.replace(tzinfo=None))\
-                        > datetime.timedelta(minutes=2):
-                    comment_to_edit.edited = True
-                comment_to_edit.save()
+            if comment_cookie_string in request.COOKIES:
+                filtered = TeacherComment.objects.filter(pk=int(request.COOKIES[comment_cookie_string]))
+                if filtered:
+                    comment_to_edit = filtered.first()
+                    comment_to_edit.content = comment_form.save(commit=False).content
+                    if (datetime.datetime.now().replace(tzinfo=None) - comment_to_edit.add_date.replace(tzinfo=None)) \
+                            > datetime.timedelta(minutes=2):
+                        comment_to_edit.edited = True
+                    comment_to_edit.save()
+                else:
+                    comment = comment_form.save(commit=False)
+                    comment.teacher = tcr
+                    comment.subject = sbj
+                    if comment.content:
+                        comment.save()
+                        comment_id = str(comment.pk)
+                        set_comment_cookie = True
 
     if survey_cookie_string in request.COOKIES:
         i = 0
