@@ -73,6 +73,8 @@ def subject_page(request, usos_id):
             add_comment_form = AddSubjectCommentForm(initial={"content": comment_content})
         else:
             add_comment_form = AddSubjectCommentForm()
+    else:
+        add_comment_form = AddSubjectCommentForm()
 
     survey_questions = SubjectSurveyQuestion.objects.all()
     factory = formset_factory(StarRatingForm, extra=len(survey_questions))
@@ -247,6 +249,8 @@ def teacher_comment_page(request, usos_id, subject):
             add_comment_form = AddCommentForm(initial={'content': comment_content})
         else:
             add_comment_form = AddCommentForm()
+    else:
+        add_comment_form = AddCommentForm()
 
     return render(
         request,
@@ -365,6 +369,13 @@ def add_subject_survey(request):
                         comment.save()
                         comment_id = str(comment.pk)
                         set_comment_cookie = True
+            else:
+                comment = comment_form.save(commit=False)
+                comment.subject = sbj
+                if comment.content:
+                    comment.save()
+                    comment_id = str(comment.pk)
+                    set_comment_cookie = True
 
     if survey_cookie_string in request.COOKIES:
         i = 0
@@ -429,6 +440,14 @@ def add_teacher_survey(request):
                         comment.save()
                         comment_id = str(comment.pk)
                         set_comment_cookie = True
+            else:
+                comment = comment_form.save(commit=False)
+                comment.teacher = tcr
+                comment.subject = sbj
+                if comment.content:
+                    comment.save()
+                    comment_id = str(comment.pk)
+                    set_comment_cookie = True
 
     if survey_cookie_string in request.COOKIES:
         i = 0
