@@ -5,6 +5,9 @@
 {% block title %}{{ teacher.fullname }} {{ subject }}{% endblock %}
 
 {% block subject_name %}{{ subject }}{% endblock %}
+{% block subject_comment_name %}
+<h3><a href="{% url 'subject_page' usos_id=subject.usos_id %}">{{ subject.name }}</a></h3>
+{% endblock %}
 
 {% block info %}
     <h3 href="#comments" data-toggle="collapse">Opinie: ►</h3>
