@@ -66,6 +66,7 @@ def subject_page(request, usos_id):
 
     comment_cookie_string = "sc-" + str(subject.usos_id) + "-edit"
     survey_cookie_string = "ss-" + str(subject.usos_id) + "-edit"
+
     if comment_cookie_string in request.COOKIES:
         filtered = SubjectComment.objects.filter(pk=int(request.COOKIES[comment_cookie_string]))
         if filtered:
@@ -73,6 +74,8 @@ def subject_page(request, usos_id):
             add_comment_form = AddSubjectCommentForm(initial={"content": comment_content})
         else:
             add_comment_form = AddSubjectCommentForm()
+    else:
+        add_comment_form = AddCommentForm()
 
     survey_questions = SubjectSurveyQuestion.objects.all()
     factory = formset_factory(StarRatingForm, extra=len(survey_questions))
